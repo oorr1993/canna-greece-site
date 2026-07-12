@@ -16,4 +16,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://cannagreece.example.com/sitemap.xml
+Sitemap: https://canna-greece-site.vercel.app/sitemap.xml
