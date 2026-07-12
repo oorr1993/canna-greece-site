@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "canna-greece-site",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["--yes", "serve", "-l", "4173", "C:\\קלוד\\canna-greece-site"],
+      "port": 4173
+    }
+  ]
+}
