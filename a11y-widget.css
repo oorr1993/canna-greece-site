@@ -1,0 +1,81 @@
+.a11y-fab {
+  position: fixed; bottom: 24px; inset-inline-start: 24px; z-index: 250;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #4D4ED9; color: #FFFFFF; border: 2px solid #000000;
+  box-shadow: 4px 4px 0 #000000;
+  display: grid; place-items: center; cursor: pointer;
+  transition: transform 0.12s;
+}
+.a11y-fab:hover { transform: translate(-2px, -2px); }
+.a11y-fab:focus-visible { outline: 3px dashed #08D19A; outline-offset: 3px; }
+
+.a11y-panel {
+  position: fixed; bottom: 90px; inset-inline-start: 24px; z-index: 250;
+  width: min(320px, calc(100vw - 48px));
+  background: #FFFFFF; color: #26325E; border: 2px solid #000000; border-radius: 18px;
+  box-shadow: 6px 6px 0 #000000;
+  padding: 18px; font-family: 'Rubik', Arial, sans-serif;
+  max-height: min(560px, calc(100vh - 130px)); overflow-y: auto;
+}
+.a11y-panel[hidden] { display: none; }
+.a11y-panel-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.a11y-panel-head h2 { font-size: 17px; font-weight: 900; margin: 0; }
+.a11y-close {
+  width: 32px; height: 32px; border-radius: 50%; background: #EEEEFF;
+  border: 2px solid #000000; cursor: pointer; font-size: 15px; color: #26325E;
+}
+.a11y-close:focus-visible, .a11y-toggle:focus-visible, .a11y-reset-btn:focus-visible {
+  outline: 3px dashed #08D19A; outline-offset: 2px;
+}
+.a11y-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+.a11y-toggle {
+  font-family: inherit; background: #EEEEFF; border: 2px solid #000000; border-radius: 10px;
+  padding: 10px 8px; font-size: 13px; font-weight: 700; color: #26325E; cursor: pointer;
+  text-align: center; line-height: 1.3;
+}
+.a11y-toggle[aria-pressed="true"] { background: #08D19A; }
+.a11y-toggle .val { display: block; font-size: 11px; font-weight: 500; opacity: 0.8; margin-top: 2px; }
+.a11y-reset-btn {
+  width: 100%; font-family: inherit; background: #26325E; color: #FFFFFF;
+  border: 2px solid #000000; border-radius: 10px; padding: 10px; font-weight: 900; font-size: 14px; cursor: pointer;
+}
+.a11y-sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0; padding: 0; margin: -1px;
+}
+
+/* effect classes, applied to <html> */
+html.a11y-links a { text-decoration: underline !important; text-underline-offset: 3px; }
+html.a11y-contrast-high body { background: #FFFFFF !important; color: #000000 !important; }
+html.a11y-contrast-high a { color: #0000EE !important; }
+html.a11y-contrast-invert body { filter: invert(1) hue-rotate(180deg); }
+html.a11y-contrast-mono body { filter: grayscale(1); }
+html.a11y-contrast-invert .a11y-fab, html.a11y-contrast-invert .a11y-panel,
+html.a11y-contrast-mono .a11y-fab, html.a11y-contrast-mono .a11y-panel {
+  filter: invert(1) hue-rotate(180deg);
+}
+html.a11y-text-115 { zoom: 1.15; }
+html.a11y-text-130 { zoom: 1.3; }
+html.a11y-text-150 { zoom: 1.5; }
+html.a11y-lines-wide body, html.a11y-lines-wide p, html.a11y-lines-wide li {
+  line-height: 2 !important;
+}
+html.a11y-font-readable body, html.a11y-font-readable p, html.a11y-font-readable li,
+html.a11y-font-readable span, html.a11y-font-readable a, html.a11y-font-readable label,
+html.a11y-font-readable input, html.a11y-font-readable textarea, html.a11y-font-readable select {
+  font-family: Arial, "Segoe UI", Tahoma, sans-serif !important;
+}
+html.a11y-headings h1, html.a11y-headings h2, html.a11y-headings h3 {
+  background: #FFF3C4 !important; outline: 2px solid #000000; padding: 2px 6px;
+}
+html.a11y-cursor-big, html.a11y-cursor-big * {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' stroke='%23fff' stroke-width='1' d='M3 2l6 18 2.5-7.5L19 10z'/%3E%3C/svg%3E") 4 4, auto !important;
+}
+html.a11y-reduce-motion *, html.a11y-reduce-motion *::before, html.a11y-reduce-motion *::after {
+  animation-duration: 0.001ms !important; animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important; scroll-behavior: auto !important;
+}
+
+@media print {
+  html[class*="a11y-"] { filter: none !important; zoom: 1 !important; }
+}
