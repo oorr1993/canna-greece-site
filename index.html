@@ -197,7 +197,8 @@ header {
   border-bottom: 3px solid var(--ink);
 }
 .nav { display: flex; align-items: center; justify-content: space-between; height: 76px; gap: 14px; }
-.logo { color: var(--white); text-align: center; line-height: 1; }
+.logo { display: flex; align-items: center; gap: 10px; color: var(--white); text-align: start; line-height: 1; }
+.logo img { width: 40px; height: 40px; flex-shrink: 0; }
 .logo .b { font-size: 30px; letter-spacing: 1px; }
 .logo small { display: block; font-size: 11px; letter-spacing: 3px; margin-top: 3px; opacity: 0.85; font-family: 'Rubik', sans-serif; font-weight: 500; }
 .btn {
@@ -633,8 +634,11 @@ footer { background: var(--navy); color: var(--white); padding: 54px 0 34px; bor
       <a href="#faq">שאלות נפוצות</a>
     </nav>
     <a class="logo" href="/" aria-label="קנאגריס — דף הבית">
-      <span class="b bubble">קנאגריס</span>
-      <small>CANNAGREECE</small>
+      <img src="/brand/logo-color.png" alt="" aria-hidden="true">
+      <span>
+        <span class="b bubble">קנאגריס</span>
+        <small>CANNAGREECE</small>
+      </span>
     </a>
     <a class="btn" href="/intake.html">מתחילים בשאלון</a>
     <button class="menu-btn" aria-label="פתיחת תפריט" aria-expanded="false">☰</button>

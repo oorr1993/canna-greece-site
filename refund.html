@@ -28,7 +28,8 @@ body {
 .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
 header { background: var(--indigo); border-bottom: 3px solid var(--ink); }
 .nav { display: flex; align-items: center; justify-content: space-between; height: 72px; max-width: 1140px; margin: 0 auto; padding: 0 22px; }
-.logo { color: var(--white); text-align: center; line-height: 1; text-decoration: none; }
+.logo { display: flex; align-items: center; gap: 10px; color: var(--white); text-align: start; line-height: 1; text-decoration: none; }
+.logo img { width: 34px; height: 34px; flex-shrink: 0; }
 .logo .b { font-family: 'Rubik Bubbles', 'Rubik', sans-serif; font-size: 28px; }
 .logo small { display: block; font-size: 10.5px; letter-spacing: 3px; margin-top: 3px; opacity: 0.85; font-weight: 500; }
 .btn {
@@ -85,8 +86,11 @@ footer a { color: var(--green); font-weight: 700; text-decoration: none; }
 <header>
   <div class="nav">
     <a class="logo" href="/" aria-label="קנאגריס — דף הבית">
-      <span class="b">קנאגריס</span>
-      <small>CANNAGREECE</small>
+      <img src="/brand/logo-color.png" alt="" aria-hidden="true">
+      <span>
+        <span class="b">קנאגריס</span>
+        <small>CANNAGREECE</small>
+      </span>
     </a>
     <a class="btn" href="/intake.html">מתחילים בשאלון</a>
   </div>
