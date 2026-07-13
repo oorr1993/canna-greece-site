@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>הצהרת נגישות | קנאגריס</title>
+<meta name="description" content="הצהרת הנגישות של קנאגריס — התאמות הנגישות באתר בהתאם לתקן הישראלי IS 5568, המידע ידוע ופרטי יצירת קשר לפניות בנושא נגישות.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#4D4ED9">
+<link rel="canonical" href="https://canna-greece-site.vercel.app/accessibility.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&family=Rubik+Bubbles&display=swap" rel="stylesheet">
+<style>
+:root {
+  --indigo: #4D4ED9; --navy: #26325E; --lavender: #EEEEFF; --grid-line: #D9D4F2;
+  --green: #08D19A; --ink: #000; --white: #FFF;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Rubik', sans-serif; color: var(--navy); line-height: 1.75; font-size: 17.5px;
+  background: var(--lavender); overflow-x: hidden;
+}
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+header { background: var(--indigo); border-bottom: 3px solid var(--ink); }
+.nav { display: flex; align-items: center; justify-content: space-between; height: 72px; max-width: 1140px; margin: 0 auto; padding: 0 22px; }
+.logo { color: var(--white); text-align: center; line-height: 1; text-decoration: none; }
+.logo .b { font-family: 'Rubik Bubbles', 'Rubik', sans-serif; font-size: 28px; }
+.logo small { display: block; font-size: 10.5px; letter-spacing: 3px; margin-top: 3px; opacity: 0.85; font-weight: 500; }
+.btn {
+  display: inline-block; background: var(--white); color: var(--indigo); text-decoration: none;
+  border: 2px solid var(--ink); border-radius: 10px; box-shadow: 3px 3px 0 var(--ink);
+  padding: 9px 20px; font-weight: 700; font-size: 15px;
+}
+main { padding: 44px 0 80px; }
+.crumbs { font-size: 13.5px; margin-bottom: 22px; }
+.crumbs a { color: var(--indigo); font-weight: 700; text-decoration: none; }
+.crumbs .sep { opacity: 0.75; }
+h1 {
+  font-family: 'Rubik Bubbles', 'Rubik', sans-serif; font-weight: 400;
+  font-size: clamp(28px, 5vw, 42px); color: var(--indigo); line-height: 1.15;
+  -webkit-text-stroke: 1.5px var(--ink); paint-order: stroke fill;
+  text-shadow: 3px 3px 0 var(--ink); margin-bottom: 14px;
+}
+.meta-line { font-size: 14px; opacity: 0.75; margin-bottom: 30px; }
+h2 { font-size: 22px; font-weight: 900; margin: 34px 0 12px; }
+p { margin-bottom: 14px; }
+ul { margin: 0 0 14px 0; padding-inline-start: 24px; }
+li { margin-bottom: 8px; }
+b, strong { font-weight: 700; }
+.card {
+  background: var(--white); border: 2px solid var(--ink); border-radius: 16px;
+  box-shadow: 5px 5px 0 var(--ink); padding: 22px 24px; margin: 22px 0;
+}
+address { font-style: normal; }
+footer { margin-top: 60px; background: var(--navy); color: var(--white); padding: 30px 0; text-align: center; font-size: 14px; }
+footer a { color: var(--green); font-weight: 700; text-decoration: none; }
+.skip-link {
+  position: absolute; inset-inline-start: -9999px; top: 12px; z-index: 200;
+  background: var(--green); color: var(--navy); border: 2px solid var(--ink); border-radius: 10px;
+  padding: 10px 20px; font-weight: 900; text-decoration: none;
+}
+.skip-link:focus { inset-inline-start: 12px; }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">דלג לתוכן הראשי</a>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="/" aria-label="קנאגריס — דף הבית">
+      <span class="b">קנאגריס</span>
+      <small>CANNAGREECE</small>
+    </a>
+    <a class="btn" href="/intake.html">מתחילים בשאלון</a>
+  </div>
+</header>
+
+<main id="main-content" tabindex="-1">
+  <article class="wrap">
+    <nav class="crumbs" aria-label="פירורי לחם"><a href="/">דף הבית</a> <span class="sep">←</span> הצהרת נגישות</nav>
+
+    <h1>הצהרת נגישות</h1>
+    <p class="meta-line">עודכן לאחרונה: <time datetime="2026-07-12">12 ביולי 2026</time></p>
+
+    <div class="card">
+      <p>אנו בקנאגריס (CannaGreece) רואים חשיבות רבה במתן שירות שוויוני ונגיש לכלל הציבור, לרבות אנשים עם מוגבלות. אתר זה תוכנן ונבנה מתוך כוונה לעמוד בדרישות תקן ישראלי IS 5568 בנושא נגישות שירותי אינטרנט, המבוסס על הנחיות WCAG 2.0 ברמה AA, ומכוח חוק שוויון זכויות לאנשים עם מוגבלות, התשנ"ח-1998 ותקנות נגישות השירות משנת 2013.</p>
+    </div>
+
+    <h2>התאמות הנגישות שבוצעו באתר</h2>
+    <ul>
+      <li>האתר בנוי כולו בעברית עם כיווניות RTL תקנית (<code>lang="he" dir="rtl"</code>).</li>
+      <li>קישור "דלג לתוכן הראשי" בתחילת כל עמוד, המאפשר עקיפת תפריט הניווט.</li>
+      <li>מבנה עמוד סמנטי עם אזורי ציון דרך (header, nav, main, footer) לניווט נוח בעזרת קוראי מסך.</li>
+      <li>תמיכה מלאה בניווט מקלדת: כל הקישורים, הכפתורים והשדות בטופס נגישים ופעילים באמצעות מקש Tab, עם מסגרת מיקוד (focus) ברורה בכל רכיב.</li>
+      <li>תוויות (labels) מקושרות לכל שדה בטופס יצירת הקשר, כולל קבוצות בחירה (radio/checkbox) עם שם נגיש לכל קבוצה.</li>
+      <li>ניגודיות צבעים העומדת בדרישת 4.5:1 לפחות בין טקסט לרקע בכל עמודי האתר.</li>
+      <li>איורים ואייקונים דקורטיביים מסומנים כך שקוראי מסך יתעלמו מהם (<code>aria-hidden</code>), בעוד תוכן משמעותי נשאר נגיש.</li>
+      <li>האתר מכבד את הגדרת המערכת "הפחתת תנועה" (prefers-reduced-motion) ומכבה אנימציות בהתאם.</li>
+      <li>שאלות נפוצות בנויות ברכיב <code>details/summary</code> תקני, הנגיש כברירת מחדל למקלדת ולקוראי מסך.</li>
+    </ul>
+
+    <h2>מגבלות ידועות</h2>
+    <p>אנו פועלים באופן שוטף לשיפור הנגישות באתר. אם נתקלתם ברכיב שאינו נגיש כראוי, נשמח לדעת ולתקן בהקדם האפשרי — פנייתכם תטופל תוך זמן סביר ולא יאוחר מ-60 יום.</p>
+
+    <h2>פנייה בנושא נגישות</h2>
+    <p>נתקלתם בבעיית נגישות באתר, או זקוקים לסיוע בהשלמת השאלון בפורמט נגיש אחר? אנחנו כאן:</p>
+    <address>
+      <p>אימייל: <a href="mailto:oorr1993@gmail.com" style="color: var(--indigo); font-weight: 900;">oorr1993@gmail.com</a></p>
+    </address>
+
+    <h2>מסגרת חוקית</h2>
+    <p>הצהרה זו ניתנת מכוח חוק שוויון זכויות לאנשים עם מוגבלות, התשנ"ח-1998, ותקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), התשע"ג-2013.</p>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><a href="/">קנאגריס — דף הבית</a> · <a href="/terms.html">תנאי שימוש</a> · <a href="/privacy.html">מדיניות פרטיות</a> · <a href="/refund.html">ביטולים והחזרים</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

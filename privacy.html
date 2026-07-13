@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מדיניות פרטיות | קנאגריס</title>
+<meta name="description" content="מדיניות הפרטיות של קנאגריס — אילו פרטים נאספים בשאלון ההתאמה, לשם מה, למי הם מועברים, וכיצד ניתן לבקש עיון, תיקון או מחיקה.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#4D4ED9">
+<link rel="canonical" href="https://canna-greece-site.vercel.app/privacy.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&family=Rubik+Bubbles&display=swap" rel="stylesheet">
+<style>
+:root {
+  --indigo: #4D4ED9; --navy: #26325E; --lavender: #EEEEFF; --grid-line: #D9D4F2;
+  --green: #08D19A; --ink: #000; --white: #FFF;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Rubik', sans-serif; color: var(--navy); line-height: 1.75; font-size: 17px;
+  background: var(--lavender); overflow-x: hidden;
+}
+.wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+header { background: var(--indigo); border-bottom: 3px solid var(--ink); }
+.nav { display: flex; align-items: center; justify-content: space-between; height: 72px; max-width: 1140px; margin: 0 auto; padding: 0 22px; }
+.logo { color: var(--white); text-align: center; line-height: 1; text-decoration: none; }
+.logo .b { font-family: 'Rubik Bubbles', 'Rubik', sans-serif; font-size: 28px; }
+.logo small { display: block; font-size: 10.5px; letter-spacing: 3px; margin-top: 3px; opacity: 0.85; font-weight: 500; }
+.btn {
+  display: inline-block; background: var(--white); color: var(--indigo); text-decoration: none;
+  border: 2px solid var(--ink); border-radius: 10px; box-shadow: 3px 3px 0 var(--ink);
+  padding: 9px 20px; font-weight: 700; font-size: 15px;
+}
+main { padding: 44px 0 80px; }
+.crumbs { font-size: 13.5px; margin-bottom: 22px; }
+.crumbs a { color: var(--indigo); font-weight: 700; text-decoration: none; }
+.crumbs .sep { opacity: 0.75; }
+h1 {
+  font-family: 'Rubik Bubbles', 'Rubik', sans-serif; font-weight: 400;
+  font-size: clamp(28px, 5vw, 42px); color: var(--indigo); line-height: 1.15;
+  -webkit-text-stroke: 1.5px var(--ink); paint-order: stroke fill;
+  text-shadow: 3px 3px 0 var(--ink); margin-bottom: 14px;
+}
+.meta-line { font-size: 14px; opacity: 0.75; margin-bottom: 30px; }
+h2 { font-size: 20px; font-weight: 900; margin: 30px 0 10px; }
+p { margin-bottom: 12px; }
+ul, ol { margin: 0 0 12px 0; padding-inline-start: 24px; }
+li { margin-bottom: 7px; }
+b, strong { font-weight: 700; }
+.toc {
+  background: var(--white); border: 2px solid var(--ink); border-radius: 16px;
+  box-shadow: 5px 5px 0 var(--ink); padding: 20px 24px; margin: 22px 0 34px;
+}
+.toc h2 { margin-top: 0; font-size: 17px; }
+.toc ol { padding-inline-start: 20px; font-size: 15px; }
+.toc a { color: var(--indigo); text-decoration: none; font-weight: 700; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0 20px; font-size: 15px; background: var(--white); border: 2px solid var(--ink); border-radius: 12px; overflow: hidden; }
+th, td { padding: 9px 12px; text-align: right; border-bottom: 1px solid var(--grid-line); vertical-align: top; }
+th { background: var(--lavender); font-weight: 900; }
+tr:last-child td { border-bottom: none; }
+.card {
+  background: var(--white); border: 2px solid var(--ink); border-radius: 16px;
+  box-shadow: 5px 5px 0 var(--ink); padding: 20px 22px; margin: 18px 0;
+}
+footer { margin-top: 60px; background: var(--navy); color: var(--white); padding: 30px 0; text-align: center; font-size: 14px; }
+footer a { color: var(--green); font-weight: 700; text-decoration: none; }
+.skip-link {
+  position: absolute; inset-inline-start: -9999px; top: 12px; z-index: 200;
+  background: var(--green); color: var(--navy); border: 2px solid var(--ink); border-radius: 10px;
+  padding: 10px 20px; font-weight: 900; text-decoration: none;
+}
+.skip-link:focus { inset-inline-start: 12px; }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">דלג לתוכן הראשי</a>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="/" aria-label="קנאגריס — דף הבית">
+      <span class="b">קנאגריס</span>
+      <small>CANNAGREECE</small>
+    </a>
+    <a class="btn" href="/intake.html">מתחילים בשאלון</a>
+  </div>
+</header>
+
+<main id="main-content" tabindex="-1">
+  <article class="wrap">
+    <nav class="crumbs" aria-label="פירורי לחם"><a href="/">דף הבית</a> <span class="sep">←</span> מדיניות פרטיות</nav>
+
+    <h1>מדיניות פרטיות</h1>
+    <p class="meta-line">עודכן לאחרונה: <time datetime="2026-07-12">12 ביולי 2026</time></p>
+
+    <div class="toc">
+      <h2>בעמוד זה</h2>
+      <ol>
+        <li><a href="#p1">אילו פרטים אנחנו אוספים</a></li>
+        <li><a href="#p2">לשם מה נאסף המידע, ומה קורה אם לא תמסרו אותו</a></li>
+        <li><a href="#p3">הסכמה למידע רגיש במיוחד</a></li>
+        <li><a href="#p4">למי מועבר המידע — כולל העברה ליוון</a></li>
+        <li><a href="#p5">אבטחת מידע</a></li>
+        <li><a href="#p6">תקופת שמירה</a></li>
+        <li><a href="#p7">הזכויות שלכם</a></li>
+        <li><a href="#p8">עוגיות וכלים טכניים</a></li>
+        <li><a href="#p9">שינויים ויצירת קשר</a></li>
+      </ol>
+    </div>
+
+    <section id="p1">
+      <h2>1. אילו פרטים אנחנו אוספים</h2>
+      <p>כדי לתאם עבורכם בדיקת התאמה מול רופא מורשה ביוון, שאלון ההתאמה שלנו אוסף:</p>
+      <table>
+        <thead><tr><th>קטגוריה</th><th>פרטים</th></tr></thead>
+        <tbody>
+          <tr><td>זיהוי</td><td>שם מלא, מספר דרכון, אזרחות, גיל, מין</td></tr>
+          <tr><td>קשר</td><td>אימייל, טלפון/וואטסאפ</td></tr>
+          <tr><td>אימות זהות</td><td>צילום עמוד הדרכון, סלפי לאימות</td></tr>
+          <tr><td>מידע רפואי</td><td>תיאור המצב הרפואי בחופשי, קיום רישיון/מרשם קודם, העדפת מוצר, קובץ מרשם קיים (אם צורף)</td></tr>
+          <tr><td>שהות ביוון</td><td>עיר/אזור שהייה, תאריך הגעה משוער</td></tr>
+          <tr><td>אחר</td><td>מסלול שירות שנבחר, מקור ההגעה לאתר</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="p2">
+      <h2>2. לשם מה נאסף המידע, ומה קורה אם לא תמסרו אותו</h2>
+      <p>המידע נאסף למטרה אחת ויחידה: העברתו לבחינת רופא מורשה ביוון לצורך קבלת החלטה על הנפקת מרשם קנאביס רפואי, ותיאום לוגיסטי של התהליך. מסירת המידע היא וולונטרית, אך נדרשת לצורך קבלת השירות — ללא הפרטים המפורטים לעיל לא נוכל להעביר את בקשתכם לרופא.</p>
+      <p>המידע אינו משמש למטרות שיווק צד-שלישי, אינו נמכר, ואינו משותף עם כל גורם מלבד הרופא המטפל, כמפורט בסעיף 4.</p>
+    </section>
+
+    <section id="p3">
+      <h2>3. הסכמה למידע רגיש במיוחד</h2>
+      <p>חלק מהפרטים שאתם מוסרים — מצב בריאותי, וכן תמונת סלפי ודרכון המשמשות לאימות זהות — הם "מידע בעל רגישות מיוחדת" בהתאם לחוק הגנת הפרטיות, התשמ"א-1981 (לרבות תיקון 13 לחוק). לכן, בטרם שליחת השאלון, אנו מבקשים את הסכמתכם המפורשת בנפרד עבור: (א) עיבוד המידע הרפואי לצורך הפניה לרופא; (ב) שימוש בתמונת הדרכון והסלפי לאימות זהות; (ג) העברת המידע לגורם רפואי מחוץ לישראל, כמפורט בסעיף הבא. ניתן לסרב לכל אחת מההסכמות הללו בנפרד, אולם סירוב עשוי למנוע מאיתנו לספק את השירות.</p>
+    </section>
+
+    <section id="p4">
+      <h2>4. למי מועבר המידע — כולל העברה ליוון</h2>
+      <p>המידע שנמסר מועבר לרופא המורשה ביוון הבוחן את בקשתכם, לצורך קבלת ההחלטה הרפואית בלבד. יוון היא מדינה חברה באיחוד האירופי הכפופה לדיני הגנת מידע אירופיים, ואנו פועלים לקבל התחייבות בכתב מהגורם הרפואי ביוון לשמירה על סודיות המידע ואבטחתו, בהתאם לתקנות הגנת הפרטיות (העברת מידע אל מאגרי מידע שמחוץ לגבולות המדינה), התשס"א-2001.</p>
+      <p>מלבד העברה זו, המידע אינו משותף עם צד שלישי כלשהו, למעט אם נדרש הדבר על פי דין (למשל דרישה של רשות מוסמכת) או לשם הגנה על ביטחון או שלמות גופם של המשתמש או אחרים.</p>
+    </section>
+
+    <section id="p5">
+      <h2>5. אבטחת מידע</h2>
+      <p>אנו נוקטים אמצעי אבטחה סבירים בהתאם לרגישות המידע הנאסף, ופועלים לשפרם באופן שוטף. בהתחשב באופי הרגיש של המידע (בריאותי וביומטרי-לזיהוי), אנו ממליצים למשתמשים לצרף קבצים בפורמט מוגן ולהימנע משיתוף פרטים רגישים נוספים מעבר לנדרש בשאלון. במקרה של אירוע אבטחה חמור, נפעל בהתאם לחובות הדיווח החלות עלינו על פי חוק הגנת הפרטיות ותקנותיו.</p>
+    </section>
+
+    <section id="p6">
+      <h2>6. תקופת שמירה</h2>
+      <p>אנו שומרים את המידע שנמסר רק לפרק הזמן הנדרש להשלמת ההפניה לרופא ולטיפול בבקשה, ולא יאוחר מ-12 חודשים ממועד הפנייה, אלא אם נדרשת שמירה ארוכה יותר על פי דין (למשל לצורך התיישנות תביעות) או לבקשתכם המפורשת. בתום התקופה, המידע יימחק או יובלע (anonymized) באופן שלא יאפשר זיהוי.</p>
+    </section>
+
+    <section id="p7">
+      <h2>7. הזכויות שלכם</h2>
+      <div class="card">
+        <p>בהתאם לחוק הגנת הפרטיות, עומדות לכם הזכויות הבאות:</p>
+        <ul>
+          <li><b>עיון</b> — לקבל פירוט של המידע שנשמר עליכם;</li>
+          <li><b>תיקון</b> — לבקש תיקון מידע שגוי או לא מעודכן;</li>
+          <li><b>מחיקה/הגבלת שימוש</b> — לבקש מחיקת המידע או הגבלת השימוש בו, ככל שאין מניעה חוקית לכך (למשל חובת שמירה לצורך הליך פתוח).</li>
+        </ul>
+        <p style="margin-bottom:0;">לממש זכות מהזכויות הללו, פנו אלינו בכתובת שבסעיף 9. נשיב לפנייתכם תוך זמן סביר.</p>
+      </div>
+    </section>
+
+    <section id="p8">
+      <h2>8. עוגיות וכלים טכניים</h2>
+      <p>האתר אינו משתמש בעוגיות מעקב או פרסום. הגופנים בלבד נטענים מרשת אספקת התוכן של גוגל (Google Fonts) לצורך תצוגה תקינה של האתר.</p>
+    </section>
+
+    <section id="p9">
+      <h2>9. שינויים ויצירת קשר</h2>
+      <p>אנו רשאים לעדכן מדיניות זו מעת לעת; הנוסח המחייב הוא זה המתפרסם באתר במועד השימוש. לשאלות, בקשות עיון/תיקון/מחיקה, או פניות בנושא פרטיות: <a href="mailto:oorr1993@gmail.com" style="color: var(--indigo); font-weight: 900;">oorr1993@gmail.com</a>.</p>
+    </section>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><a href="/">קנאגריס — דף הבית</a> · <a href="/terms.html">תנאי שימוש</a> · <a href="/refund.html">ביטולים והחזרים</a> · <a href="/accessibility.html">הצהרת נגישות</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -139,7 +139,7 @@
         {
           "@type": "Question",
           "name": "מה קורה עם המידע הרפואי שלי?",
-          "acceptedAnswer": { "@type": "Answer", "text": "נשאר ביניכם לבין הרופא. המידע מוצפן, לא מועבר לשום גורם בישראל ולא נשמר מעבר לנדרש בחוק." }
+          "acceptedAnswer": { "@type": "Answer", "text": "המידע (כולל המרשם הרפואי ומסמכי הזיהוי) מטופל על ידי צוות קנאגריס אך ורק לצורך העברתו לרופא המורשה ביוון ובדיקת הבקשה. אינו נמכר, אינו משותף עם צדדים שלישיים לצרכי שיווק, ונשמר רק לפרק הזמן הנדרש. פרטים מלאים במדיניות הפרטיות שלנו." }
         },
         {
           "@type": "Question",
@@ -609,9 +609,17 @@ footer { background: var(--navy); color: var(--white); padding: 54px 0 34px; bor
 }
 .wa-float:hover { transform: translate(-2px,-2px); }
 .wa-float svg { width: 30px; height: 30px; fill: var(--navy); }
+.skip-link {
+  position: absolute; inset-inline-start: -9999px; top: 12px; z-index: 200;
+  background: var(--green); color: var(--navy); border: 2px solid var(--ink); border-radius: 10px;
+  padding: 10px 20px; font-weight: 900; text-decoration: none;
+}
+.skip-link:focus { inset-inline-start: 12px; }
 </style>
 </head>
 <body>
+
+<a class="skip-link" href="#main-content">דלג לתוכן הראשי</a>
 
 <div id="pbar" aria-hidden="true"></div>
 <header>
@@ -622,7 +630,7 @@ footer { background: var(--navy); color: var(--white); padding: 54px 0 34px; bor
       <a href="#legal">חוקי בכלל?</a>
       <a href="#faq">שאלות נפוצות</a>
     </nav>
-    <a class="logo" href="#" aria-label="קנאגריס — דף הבית">
+    <a class="logo" href="/" aria-label="קנאגריס — דף הבית">
       <span class="b bubble">קנאגריס</span>
       <small>CANNAGREECE</small>
     </a>
@@ -630,16 +638,16 @@ footer { background: var(--navy); color: var(--white); padding: 54px 0 34px; bor
     <button class="menu-btn" aria-label="פתיחת תפריט" aria-expanded="false">☰</button>
   </div>
 </header>
-<div class="mnav" aria-label="תפריט נייד">
+<nav class="mnav" aria-label="תפריט נייד">
   <button class="close-btn" aria-label="סגירת תפריט">✕</button>
   <a href="#how">איך זה עובד</a>
   <a href="#pricing">מחירים</a>
   <a href="#legal">חוקי בכלל?</a>
   <a href="#faq">שאלות נפוצות</a>
   <a class="btn" href="/intake.html">מתחילים בשאלון</a>
-</div>
+</nav>
 
-<main>
+<main id="main-content" tabindex="-1">
 
 <div class="hero">
   <div class="plane-lane" aria-hidden="true">
@@ -674,8 +682,8 @@ footer { background: var(--navy); color: var(--white); padding: 54px 0 34px; bor
         <span><span class="dot"></span>תמיכה בעברית בוואטסאפ</span>
       </div>
     </div>
-    <div class="jar-wrap" style="position: relative;" aria-hidden="true">
-      <svg class="jar" viewBox="0 0 300 360" xmlns="http://www.w3.org/2000/svg">
+    <div class="jar-wrap" style="position: relative;">
+      <svg class="jar" viewBox="0 0 300 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <ellipse cx="150" cy="345" rx="110" ry="12" fill="#D9D4F2"/>
         <rect x="95" y="300" width="110" height="34" rx="10" fill="#4D4ED9" stroke="#000" stroke-width="3"/>
         <rect x="75" y="326" width="150" height="24" rx="10" fill="#4D4ED9" stroke="#000" stroke-width="3"/>
@@ -897,7 +905,7 @@ footer { background: var(--navy); color: var(--white); padding: 54px 0 34px; bor
         <a class="btn" href="/intake.html?plan=vip">בחירה ב-VIP</a>
       </div>
     </div>
-    <div class="guarantee">🛡️ הרופא לא אישר? מקבלים <u>100% מהכסף בחזרה</u>. בלי שאלות, בלי אותיות קטנות. אתם לא מסכנים שקל.</div>
+    <div class="guarantee">🛡️ הרופא לא אישר? מקבלים <u>100% מהכסף בחזרה</u>. בלי שאלות, בלי אותיות קטנות. אתם לא מסכנים שקל. הבטחה זו מתווספת לזכויותיכם על פי חוק — פרטים ב<a href="/refund.html" style="color: inherit; text-decoration: underline;">מדיניות הביטולים וההחזרים</a>.</div>
   </div>
 </section>
 
@@ -1016,7 +1024,7 @@ footer { background: var(--navy); color: var(--white); padding: 54px 0 34px; bor
       </details>
       <details>
         <summary><h3>מה קורה עם המידע הרפואי שלי?</h3></summary>
-        <p>נשאר ביניכם לבין הרופא. המידע מוצפן, לא מועבר לשום גורם בישראל ולא נשמר מעבר לנדרש בחוק.</p>
+        <p>המידע (כולל המרשם והמסמכים המזהים) מטופל על ידי צוות קנאגריס אך ורק לצורך העברתו לרופא המורשה ביוון ובדיקת הבקשה. הוא לא נמכר ולא משותף עם צד שלישי לצרכי שיווק, ונשמר רק לפרק הזמן הנדרש. הפרטים המלאים ב<a href="/privacy.html" style="color: var(--indigo); font-weight: 900;">מדיניות הפרטיות</a> שלנו.</p>
       </details>
       <details>
         <summary><h3>אתם רופאים?</h3></summary>
@@ -1056,9 +1064,10 @@ footer { background: var(--navy); color: var(--white); padding: 54px 0 34px; bor
       </div>
       <div class="col">
         <b>משפטי</b>
-        <a href="#">תנאי שימוש</a>
-        <a href="#">מדיניות פרטיות</a>
-        <a href="#">מדיניות החזרים</a>
+        <a href="/terms.html">תנאי שימוש</a>
+        <a href="/privacy.html">מדיניות פרטיות</a>
+        <a href="/refund.html">מדיניות ביטולים והחזרים</a>
+        <a href="/accessibility.html">הצהרת נגישות</a>
       </div>
       <div class="col">
         <b>דברו איתנו</b>
@@ -1127,15 +1136,23 @@ footer { background: var(--navy); color: var(--white); padding: 54px 0 34px; bor
 
   var mb = document.querySelector('.menu-btn');
   var mnav = document.querySelector('.mnav');
+  mnav.setAttribute('aria-hidden', 'true');
+  mnav.setAttribute('inert', '');
   function closeMenu() {
     mnav.classList.remove('open');
+    mnav.setAttribute('aria-hidden', 'true');
+    mnav.setAttribute('inert', '');
     mb.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
+    mb.focus();
   }
   mb.addEventListener('click', function () {
     var open = mnav.classList.toggle('open');
+    mnav.toggleAttribute('inert', !open);
+    mnav.setAttribute('aria-hidden', String(!open));
     mb.setAttribute('aria-expanded', String(open));
     document.body.style.overflow = open ? 'hidden' : '';
+    if (open) { var first = mnav.querySelector('a'); if (first) first.focus(); }
   });
   mnav.querySelector('.close-btn').addEventListener('click', closeMenu);
   mnav.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', closeMenu); });

@@ -96,9 +96,17 @@ input[type=file] { font-size: 14px; width: 100%; }
 .trust-row span { display: flex; align-items: center; gap: 6px; }
 .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green); border: 2px solid var(--ink); }
 @media (prefers-reduced-motion: reduce) { .submit-btn { transition: none; } }
+.skip-link {
+  position: absolute; inset-inline-start: -9999px; top: 12px; z-index: 200;
+  background: #08D19A; color: #26325E; border: 2px solid #000; border-radius: 10px;
+  padding: 10px 20px; font-weight: 900; text-decoration: none;
+}
+.skip-link:focus { inset-inline-start: 12px; }
 </style>
 </head>
 <body>
+
+<a class="skip-link" href="#main-content">דלג לתוכן הראשי</a>
 
 <header>
   <div class="nav">
@@ -110,7 +118,7 @@ input[type=file] { font-size: 14px; width: 100%; }
   </div>
 </header>
 
-<main>
+<main id="main-content" tabindex="-1">
   <div class="wrap">
     <h1>שאלון התאמה</h1>
     <p class="sub">כ-3 דקות, מהטלפון. רופא מורשה ביוון בוחן כל פנייה באופן אישי.</p>
@@ -220,13 +228,13 @@ input[type=file] { font-size: 14px; width: 100%; }
         <p class="hint">ספרו בקצרה ובמילים שלכם — זה מה שיוצג לרופא לצורך ההחלטה.</p>
         <label for="condition">מה מפריע לכם ולמה אתם פונים? <span class="req">*</span></label>
         <textarea id="condition" name="תיאור המצב" placeholder="לדוגמה: כאבי גב תחתון כבר שנתיים, בעיקר אחרי ישיבה ממושכת. ניסיתי משככי כאבים וזה לא ממש עוזר…" required></textarea>
-        <label>יש לכם רישיון או מרשם קנאביס קיים (בישראל או בחו"ל)?</label>
-        <div class="choices">
+        <label id="existing-rx-label">יש לכם רישיון או מרשם קנאביס קיים (בישראל או בחו"ל)?</label>
+        <div class="choices" role="radiogroup" aria-labelledby="existing-rx-label">
           <label class="choice"><input type="radio" name="מרשם קיים" value="כן"><span>כן</span></label>
           <label class="choice"><input type="radio" name="מרשם קיים" value="לא" checked><span>לא</span></label>
         </div>
-        <label style="margin-top:16px;">העדפת מוצר (אם תאושרו)</label>
-        <div class="choices">
+        <label id="product-pref-label" style="margin-top:16px;">העדפת מוצר (אם תאושרו)</label>
+        <div class="choices" role="radiogroup" aria-labelledby="product-pref-label">
           <label class="choice"><input type="radio" name="העדפת מוצר" value="תפרחת"><span>תפרחת</span></label>
           <label class="choice"><input type="radio" name="העדפת מוצר" value="שמן"><span>שמן</span></label>
           <label class="choice"><input type="radio" name="העדפת מוצר" value="לפי המלצת הרופא" checked><span>מה שהרופא ימליץ</span></label>
@@ -257,12 +265,12 @@ input[type=file] { font-size: 14px; width: 100%; }
           <span>אני בן/בת 18 ומעלה, והפרטים שמסרתי נכונים ומדויקים. <span class="req">*</span></span>
         </label>
         <label class="consent">
-          <input type="checkbox" name="הסכמה - שירות" value="מאשר/ת" required>
-          <span>הבנתי שקנאגריס הוא שירות תיאום אדמיניסטרטיבי, שההחלטה הרפואית נתונה בלעדית לרופא מורשה ביוון, ושאם לא יונפק מרשם — אקבל החזר כספי מלא. <span class="req">*</span></span>
+          <input type="checkbox" name="הסכמה - תנאי שימוש" value="מאשר/ת" required>
+          <span>קראתי ואני מסכים/ה ל<a href="/terms.html" target="_blank" rel="noopener" style="color: var(--indigo); font-weight: 900;">תנאי השימוש</a> ול<a href="/refund.html" target="_blank" rel="noopener" style="color: var(--indigo); font-weight: 900;">מדיניות הביטולים וההחזרים</a>, לרבות ההבנה שקנאגריס הוא שירות תיאום אדמיניסטרטיבי בלבד וההחלטה הרפואית נתונה בלעדית לרופא מורשה ביוון. <span class="req">*</span></span>
         </label>
         <label class="consent">
           <input type="checkbox" name="הסכמה - פרטיות" value="מאשר/ת" required>
-          <span>אני מסכים/ה שהמידע בטופס יועבר באופן מאובטח לרופא המורשה לצורך בדיקת הבקשה בלבד. <span class="req">*</span></span>
+          <span>קראתי ואני מסכים/ה ל<a href="/privacy.html" target="_blank" rel="noopener" style="color: var(--indigo); font-weight: 900;">מדיניות הפרטיות</a>, לרבות עיבוד המידע הרפואי, שימוש בתמונת הדרכון/סלפי לאימות זהות, והעברת המידע לרופא המורשה ביוון לצורך בדיקת הבקשה. <span class="req">*</span></span>
         </label>
       </fieldset>
 

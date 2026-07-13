@@ -13,6 +13,7 @@
 - [דף הבית](https://canna-greece-site.vercel.app/): איך מקבלים מרשם קנאביס רפואי ביוון — תהליך, מחירים, זכאות ושאלות נפוצות.
 - [המדריך המלא](https://canna-greece-site.vercel.app/guide.html): קנאביס רפואי ביוון לתיירים ישראלים — חוק, איסור טיסה עם קנאביס, דרכי קבלת מרשם, מחירים וכללי התנהגות.
 - [שאלון התאמה](https://canna-greece-site.vercel.app/intake.html): טופס מקוון בעברית לבדיקת התאמה למרשם — כ-3 דקות.
+- [תנאי שימוש](https://canna-greece-site.vercel.app/terms.html), [מדיניות פרטיות](https://canna-greece-site.vercel.app/privacy.html), [ביטולים והחזרים](https://canna-greece-site.vercel.app/refund.html), [הצהרת נגישות](https://canna-greece-site.vercel.app/accessibility.html).
 
 ## הבהרה
 קנאגריס הוא שירות תיאום אדמיניסטרטיבי שאינו קליני; ההחלטה הרפואית מתקבלת על ידי רופא מורשה ביוון בלבד.
