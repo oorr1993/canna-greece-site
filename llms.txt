@@ -10,10 +10,10 @@
 - מחיר השירות: 99–249 ₪ חד-פעמי; מחיר המוצר בבית המרקחת: כ-15–17 אירו לגרם.
 
 ## עמודים
-- [דף הבית](https://canaflight.com/): איך מקבלים מרשם קנאביס רפואי ביוון — תהליך, מחירים, זכאות ושאלות נפוצות.
-- [המדריך המלא](https://canaflight.com/guide.html): קנאביס רפואי ביוון לתיירים ישראלים — חוק, איסור טיסה עם קנאביס, דרכי קבלת מרשם, מחירים וכללי התנהגות.
-- [שאלון התאמה](https://canaflight.com/intake.html): טופס מקוון בעברית לבדיקת התאמה למרשם — כ-3 דקות.
-- [תנאי שימוש](https://canaflight.com/terms.html), [מדיניות פרטיות](https://canaflight.com/privacy.html), [ביטולים והחזרים](https://canaflight.com/refund.html), [הצהרת נגישות](https://canaflight.com/accessibility.html).
+- [דף הבית](https://www.canaflight.com/): איך מקבלים מרשם קנאביס רפואי ביוון — תהליך, מחירים, זכאות ושאלות נפוצות.
+- [המדריך המלא](https://www.canaflight.com/guide.html): קנאביס רפואי ביוון לתיירים ישראלים — חוק, איסור טיסה עם קנאביס, דרכי קבלת מרשם, מחירים וכללי התנהגות.
+- [שאלון התאמה](https://www.canaflight.com/intake.html): טופס מקוון בעברית לבדיקת התאמה למרשם — כ-3 דקות.
+- [תנאי שימוש](https://www.canaflight.com/terms.html), [מדיניות פרטיות](https://www.canaflight.com/privacy.html), [ביטולים והחזרים](https://www.canaflight.com/refund.html), [הצהרת נגישות](https://www.canaflight.com/accessibility.html).
 
 ## הבהרה
 קנאפלייט הוא שירות תיאום אדמיניסטרטיבי שאינו קליני; ההחלטה הרפואית מתקבלת על ידי רופא מורשה ביוון בלבד.
