@@ -253,6 +253,13 @@ input[type=file] { font-size: 14px; width: 100%; }
           <label class="choice"><input type="radio" name="העדפת מוצר" value="שמן"><span>שמן</span></label>
           <label class="choice"><input type="radio" name="העדפת מוצר" value="לפי המלצת הרופא" checked><span>מה שהרופא ימליץ</span></label>
         </div>
+        <label id="thc-pref-label" style="margin-top:16px;">העדפת ריכוז THC (אם תאושרו)</label>
+        <p class="hint">בבית המרקחת קיימים ריכוזים של 9%, 19%, 22%, 27%, 30% ו-31%, באריזות 5 או 10 גרם. הכמות המקסימלית במרשם בזנים החזקים (27%–31%) היא עד 20 גרם — הרופא קובע את הריכוז והכמות הסופיים.</p>
+        <div class="choices" role="radiogroup" aria-labelledby="thc-pref-label">
+          <label class="choice"><input type="radio" name="ריכוז THC" value="נמוך (9%-22%)"><span>נמוך (9%–22%)</span></label>
+          <label class="choice"><input type="radio" name="ריכוז THC" value="גבוה (27%-31%)"><span>גבוה (27%–31%)</span></label>
+          <label class="choice"><input type="radio" name="ריכוז THC" value="לפי המלצת הרופא" checked><span>מה שהרופא ימליץ</span></label>
+        </div>
         <label for="rx-file" style="margin-top:16px;">צירוף מרשם/רישיון קיים (אם יש)</label>
         <input type="file" id="rx-file" name="קובץ מרשם" accept="image/*,.pdf">
       </fieldset>
