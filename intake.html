@@ -1,15 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-T9N752S80S"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-T9N752S80S');
-</script>
+<script src="/consent.js" defer></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="/a11y-widget.css">
@@ -144,11 +136,14 @@ input[type=file] { font-size: 14px; width: 100%; }
 
     <p class="no-license-note">🟢 לא חייבים רישיון קנאביס ישראלי כדי לקבל מרשם ביוון — גם למי שאין רישיון או ניסיון קודם יש סיכוי להתאים.</p>
 
-    <form action="https://formsubmit.co/1cana.flight@gmail.com" method="POST" enctype="multipart/form-data">
+    <form action="https://formsubmit.co/1cana.flight@gmail.com" method="POST" enctype="multipart/form-data" data-secure-intake>
       <input type="hidden" name="_subject" value="פנייה חדשה — שאלון קנאפלייט">
       <input type="hidden" name="_next" value="https://www.canaflight.com/thanks.html">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_captcha" value="true">
+      <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
+        <label>אל תמלאו שדה זה<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+      </div>
 
       <fieldset>
         <legend>המסלול והשירות</legend>
@@ -322,6 +317,7 @@ input[type=file] { font-size: 14px; width: 100%; }
 })();
 </script>
 
+<script src="/intake-secure.js" defer></script>
 <script src="/a11y-widget.js" defer></script>
 </body>
 </html>

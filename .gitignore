@@ -1,2 +1,5 @@
 .vercel
 logo-raw/
+node_modules/
+.env
+.env.local
