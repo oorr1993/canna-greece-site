@@ -149,9 +149,9 @@ input[type=file] { font-size: 14px; width: 100%; }
         <legend>המסלול והשירות</legend>
         <label>איזה מסלול תרצו? <span class="req">*</span></label>
         <div class="choices" role="radiogroup" aria-label="בחירת מסלול">
-          <label class="choice"><input type="radio" name="מסלול" value="בסיסי (99 ₪)" required><span>בסיסי — 99 ₪</span></label>
-          <label class="choice"><input type="radio" name="מסלול" value="מהיר (179 ₪)"><span>מהיר — 179 ₪</span></label>
-          <label class="choice"><input type="radio" name="מסלול" value="VIP (249 ₪)"><span>VIP — 249 ₪</span></label>
+          <label class="choice"><input type="radio" name="מסלול" value="בסיסי (169 ₪)" required><span>בסיסי — 169 ₪ (שבוע–שבועיים)</span></label>
+          <label class="choice"><input type="radio" name="מסלול" value="מהיר (249 ₪)"><span>מהיר — 249 ₪ (עד 24 שעות)</span></label>
+          <label class="choice"><input type="radio" name="מסלול" value="VIP (349 ₪)"><span>VIP — 349 ₪ (עד שעה)</span></label>
         </div>
         <label style="margin-top:18px;">מה תרצו שנסדר עבורכם? (אפשר לסמן יותר מאחד)</label>
         <div class="choices">
@@ -317,7 +317,7 @@ input[type=file] { font-size: 14px; width: 100%; }
 <script>
 (function () {
   var plan = new URLSearchParams(location.search).get('plan');
-  var map = { basic: 'בסיסי (99 ₪)', fast: 'מהיר (179 ₪)', vip: 'VIP (249 ₪)' };
+  var map = { basic: 'בסיסי (169 ₪)', fast: 'מהיר (249 ₪)', vip: 'VIP (349 ₪)' };
   if (plan && map[plan]) {
     var el = document.querySelector('input[name="מסלול"][value="' + map[plan] + '"]');
     if (el) el.checked = true;
