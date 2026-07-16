@@ -20,6 +20,7 @@ create table if not exists public.submissions (
   has_existing_rx text,
   product_pref text,
   thc_pref text,
+  grams text,
   referral_source text,
   consents jsonb default '[]',
   files jsonb default '[]',

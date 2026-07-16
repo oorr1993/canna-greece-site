@@ -96,6 +96,7 @@
           has_existing_rx: checkedVal('מרשם קיים'),
           product_pref: checkedVal('העדפת מוצר'),
           thc_pref: checkedVal('ריכוז THC'),
+          grams: checkedVal('כמות (גרם)'),
           referral_source: val('איך הגעתם'),
           consents: checkedVals('הסכמה - גיל').concat(checkedVals('הסכמה - תנאי שימוש'), checkedVals('הסכמה - פרטיות'))
             .map(function (v, i) { return ['גיל', 'תנאי שימוש', 'פרטיות'][i] + ': ' + v; }),

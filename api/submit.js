@@ -41,6 +41,7 @@ export default async function handler(req, res) {
     has_existing_rx: clean(body.has_existing_rx),
     product_pref: clean(body.product_pref),
     thc_pref: clean(body.thc_pref),
+    grams: clean(body.grams),
     referral_source: clean(body.referral_source),
     consents: Array.isArray(body.consents) ? body.consents.map(clean).filter(Boolean).slice(0, 5) : [],
     files: Array.isArray(body.files)

@@ -261,6 +261,14 @@ input[type=file] { font-size: 14px; width: 100%; }
           <label class="choice"><input type="radio" name="ריכוז THC" value="גבוה (27%-31%)"><span>גבוה (27%–31%)</span></label>
           <label class="choice"><input type="radio" name="ריכוז THC" value="לפי המלצת הרופא" checked><span>מה שהרופא ימליץ</span></label>
         </div>
+        <label id="grams-label" style="margin-top:16px;">כמה גרם תרצו? (אם תאושרו)</label>
+        <p class="hint">5 או 10 גרם לאריזה; עד 20 גרם בזנים החזקים. הרופא קובע את הכמות הסופית לפי המצב.</p>
+        <div class="choices" role="radiogroup" aria-labelledby="grams-label">
+          <label class="choice"><input type="radio" name="כמות (גרם)" value="5 גרם"><span>5 גרם</span></label>
+          <label class="choice"><input type="radio" name="כמות (גרם)" value="10 גרם"><span>10 גרם</span></label>
+          <label class="choice"><input type="radio" name="כמות (גרם)" value="20 גרם"><span>20 גרם</span></label>
+          <label class="choice"><input type="radio" name="כמות (גרם)" value="לפי המלצת הרופא" checked><span>מה שהרופא ימליץ</span></label>
+        </div>
         <label for="rx-file" style="margin-top:16px;">צירוף מרשם/רישיון קיים (אם יש)</label>
         <input type="file" id="rx-file" name="קובץ מרשם" accept="image/*,.pdf">
       </fieldset>
