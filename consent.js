@@ -1,6 +1,7 @@
 (function () {
-  var KEY = 'cf_consent_v1';
+  var KEY = 'cf_consent_v2';
   var GA_ID = 'G-T9N752S80S';
+  var FB_PIXEL_ID = '1323004023320424';
 
   function stored() {
     try { return localStorage.getItem(KEY); } catch (e) { return null; }
@@ -22,7 +23,25 @@
     window.gtag('config', GA_ID, { anonymize_ip: true });
   }
 
-  if (stored() === 'granted') { loadGA(); return; }
+  function loadMetaPixel() {
+    if (window.__fbLoaded) return;
+    window.__fbLoaded = true;
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () {
+        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+      };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+      n.queue = []; t = b.createElement(e); t.async = !0;
+      t.src = v; s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s)
+    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    window.fbq('init', FB_PIXEL_ID);
+    window.fbq('track', 'PageView');
+  }
+
+  function loadAll() { loadGA(); loadMetaPixel(); }
+
+  if (stored() === 'granted') { loadAll(); return; }
   if (stored() === 'denied') { return; }
 
   function injectStyles() {
@@ -53,7 +72,7 @@
     wrap.setAttribute('role', 'dialog');
     wrap.setAttribute('aria-label', 'הודעת עוגיות');
     wrap.innerHTML =
-      '<p class="cf-consent-txt">אנחנו משתמשים בעוגיות אנליטיקה (Google Analytics) כדי להבין איך משתמשים באתר ולשפר אותו. אפשר לאשר או לדחות — הדחייה לא פוגעת בשימוש באתר. פרטים ב<a href="/privacy.html">מדיניות הפרטיות</a>.</p>' +
+      '<p class="cf-consent-txt">אנחנו משתמשים בעוגיות אנליטיקה ופרסום (Google Analytics ו-Meta Pixel) כדי להבין איך משתמשים באתר ולמדוד אפקטיביות קמפיינים. אפשר לאשר או לדחות — הדחייה לא פוגעת בשימוש באתר. פרטים ב<a href="/privacy.html">מדיניות הפרטיות</a>.</p>' +
       '<div class="cf-consent-btns">' +
       '<button type="button" class="cf-consent-btn cf-consent-no">דחייה</button>' +
       '<button type="button" class="cf-consent-btn cf-consent-yes">אישור</button>' +
@@ -61,7 +80,7 @@
     document.body.appendChild(wrap);
 
     wrap.querySelector('.cf-consent-yes').addEventListener('click', function () {
-      save('granted'); loadGA(); wrap.remove();
+      save('granted'); loadAll(); wrap.remove();
     });
     wrap.querySelector('.cf-consent-no').addEventListener('click', function () {
       save('denied'); wrap.remove();
