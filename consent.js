@@ -1,7 +1,8 @@
 (function () {
-  var KEY = 'cf_consent_v2';
+  var KEY = 'cf_consent_v3';
   var GA_ID = 'G-T9N752S80S';
   var FB_PIXEL_ID = '1323004023320424';
+  var TT_PIXEL_ID = 'D9CSE9JC77UDPAPRO6FG';
 
   function stored() {
     try { return localStorage.getItem(KEY); } catch (e) { return null; }
@@ -39,7 +40,30 @@
     window.fbq('track', 'PageView');
   }
 
-  function loadAll() { loadGA(); loadMetaPixel(); }
+  function loadTikTokPixel() {
+    if (window.__ttLoaded) return;
+    window.__ttLoaded = true;
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject = t; var ttq = w[t] = w[t] || [];
+      ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie", "holdConsent", "revokeConsent", "grantConsent"];
+      ttq.setAndDefer = function (t, e) { t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } };
+      for (var i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i]);
+      ttq.instance = function (t) { for (var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++) ttq.setAndDefer(e, ttq.methods[n]); return e };
+      ttq.load = function (e, n) {
+        var r = "https://analytics.tiktok.com/i18n/pixel/events.js", o = n && n.partner;
+        ttq._i = ttq._i || {}; ttq._i[e] = []; ttq._i[e]._u = r;
+        ttq._t = ttq._t || {}; ttq._t[e] = +new Date;
+        ttq._o = ttq._o || {}; ttq._o[e] = n || {};
+        n = document.createElement("script"); n.type = "text/javascript"; n.async = !0;
+        n.src = r + "?sdkid=" + e + "&lib=" + t;
+        e = document.getElementsByTagName("script")[0]; e.parentNode.insertBefore(n, e)
+      };
+      ttq.load(TT_PIXEL_ID);
+      ttq.page();
+    }(window, document, 'ttq');
+  }
+
+  function loadAll() { loadGA(); loadMetaPixel(); loadTikTokPixel(); }
 
   if (stored() === 'granted') { loadAll(); return; }
   if (stored() === 'denied') { return; }
@@ -72,7 +96,7 @@
     wrap.setAttribute('role', 'dialog');
     wrap.setAttribute('aria-label', 'הודעת עוגיות');
     wrap.innerHTML =
-      '<p class="cf-consent-txt">אנחנו משתמשים בעוגיות אנליטיקה ופרסום (Google Analytics ו-Meta Pixel) כדי להבין איך משתמשים באתר ולמדוד אפקטיביות קמפיינים. אפשר לאשר או לדחות — הדחייה לא פוגעת בשימוש באתר. פרטים ב<a href="/privacy.html">מדיניות הפרטיות</a>.</p>' +
+      '<p class="cf-consent-txt">אנחנו משתמשים בעוגיות אנליטיקה ופרסום (Google Analytics, Meta Pixel ו-TikTok Pixel) כדי להבין איך משתמשים באתר ולמדוד אפקטיביות קמפיינים. אפשר לאשר או לדחות — הדחייה לא פוגעת בשימוש באתר. פרטים ב<a href="/privacy.html">מדיניות הפרטיות</a>.</p>' +
       '<div class="cf-consent-btns">' +
       '<button type="button" class="cf-consent-btn cf-consent-no">דחייה</button>' +
       '<button type="button" class="cf-consent-btn cf-consent-yes">אישור</button>' +
