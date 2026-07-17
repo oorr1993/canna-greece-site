@@ -63,7 +63,10 @@
     }(window, document, 'ttq');
   }
 
-  function loadAll() { loadGA(); loadMetaPixel(); loadTikTokPixel(); }
+  function loadAll() {
+    loadGA(); loadMetaPixel(); loadTikTokPixel();
+    try { window.dispatchEvent(new Event('cf-trackers-ready')); } catch (e) {}
+  }
 
   if (stored() === 'granted') { loadAll(); return; }
   if (stored() === 'denied') { return; }

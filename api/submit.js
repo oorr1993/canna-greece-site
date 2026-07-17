@@ -1,12 +1,54 @@
 import { createClient } from '@supabase/supabase-js';
+import { createHash } from 'crypto';
 
 const REQUIRED = ['plan', 'full_name', 'email', 'phone', 'condition_text'];
 const MAX_LEN = 5000;
+const TIKTOK_PIXEL_CODE = 'D9CSE9JC77UDPAPRO6FG';
 
 function clean(v) {
   if (typeof v !== 'string') return null;
   const s = v.trim();
   return s ? s.slice(0, MAX_LEN) : null;
+}
+
+function sha256(v) {
+  return createHash('sha256').update(v.trim().toLowerCase()).digest('hex');
+}
+
+// Server-side half of the TikTok Events API — dormant until
+// TIKTOK_ACCESS_TOKEN is set. Uses the same event_id the browser pixel
+// fires on thanks.html so TikTok deduplicates instead of double-counting.
+async function sendTikTokEvent({ eventId, email, phone, req, pageUrl }) {
+  const token = process.env.TIKTOK_ACCESS_TOKEN;
+  if (!token || typeof eventId !== 'string' || !eventId) return;
+
+  const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || req.socket?.remoteAddress;
+  const ua = req.headers['user-agent'];
+  const user = {};
+  if (ip) user.ip = ip;
+  if (ua) user.user_agent = ua;
+  if (email) user.email = sha256(email);
+  if (phone) user.phone = sha256(phone.replace(/[^\d+]/g, ''));
+
+  const body = {
+    event_source: 'web',
+    event_source_id: TIKTOK_PIXEL_CODE,
+    data: [{
+      event: 'SubmitForm',
+      event_time: Math.floor(Date.now() / 1000),
+      event_id: eventId,
+      user,
+      page: { url: pageUrl },
+    }],
+  };
+
+  try {
+    await fetch('https://business-api.tiktok.com/open_api/v1.3/event/track/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Access-Token': token },
+      body: JSON.stringify(body),
+    });
+  } catch { /* never block the submission on this */ }
 }
 
 export default async function handler(req, res) {
@@ -57,6 +99,14 @@ export default async function handler(req, res) {
   const supabase = createClient(url, key, { auth: { persistSession: false } });
   const { data, error } = await supabase.from('submissions').insert(record).select('id').single();
   if (error) return res.status(500).json({ error: 'db error' });
+
+  await sendTikTokEvent({
+    eventId: clean(body.eventId),
+    email: record.email,
+    phone: record.phone,
+    req,
+    pageUrl: 'https://www.canaflight.com/intake.html',
+  });
 
   // Operational ping with zero personal data (submission id only).
   try {

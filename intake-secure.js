@@ -2,6 +2,23 @@
   var form = document.querySelector('form[action*="formsubmit"], form[data-secure-intake]');
   if (!form) return;
 
+  // One event id per page load, shared between the client pixel fire (on
+  // thanks.html) and the server-side TikTok Events API call, so TikTok can
+  // deduplicate the two instead of double-counting one conversion.
+  function genEventId() {
+    if (window.crypto && window.crypto.randomUUID) return window.crypto.randomUUID();
+    return 'ev-' + Date.now() + '-' + Math.random().toString(36).slice(2);
+  }
+  var eventId = genEventId();
+  var nextField = form.querySelector('input[name="_next"]');
+  if (nextField) {
+    try {
+      var nextUrl = new URL(nextField.value, location.href);
+      nextUrl.searchParams.set('eid', eventId);
+      nextField.value = nextUrl.href;
+    } catch (e) {}
+  }
+
   var statusEl = null;
   function setStatus(msg, isError) {
     if (!statusEl) {
@@ -80,6 +97,7 @@
       }).then(function (uploaded) {
         var payload = {
           submissionId: uploaded.submissionId || undefined,
+          eventId: eventId,
           website: val('website'),
           plan: checkedVal('מסלול'),
           services: checkedVals('שירות'),
@@ -109,7 +127,7 @@
         });
       }).then(function (r) {
         if (!r.ok) throw new Error('submit failed');
-        window.location.href = '/thanks.html';
+        window.location.href = '/thanks.html?eid=' + encodeURIComponent(eventId);
       }).catch(function () {
         if (submitBtn) submitBtn.disabled = false;
         setStatus('משהו השתבש בשליחה. נסו שוב, ואם זה חוזר — כתבו לנו למייל 1cana.flight@gmail.com', true);
