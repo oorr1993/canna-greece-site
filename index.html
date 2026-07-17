@@ -537,10 +537,17 @@ section { padding: 78px 0; }
 .flight p:last-of-type { margin-bottom: 0; font-weight: 700; }
 
 /* know grid */
-.know { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; }
-.kn h3 { font-size: 17.5px; font-weight: 900; margin-bottom: 10px; }
-.kn ul { list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 14.5px; }
+.know { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+.know .card { padding: 18px 16px; }
+.kn h3 { font-size: 15px; font-weight: 900; margin-bottom: 10px; }
+.kn ul { list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; }
 .kn ul li { display: flex; gap: 8px; }
+@media (max-width: 900px) {
+  .know { grid-template-columns: 1fr; gap: 22px; }
+  .know .card { padding: 26px; }
+  .kn h3 { font-size: 17.5px; }
+  .kn ul { font-size: 14.5px; gap: 8px; }
+}
 .kn ul li::before { content: '←'; color: var(--indigo); font-weight: 900; }
 
 /* faq */
