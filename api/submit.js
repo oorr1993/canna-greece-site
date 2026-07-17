@@ -6,6 +6,22 @@ const MAX_LEN = 5000;
 const TIKTOK_PIXEL_CODE = 'D9CSE9JC77UDPAPRO6FG';
 const META_PIXEL_ID = '1323004023320424';
 
+const ALLOWED_ORIGINS = new Set([
+  'https://www.canaflight.com',
+  'https://canaflight.com',
+]);
+
+// Defense-in-depth against cross-site abuse: a browser doing a legit
+// same-origin POST sends Origin: https://www.canaflight.com. Non-browser
+// clients (no Origin header) are still allowed — this is not a rate
+// limiter, just a block on a foreign site scripting a visitor's browser
+// to spam this endpoint cross-origin.
+function originAllowed(req) {
+  const origin = req.headers['origin'];
+  if (!origin) return true;
+  return ALLOWED_ORIGINS.has(origin);
+}
+
 function clean(v) {
   if (typeof v !== 'string') return null;
   const s = v.trim();
@@ -102,6 +118,7 @@ async function sendMetaEvent({ eventId, email, phone, req, pageUrl }) {
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
   if (req.method !== 'POST') return res.status(405).json({ error: 'method not allowed' });
+  if (!originAllowed(req)) return res.status(403).json({ error: 'forbidden' });
 
   const url = process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;

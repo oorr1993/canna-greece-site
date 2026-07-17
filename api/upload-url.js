@@ -13,9 +13,24 @@ const EXT_BY_TYPE = {
 };
 const MAX_FILES_PER_REQUEST = 3;
 
+const ALLOWED_ORIGINS = new Set([
+  'https://www.canaflight.com',
+  'https://canaflight.com',
+]);
+
+// Defense-in-depth: block a foreign site from scripting a visitor's
+// browser to mint signed upload URLs cross-origin. A legit same-origin
+// POST carries our Origin; non-browser clients (no Origin) still pass.
+function originAllowed(req) {
+  const origin = req.headers['origin'];
+  if (!origin) return true;
+  return ALLOWED_ORIGINS.has(origin);
+}
+
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
   if (req.method !== 'POST') return res.status(405).json({ error: 'method not allowed' });
+  if (!originAllowed(req)) return res.status(403).json({ error: 'forbidden' });
 
   const url = process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
