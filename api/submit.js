@@ -98,7 +98,7 @@ export default async function handler(req, res) {
 
   const supabase = createClient(url, key, { auth: { persistSession: false } });
   const { data, error } = await supabase.from('submissions').insert(record).select('id').single();
-  if (error) return res.status(500).json({ error: 'db error', debug: process.env.DEBUG_ERRORS ? error.message : undefined });
+  if (error) return res.status(500).json({ error: 'db error' });
 
   await sendTikTokEvent({
     eventId: clean(body.eventId),
