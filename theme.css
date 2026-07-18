@@ -63,6 +63,10 @@ html.dark .cf-consent a { color: var(--green); }
 html.dark .no-license-note { background: #1B241C; }
 html.dark .elig-note { color: #E9EFE1; }
 
+/* Hero text that pins the light-mode ink color explicitly */
+html.dark .hero .lead, html.dark .hero p, html.dark .h1sub,
+html.dark .hero b, html.dark .sub, html.dark .mini { color: #E9EFE1; }
+
 /* Theme toggle button (injected by theme.js into header .nav) */
 .theme-toggle {
   font: inherit; cursor: pointer;
