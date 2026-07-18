@@ -1,0 +1,78 @@
+/* Dark mode — activated by html.dark (toggle in header, persisted in
+   localStorage cf_theme). Token flips do most of the work; the targeted
+   rules below cover hardcoded colors and text-on-surface flips. */
+
+html.dark {
+  --lavender: #1B241C;
+  --cream: #1D271E;
+  --grid-line: #26332A;
+  --indigo: #2F5233;
+  --indigo-deep: #264226;
+  --navy: #1B331E;
+  --green: #8FBF5D;
+  --green-deep: #A5CE79;
+  --ink: #000;
+  --white: #FFF;
+}
+
+html.dark body {
+  color: #E9EFE1;
+  background-color: #141B14;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 44px 44px, 44px 44px;
+}
+
+/* Surfaces that are white/cream in light mode */
+html.dark .card,
+html.dark fieldset,
+html.dark .faq details,
+html.dark table,
+html.dark .toc,
+html.dark .guarantee,
+html.dark .cf-consent {
+  background: #222E23;
+  color: #E9EFE1;
+}
+html.dark .card.warn { background: #332C1A; }
+html.dark .card.answer { background: #1B241C; }
+html.dark th { background: #1B241C; }
+
+/* Headings: deep green reads muddy on dark — use the bright accent.
+   The black stroke/shadow stays for the brand look. */
+html.dark h1 { color: var(--green); }
+
+/* Form controls (they set color: var(--navy) explicitly) */
+html.dark input[type=text], html.dark input[type=email], html.dark input[type=tel],
+html.dark input[type=number], html.dark input[type=date],
+html.dark select, html.dark textarea {
+  color: #E9EFE1;
+  background: #1B241C;
+}
+
+/* Selected choice chips: green bg needs dark text */
+html.dark .choice input:checked + span { color: #14210F; }
+
+/* Links that hardcode deep green via inline styles or scoped rules */
+html.dark .consent a { color: var(--green) !important; }
+html.dark .toc a, html.dark .crumbs a { color: var(--green); }
+html.dark .cf-consent a { color: var(--green); }
+
+/* Answer box + eligibility notes on index use light backgrounds */
+html.dark .no-license-note { background: #1B241C; }
+html.dark .elig-note { color: #E9EFE1; }
+
+/* Theme toggle button (injected by theme.js into header .nav) */
+.theme-toggle {
+  font: inherit; cursor: pointer;
+  width: 44px; height: 44px; flex-shrink: 0;
+  display: inline-grid; place-items: center;
+  background: var(--white, #fff); border: 2px solid #000; border-radius: 50%;
+  box-shadow: 3px 3px 0 #000; font-size: 19px; line-height: 1;
+  transition: transform 0.12s;
+}
+.theme-toggle:hover { transform: translate(-1px, -1px); }
+.theme-toggle:focus-visible { outline: 3px dashed #8FBF5D; outline-offset: 2px; }
+html.dark .theme-toggle { background: #222E23; }
+@media (prefers-reduced-motion: reduce) { .theme-toggle { transition: none; } }
