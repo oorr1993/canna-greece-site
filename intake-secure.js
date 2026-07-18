@@ -54,9 +54,10 @@
       e.preventDefault();
       if (!form.reportValidity()) return;
 
+      var isEn = (document.documentElement.lang || '').slice(0, 2) === 'en';
       var submitBtn = form.querySelector('.submit-btn, [type="submit"]');
       if (submitBtn) submitBtn.disabled = true;
-      setStatus('שולחים את הפנייה בצורה מאובטחת…');
+      setStatus(isEn ? 'Sending your request securely…' : 'שולחים את הפנייה בצורה מאובטחת…');
 
       var fileInputs = [
         { kind: 'passport', el: document.getElementById('passport-file') },
@@ -98,6 +99,7 @@
         var payload = {
           submissionId: uploaded.submissionId || undefined,
           eventId: eventId,
+          lang: (document.documentElement.lang || 'he').slice(0, 2),
           website: val('website'),
           plan: checkedVal('מסלול'),
           services: checkedVals('שירות'),
@@ -130,7 +132,9 @@
         window.location.href = '/thanks.html?eid=' + encodeURIComponent(eventId);
       }).catch(function () {
         if (submitBtn) submitBtn.disabled = false;
-        setStatus('משהו השתבש בשליחה. נסו שוב, ואם זה חוזר — כתבו לנו למייל 1cana.flight@gmail.com', true);
+        setStatus(isEn
+          ? 'Something went wrong. Please try again, and if it persists — email us at 1cana.flight@gmail.com'
+          : 'משהו השתבש בשליחה. נסו שוב, ואם זה חוזר — כתבו לנו למייל 1cana.flight@gmail.com', true);
       });
     });
   }

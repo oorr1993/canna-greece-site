@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { createHash } from 'crypto';
+import nodemailer from 'nodemailer';
 
 const REQUIRED = ['plan', 'full_name', 'email', 'phone', 'condition_text'];
 const MAX_LEN = 5000;
@@ -64,6 +65,50 @@ async function sendTikTokEvent({ eventId, email, phone, req, pageUrl }) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Access-Token': token },
       body: JSON.stringify(body),
+    });
+  } catch { /* never block the submission on this */ }
+}
+
+// Customer-facing confirmation email — dormant until GMAIL_APP_PASSWORD
+// is set. Sent from the business Gmail via SMTP; never blocks the
+// submission on failure.
+async function sendCustomerConfirmation({ email, fullName, plan, lang }) {
+  const pass = process.env.GMAIL_APP_PASSWORD;
+  if (!pass || !email) return;
+
+  const first = String(fullName || '').trim().split(/\s+/)[0] || '';
+  const isEn = lang === 'en';
+  const planPromise = (p) => {
+    p = String(p || '');
+    if (p.includes('VIP')) return isEn
+      ? 'On your VIP track — expect an answer within about an hour during working hours. ⚡'
+      : 'במסלול ה-VIP שבחרת — תשובה עד שעה בשעות הפעילות. ⚡';
+    if (p.includes('מהיר')) return isEn
+      ? 'On your Fast track — expect an answer within 24 hours. ⚡'
+      : 'במסלול המהיר שבחרת — תשובה עד 24 שעות. ⚡';
+    if (p.includes('בסיסי')) return isEn
+      ? 'On the Basic track — expect an answer within one to two weeks.'
+      : 'במסלול הבסיסי — תשובה תוך שבוע–שבועיים.';
+    return '';
+  };
+
+  const subject = isEn
+    ? 'We got your request 🌿 CanaFlight'
+    : 'הפנייה שלך התקבלה 🌿 קנאפלייט';
+  const text = isEn
+    ? `Hi ${first},\n\nYour request is in! A licensed Greek doctor will personally review it. 🎉\n${planPromise(plan)}\n\nWhat now? Nothing 😎 Just keep an eye on WhatsApp and email — we take it from here.\n\nQuestions? Simply reply to this email.\n\nThe CanaFlight team 🌿\nwww.canaflight.com`
+    : `היי ${first},\n\nהפנייה שלך אצלנו! רופא מורשה ביוון יעבור עליה אישית. 🎉\n${planPromise(plan)}\n\nמה עכשיו? כלום 😎 רק תהיו זמינים בוואטסאפ ובמייל — משם זה עלינו.\n\nיש שאלה? פשוט משיבים למייל הזה.\n\nצוות קנאפלייט 🌿\nwww.canaflight.com`;
+
+  try {
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: { user: '1cana.flight@gmail.com', pass },
+    });
+    await transporter.sendMail({
+      from: '"CanaFlight קנאפלייט" <1cana.flight@gmail.com>',
+      to: email,
+      subject,
+      text,
     });
   } catch { /* never block the submission on this */ }
 }
@@ -166,6 +211,12 @@ export default async function handler(req, res) {
   if (error) return res.status(500).json({ error: 'db error' });
 
   await Promise.all([
+    sendCustomerConfirmation({
+      email: record.email,
+      fullName: record.full_name,
+      plan: record.plan,
+      lang: clean(body.lang) === 'en' ? 'en' : 'he',
+    }),
     sendTikTokEvent({
       eventId: clean(body.eventId),
       email: record.email,

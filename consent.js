@@ -98,12 +98,23 @@
     wrap.className = 'cf-consent';
     wrap.setAttribute('role', 'dialog');
     wrap.setAttribute('aria-label', 'הודעת עוגיות');
-    wrap.innerHTML =
-      '<p class="cf-consent-txt">אנחנו משתמשים בעוגיות אנליטיקה ופרסום (Google Analytics, Meta Pixel ו-TikTok Pixel) כדי להבין איך משתמשים באתר ולמדוד אפקטיביות קמפיינים. אפשר לאשר או לדחות — הדחייה לא פוגעת בשימוש באתר. פרטים ב<a href="/privacy.html">מדיניות הפרטיות</a>.</p>' +
-      '<div class="cf-consent-btns">' +
-      '<button type="button" class="cf-consent-btn cf-consent-no">דחייה</button>' +
-      '<button type="button" class="cf-consent-btn cf-consent-yes">אישור</button>' +
-      '</div>';
+    var isEn = (document.documentElement.lang || '').slice(0, 2) === 'en';
+    if (isEn) {
+      wrap.style.direction = 'ltr';
+      wrap.innerHTML =
+        '<p class="cf-consent-txt">We use analytics and advertising cookies (Google Analytics, Meta Pixel and TikTok Pixel) to understand how the site is used and measure campaigns. You can accept or decline — declining does not affect your use of the site. Details in our <a href="/privacy.html">privacy policy</a>.</p>' +
+        '<div class="cf-consent-btns">' +
+        '<button type="button" class="cf-consent-btn cf-consent-no">Decline</button>' +
+        '<button type="button" class="cf-consent-btn cf-consent-yes">Accept</button>' +
+        '</div>';
+    } else {
+      wrap.innerHTML =
+        '<p class="cf-consent-txt">אנחנו משתמשים בעוגיות אנליטיקה ופרסום (Google Analytics, Meta Pixel ו-TikTok Pixel) כדי להבין איך משתמשים באתר ולמדוד אפקטיביות קמפיינים. אפשר לאשר או לדחות — הדחייה לא פוגעת בשימוש באתר. פרטים ב<a href="/privacy.html">מדיניות הפרטיות</a>.</p>' +
+        '<div class="cf-consent-btns">' +
+        '<button type="button" class="cf-consent-btn cf-consent-no">דחייה</button>' +
+        '<button type="button" class="cf-consent-btn cf-consent-yes">אישור</button>' +
+        '</div>';
+    }
     document.body.appendChild(wrap);
 
     wrap.querySelector('.cf-consent-yes').addEventListener('click', function () {
