@@ -143,6 +143,10 @@ header { position: sticky; top: 0; z-index: 90; background: var(--indigo); borde
   border: 2px solid var(--ink); border-radius: 999px; background: var(--white); color: var(--indigo);
   box-shadow: 3px 3px 0 var(--ink); padding: 6px 14px; font-weight: 900; font-size: 14px;
 }
+/* No hamburger drawer on this page — the header CTA is redundant with
+   the hero's own CTA one row below, so drop it on narrow screens to
+   leave room for the language pill and theme toggle. */
+@media (max-width: 640px) { .nav > .btn { display: none; } }
 @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
 .hero { padding: 70px 0 55px; text-align: center; }
 h1 {

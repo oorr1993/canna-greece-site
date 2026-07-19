@@ -2,31 +2,46 @@
   var KEY = 'cf_theme';
   var root = document.documentElement;
   var isEn = (root.lang || '').slice(0, 2) === 'en';
+  var buttons = [];
 
   function save(t) { try { localStorage.setItem(KEY, t); } catch (e) {} }
 
-  function init() {
-    var nav = document.querySelector('header .nav');
-    if (!nav) return;
+  function paintAll() {
+    var dark = root.classList.contains('dark');
+    var label = dark
+      ? (isEn ? 'Switch to light mode' : 'מעבר למצב בהיר')
+      : (isEn ? 'Switch to dark mode' : 'מעבר למצב כהה');
+    buttons.forEach(function (btn) {
+      btn.textContent = dark ? '☀️' : '🌙';
+      btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
+      btn.setAttribute('aria-label', label);
+    });
+  }
+
+  function toggle() {
+    var dark = !root.classList.contains('dark');
+    root.classList.toggle('dark', dark);
+    save(dark ? 'dark' : 'light');
+    paintAll();
+  }
+
+  function mount(container) {
+    if (!container) return;
     var btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'theme-toggle';
-    function paint() {
-      var dark = root.classList.contains('dark');
-      btn.textContent = dark ? '☀️' : '🌙';
-      btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
-      btn.setAttribute('aria-label', dark
-        ? (isEn ? 'Switch to light mode' : 'מעבר למצב בהיר')
-        : (isEn ? 'Switch to dark mode' : 'מעבר למצב כהה'));
-    }
-    btn.addEventListener('click', function () {
-      var dark = !root.classList.contains('dark');
-      root.classList.toggle('dark', dark);
-      save(dark ? 'dark' : 'light');
-      paint();
-    });
-    nav.appendChild(btn);
-    paint();
+    btn.addEventListener('click', toggle);
+    container.appendChild(btn);
+    buttons.push(btn);
+  }
+
+  function init() {
+    // Desktop/compact header row — hidden on mobile via CSS, replaced there
+    // by the copy inside .mnav below.
+    mount(document.querySelector('header .nav'));
+    // Mobile slide-out drawer — always reachable, never squeezed for space.
+    mount(document.querySelector('.mnav'));
+    paintAll();
   }
 
   if (document.readyState !== 'loading') init();
