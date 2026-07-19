@@ -118,11 +118,11 @@ input[type=file] { font-size: 14px; width: 100%; }
 .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green); border: 2px solid var(--ink); }
 @media (prefers-reduced-motion: reduce) { .submit-btn { transition: none; } }
 .skip-link {
-  position: absolute; inset-inline-start: -9999px; top: 12px; z-index: 200;
+  position: absolute; top: -80px; inset-inline-start: 12px; z-index: 200;
   background: #8FBF5D; color: #1B331E; border: 2px solid #000; border-radius: 10px;
   padding: 10px 20px; font-weight: 900; text-decoration: none;
 }
-.skip-link:focus { inset-inline-start: 12px; }
+.skip-link:focus { top: 12px; }
 </style>
 </head>
 <body>

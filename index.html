@@ -406,7 +406,10 @@ header {
   font-family: 'Rubik Bubbles', 'Rubik', sans-serif; font-size: 34px; color: var(--white);
   -webkit-text-stroke: 1px var(--ink); paint-order: stroke fill; text-shadow: 3px 3px 0 var(--ink);
 }
-.mnav .btn { font-family: 'Rubik', sans-serif; font-size: 18px; -webkit-text-stroke: 0; text-shadow: none; }
+.mnav .btn {
+  font-family: 'Rubik', sans-serif; font-size: 18px; -webkit-text-stroke: 0; text-shadow: none;
+  color: var(--indigo);
+}
 .mnav .close-btn {
   position: absolute; top: 18px; inset-inline-start: 22px;
   background: var(--white); border: 2px solid var(--ink); border-radius: 50%;
@@ -676,11 +679,11 @@ footer { background: var(--navy); color: var(--white); padding: 54px 0 34px; bor
 .wa-float:hover { transform: translate(-2px,-2px); }
 .wa-float svg { width: 30px; height: 30px; fill: var(--navy); }
 .skip-link {
-  position: absolute; inset-inline-start: -9999px; top: 12px; z-index: 200;
+  position: absolute; top: -80px; inset-inline-start: 12px; z-index: 200;
   background: var(--green); color: var(--navy); border: 2px solid var(--ink); border-radius: 10px;
   padding: 10px 20px; font-weight: 900; text-decoration: none;
 }
-.skip-link:focus { inset-inline-start: 12px; }
+.skip-link:focus { top: 12px; }
 </style>
 </head>
 <body>
