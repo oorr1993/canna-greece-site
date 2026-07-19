@@ -103,6 +103,14 @@ html.dark .vs .gr { background: #1F2E1B; }
 /* Bullet arrow pinned to the light-mode accent */
 html.dark .kn ul li::before { color: var(--green); }
 
+/* FAQ question titles pin color:var(--navy) directly on <summary>, which
+   wins over the inherited light text color from the .faq details dark
+   override above (a direct match always beats inheritance regardless of
+   specificity) — dark-green question text on a now-dark card, unreadable.
+   Same story for the +/− toggle glyph pinned to var(--indigo). */
+html.dark .faq summary { color: #E9EFE1; }
+html.dark .faq summary::after { color: var(--green); }
+
 /* Theme toggle button (injected by theme.js into header .nav) */
 .theme-toggle {
   font: inherit; cursor: pointer;
