@@ -36,9 +36,10 @@
   }
 
   function init() {
-    // Always in the visible header row (never tucked inside a menu) — on
-    // narrow screens the logo wordmark shrinks instead to make room.
-    mount(document.querySelector('header .nav'));
+    // Prefer the dedicated .header-settings group (sits at the far end
+    // of the header row, next to the language pill) when present;
+    // otherwise fall back to the plain header nav on pages without one.
+    mount(document.querySelector('.header-settings') || document.querySelector('header .nav'));
     paintAll();
   }
 

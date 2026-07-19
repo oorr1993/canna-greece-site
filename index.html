@@ -248,13 +248,14 @@ header {
   box-shadow: 3px 3px 0 var(--ink); padding: 8px 16px; font-weight: 900; font-size: 14px;
   display: inline-flex; align-items: center; flex-shrink: 0;
 }
-/* Language switcher and theme toggle stay visible in the header at
-   every width — on mobile the logo's wordmark shrinks/hides instead to
-   make room, so these controls are never tucked away in a menu. */
+/* Language switcher + theme toggle live together at the far end of the
+   header row (physical far-left in RTL, since it's the last flex child
+   under justify-content:space-between) — always visible, never tucked
+   into a menu, and never at the cost of the full-size logo. */
+.header-settings { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 @media (max-width: 480px) {
-  .logo .b { display: none; }
-  .logo img { width: 44px; height: 44px; }
-  .lang-pill { padding: 8px 12px; font-size: 13px; }
+  .header-settings .lang-pill { padding: 5px 10px; font-size: 12px; box-shadow: 2px 2px 0 var(--ink); }
+  .header-settings .theme-toggle { width: 32px; height: 32px; font-size: 15px; box-shadow: 2px 2px 0 var(--ink); }
   .nav { gap: 8px; }
 }
 .foot .col .social-icons { margin-top: 2px; }
@@ -700,9 +701,11 @@ footer { background: var(--navy); color: var(--white); padding: 54px 0 34px; bor
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg>
       </a>
     </div>
-    <a class="lang-pill" href="/en/" lang="en" hreflang="en">EN</a>
     <a class="btn" href="/intake.html">מתחילים בשאלון</a>
     <button class="menu-btn" aria-label="פתיחת תפריט" aria-expanded="false">☰</button>
+    <div class="header-settings">
+      <a class="lang-pill" href="/en/" lang="en" hreflang="en">EN</a>
+    </div>
   </div>
 </header>
 <nav class="mnav" aria-label="תפריט נייד">
