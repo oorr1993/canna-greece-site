@@ -1,3 +1,11 @@
+/* Site-wide safety net: every page already sets overflow-x:hidden on
+   <body>, but on mobile the scrollable root is <html>, not <body> — an
+   absolutely-positioned decorative element (e.g. index.html's flying
+   plane, translateX up to -125vw) can still widen html's scrollWidth
+   and let the page drift/scroll sideways even though body's own
+   overflow is clipped. Clipping html too closes that gap everywhere. */
+html { overflow-x: hidden; }
+
 /* Dark mode — activated by html.dark (toggle in header, persisted in
    localStorage cf_theme). Token flips do most of the work; the targeted
    rules below cover hardcoded colors and text-on-surface flips. */
@@ -66,6 +74,34 @@ html.dark .elig-note { color: #E9EFE1; }
 /* Hero text that pins the light-mode ink color explicitly */
 html.dark .hero .lead, html.dark .hero p, html.dark .h1sub,
 html.dark .hero b, html.dark .sub, html.dark .mini { color: #E9EFE1; }
+
+/* Section headings/intros pin color: var(--navy) explicitly (index.html's
+   own stylesheet, not shared with en/ or guide.html) — that token stays
+   dark in html.dark because footer/legend/badges rely on it as a
+   background. More specific selectors (e.g. .pricing .sec-head h2, which
+   is already always-white) still win over this. */
+html.dark .sec-head h2, html.dark .sec-head p { color: #E9EFE1; }
+
+/* Pricing tier numbers pin var(--indigo)/var(--navy) directly, overriding
+   the .card dark-mode text color at equal specificity. */
+html.dark .tier .price { color: var(--green); }
+html.dark .tier .price small { color: #E9EFE1; }
+
+/* Eligibility + city chips: white pill background with no explicit text
+   color, so they inherited the dark page's light body color onto a still-
+   white surface (light-on-white). Give them a dark surface instead. */
+html.dark .elig .e, html.dark .city-chips span {
+  background: #222E23; color: #E9EFE1;
+}
+
+/* Israel-vs-Greece comparison cards: colored backgrounds (#FDEDED /
+   #EEF3DE) outrank the generic .card dark override at equal specificity,
+   leaving light text on a light card. Swap to dark-tinted surfaces. */
+html.dark .vs .il { background: #3A2320; }
+html.dark .vs .gr { background: #1F2E1B; }
+
+/* Bullet arrow pinned to the light-mode accent */
+html.dark .kn ul li::before { color: var(--green); }
 
 /* Theme toggle button (injected by theme.js into header .nav) */
 .theme-toggle {

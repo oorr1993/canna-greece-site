@@ -76,14 +76,15 @@
     var st = document.createElement('style');
     st.id = 'cf-consent-style';
     st.textContent =
-      '.cf-consent{position:fixed;inset-inline:12px;bottom:12px;z-index:9999;max-width:520px;margin-inline:auto;' +
-      'background:#FBF8EF;color:#1B331E;border:2px solid #000;border-radius:14px;box-shadow:5px 5px 0 #000;' +
-      'padding:16px 18px;font-family:Rubik,sans-serif;font-size:14.5px;line-height:1.6;}' +
-      '.cf-consent-txt{margin:0 0 12px;}' +
+      '.cf-consent{position:fixed;inset-inline:10px;bottom:10px;z-index:9999;max-width:420px;margin-inline:auto;' +
+      'background:#FBF8EF;color:#1B331E;border:2px solid #000;border-radius:12px;box-shadow:4px 4px 0 #000;' +
+      'padding:12px 14px;font-family:Rubik,sans-serif;font-size:13px;line-height:1.5;' +
+      'display:flex;align-items:center;gap:10px;flex-wrap:wrap;}' +
+      '.cf-consent-txt{margin:0;flex:1 1 220px;}' +
       '.cf-consent a{color:#2F5233;font-weight:700;text-decoration:underline;}' +
-      '.cf-consent-btns{display:flex;gap:10px;justify-content:flex-end;}' +
-      '.cf-consent-btn{font-family:inherit;border:2px solid #000;border-radius:10px;box-shadow:3px 3px 0 #000;' +
-      'padding:8px 20px;font-weight:900;font-size:14px;cursor:pointer;}' +
+      '.cf-consent-btns{display:flex;gap:8px;flex-shrink:0;}' +
+      '.cf-consent-btn{font-family:inherit;border:2px solid #000;border-radius:9px;box-shadow:2px 2px 0 #000;' +
+      'padding:6px 14px;font-weight:900;font-size:13px;cursor:pointer;white-space:nowrap;}' +
       '.cf-consent-yes{background:#8FBF5D;color:#1B331E;}' +
       '.cf-consent-no{background:#FFF;color:#1B331E;}' +
       '.cf-consent-btn:focus-visible{outline:3px dashed #5E8C3B;outline-offset:2px;}' +
@@ -102,14 +103,14 @@
     if (isEn) {
       wrap.style.direction = 'ltr';
       wrap.innerHTML =
-        '<p class="cf-consent-txt">We use analytics and advertising cookies (Google Analytics, Meta Pixel and TikTok Pixel) to understand how the site is used and measure campaigns. You can accept or decline — declining does not affect your use of the site. Details in our <a href="/privacy.html">privacy policy</a>.</p>' +
+        '<p class="cf-consent-txt">We use cookies for analytics and ads. See our <a href="/privacy.html">privacy policy</a>.</p>' +
         '<div class="cf-consent-btns">' +
         '<button type="button" class="cf-consent-btn cf-consent-no">Decline</button>' +
         '<button type="button" class="cf-consent-btn cf-consent-yes">Accept</button>' +
         '</div>';
     } else {
       wrap.innerHTML =
-        '<p class="cf-consent-txt">אנחנו משתמשים בעוגיות אנליטיקה ופרסום (Google Analytics, Meta Pixel ו-TikTok Pixel) כדי להבין איך משתמשים באתר ולמדוד אפקטיביות קמפיינים. אפשר לאשר או לדחות — הדחייה לא פוגעת בשימוש באתר. פרטים ב<a href="/privacy.html">מדיניות הפרטיות</a>.</p>' +
+        '<p class="cf-consent-txt">האתר משתמש בעוגיות אנליטיקה ופרסום. פרטים ב<a href="/privacy.html">מדיניות הפרטיות</a>.</p>' +
         '<div class="cf-consent-btns">' +
         '<button type="button" class="cf-consent-btn cf-consent-no">דחייה</button>' +
         '<button type="button" class="cf-consent-btn cf-consent-yes">אישור</button>' +
