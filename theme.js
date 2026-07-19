@@ -36,11 +36,9 @@
   }
 
   function init() {
-    // Desktop/compact header row — hidden on mobile via CSS, replaced there
-    // by the copy inside .mnav below.
+    // Always in the visible header row (never tucked inside a menu) — on
+    // narrow screens the logo wordmark shrinks instead to make room.
     mount(document.querySelector('header .nav'));
-    // Mobile slide-out drawer — always reachable, never squeezed for space.
-    mount(document.querySelector('.mnav'));
     paintAll();
   }
 
