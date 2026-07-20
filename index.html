@@ -263,7 +263,6 @@ header {
   .nav { gap: 6px; }
   .logo { gap: 6px; }
   .logo .b { font-size: 19px; }
-  .menu-btn { width: 46px; height: 44px; font-size: 22px; }
   .header-settings { gap: 6px; }
   .header-settings .lang-pill { padding: 5px 10px; font-size: 12px; box-shadow: 2px 2px 0 var(--ink); }
   .header-settings .theme-toggle { width: 40px; height: 40px; font-size: 19px; box-shadow: 2px 2px 0 var(--ink); }
@@ -378,13 +377,16 @@ header {
 }
 .menu-btn {
   display: none; background: var(--white); border: 2px solid var(--ink); border-radius: 10px;
-  box-shadow: 3px 3px 0 var(--ink); width: 52px; height: 48px; flex-shrink: 0;
-  place-items: center; cursor: pointer; color: var(--indigo); font-size: 26px; line-height: 1;
+  box-shadow: 3px 3px 0 var(--ink); flex-shrink: 0;
+  place-items: center; cursor: pointer; color: var(--indigo); line-height: 1;
 }
 .menu-btn:focus-visible { outline: 3px dashed var(--green); outline-offset: 3px; }
 @media (max-width: 820px) {
-  .menu-btn { display: grid; }
+  .menu-btn { display: grid; width: 52px; height: 48px; font-size: 26px; }
   .nav .btn { display: none; }
+}
+@media (max-width: 480px) {
+  .menu-btn { width: 46px; height: 44px; font-size: 22px; }
 }
 .mnav {
   position: fixed; inset: 0; z-index: 110;
