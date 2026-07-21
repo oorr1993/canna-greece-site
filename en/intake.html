@@ -19,7 +19,7 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:title" content="Eligibility Questionnaire — Medical Cannabis Prescription in Greece">
-<meta property="og:description" content="3 minutes from your phone — a licensed Greek doctor reviews your request and a digital prescription is on its way.">
+<meta property="og:description" content="3 minutes from your phone — a licensed Greek doctor reviews your request; if eligible, your digital prescription is sent to you.">
 <meta property="og:url" content="https://www.canaflight.com/en/intake.html">
 <meta property="og:image" content="https://www.canaflight.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -142,13 +142,9 @@ input[type=file] { font-size: 14px; width: 100%; }
     <p class="sub">About 3 minutes, from your phone. A licensed Greek doctor personally reviews every request.</p>
     <p class="mini">Fields marked <span style="color:#C0392B;">*</span> are required. Your information is encrypted and used solely to review your request.</p>
 
-    <p class="no-license-note">🟢 You do NOT need an existing cannabis license — even with no prior license or experience, you may qualify.</p>
+    <p class="no-license-note">🟢 You do NOT need an Israeli cannabis license to apply for an eligibility review in Greece — even with no prior license or experience, you may qualify, subject to the doctor's decision.</p>
 
-    <form action="https://formsubmit.co/1cana.flight@gmail.com" method="POST" enctype="multipart/form-data" data-secure-intake>
-      <input type="hidden" name="_subject" value="פנייה חדשה — שאלון קנאפלייט (EN)">
-      <input type="hidden" name="_next" value="https://www.canaflight.com/en/thanks.html">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_captcha" value="true">
+    <form method="POST" enctype="multipart/form-data" data-secure-intake novalidate>
       <div aria-hidden="true" style="position:absolute;top:-9999px;width:1px;height:1px;overflow:hidden;">
         <label>Leave this field empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
       </div>
@@ -290,10 +286,11 @@ input[type=file] { font-size: 14px; width: 100%; }
             <input type="file" id="passport-file" name="צילום דרכון" accept="image/*,.pdf" required>
           </div>
           <div>
-            <label for="selfie-file">Selfie for identity verification <span class="req">*</span></label>
-            <input type="file" id="selfie-file" name="סלפי" accept="image/*" required>
+            <label for="selfie-file">Selfie for identity verification <span style="font-weight:500;opacity:.65;font-size:.9em;">(optional)</span></label>
+            <input type="file" id="selfie-file" name="סלפי" accept="image/*">
           </div>
         </div>
+        <p class="hint">The selfie is optional at this stage — if it's needed for verification, we'll ask for it later in the process, after the eligibility review.</p>
       </fieldset>
 
       <fieldset>
@@ -304,20 +301,25 @@ input[type=file] { font-size: 14px; width: 100%; }
         </label>
         <label class="consent">
           <input type="checkbox" name="הסכמה - תנאי שימוש" value="מאשר/ת" required>
-          <span>I have read and agree to the <a href="/terms.html" target="_blank" rel="noopener" style="color: var(--indigo); font-weight: 900;">terms of use</a> and the <a href="/refund.html" target="_blank" rel="noopener" style="color: var(--indigo); font-weight: 900;">cancellation &amp; refund policy</a>, including the understanding that CanaFlight is an administrative coordination service only, and the medical decision rests solely with a licensed doctor in Greece. <span class="req">*</span></span>
+          <span>I have read and agree to the <a href="/en/terms.html" target="_blank" rel="noopener" style="color: var(--indigo); font-weight: 900;">terms of use</a> and the <a href="/en/refund.html" target="_blank" rel="noopener" style="color: var(--indigo); font-weight: 900;">cancellation &amp; refund policy</a>, including the understanding that CanaFlight is an administrative coordination service only, and the medical decision rests solely with a licensed doctor in Greece. <span class="req">*</span></span>
         </label>
         <label class="consent">
           <input type="checkbox" name="הסכמה - פרטיות" value="מאשר/ת" required>
-          <span>I have read and agree to the <a href="/privacy.html" target="_blank" rel="noopener" style="color: var(--indigo); font-weight: 900;">privacy policy</a>, including processing of my medical information, use of my passport photo/selfie for identity verification, and transfer of my information to the licensed doctor in Greece for reviewing my request. <span class="req">*</span></span>
+          <span>I have read and agree to the <a href="/en/privacy.html" target="_blank" rel="noopener" style="color: var(--indigo); font-weight: 900;">privacy policy</a>, including processing of my medical information, use of my passport photo/selfie for identity verification, and transfer of my information to the licensed doctor in Greece for reviewing my request. <span class="req">*</span></span>
+        </label>
+        <label class="consent">
+          <input type="checkbox" name="הסכמה - מכס ויבוא" value="מאשר/ת" required>
+          <span>I understand the prescription is valid <b>for use in Greece only</b>, that bringing cannabis into Israel is prohibited, and that I bear sole responsibility for complying with customs, import/export law, and airline regulations in every country involved — see Section 6 of the <a href="/en/terms.html" target="_blank" rel="noopener" style="color: var(--indigo); font-weight: 900;">terms of use</a>. <span class="req">*</span></span>
         </label>
       </fieldset>
 
       <button class="submit-btn" type="submit">Submit &amp; check eligibility 🚀</button>
       <div class="trust-row">
-        <span><span class="dot"></span>Answer within about an hour (working hours)</span>
+        <span><span class="dot"></span>Usually answered within about an hour (working hours)</span>
         <span><span class="dot"></span>Not approved? Full refund</span>
         <span><span class="dot"></span>Your data is encrypted</span>
       </div>
+      <p class="mini" style="margin-top:12px;">Payment is collected during the request, before the doctor's decision. If your request is not approved, or if you cancel before the doctor has decided, you receive a full refund per our <a href="/en/refund.html" target="_blank" rel="noopener" style="color: var(--indigo); font-weight: 900;">cancellation &amp; refund policy</a>.</p>
     </form>
   </div>
 </main>

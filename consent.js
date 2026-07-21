@@ -1,8 +1,22 @@
 (function () {
-  var KEY = 'cf_consent_v3';
+  var KEY = 'cf_consent_v4';
   var GA_ID = 'G-T9N752S80S';
   var FB_PIXEL_ID = '1323004023320424';
   var TT_PIXEL_ID = 'D9CSE9JC77UDPAPRO6FG';
+
+  // Advertising pixels are allowlisted to top-of-funnel marketing pages only
+  // (the two homepages). This is deliberate and must stay an allowlist, not a
+  // blocklist: a page added later gets NO ad pixel until someone opts it in
+  // here on purpose. It keeps Meta/TikTok from ever seeing a URL that reveals
+  // a health interest — the intake questionnaire, the thanks page, the medical
+  // guide, or the legal pages — which is the exposure the legal review flagged.
+  // '/en' with no trailing slash is matched too: depending on the host's
+  // clean-URL behaviour the English homepage can be served either way, and
+  // missing it would silently cost the English campaign its measurement.
+  function isMarketingPage() {
+    var p = location.pathname.replace(/index\.html$/, '');
+    return p === '/' || p === '/en/' || p === '/en';
+  }
 
   function stored() {
     try { return localStorage.getItem(KEY); } catch (e) { return null; }
@@ -36,6 +50,9 @@
       t.src = v; s = b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t, s)
     }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    // init with no user-data object: no Advanced Matching, ever. Note that
+    // *Automatic* Advanced Matching is a server-side toggle in Events Manager
+    // and cannot be disabled from here — it must stay OFF in the dashboard.
     window.fbq('init', FB_PIXEL_ID);
     window.fbq('track', 'PageView');
   }
@@ -45,18 +62,26 @@
     window.__ttLoaded = true;
     !function (w, d, t) {
       w.TiktokAnalyticsObject = t; var ttq = w[t] = w[t] || [];
-      ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie", "holdConsent", "revokeConsent", "grantConsent"];
-      ttq.setAndDefer = function (t, e) { t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } };
+      ttq.methods = ['page', 'track', 'identify', 'instances', 'debug', 'on', 'off',
+        'once', 'ready', 'alias', 'group', 'enableCookie', 'disableCookie'];
+      ttq.setAndDefer = function (o, m) {
+        o[m] = function () { o.push([m].concat([].slice.call(arguments, 0))) };
+      };
       for (var i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i]);
-      ttq.instance = function (t) { for (var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++) ttq.setAndDefer(e, ttq.methods[n]); return e };
+      ttq.instance = function (id) {
+        var o = ttq._i[id] || [];
+        for (var n = 0; n < ttq.methods.length; n++) ttq.setAndDefer(o, ttq.methods[n]);
+        return o;
+      };
       ttq.load = function (e, n) {
-        var r = "https://analytics.tiktok.com/i18n/pixel/events.js", o = n && n.partner;
-        ttq._i = ttq._i || {}; ttq._i[e] = []; ttq._i[e]._u = r;
-        ttq._t = ttq._t || {}; ttq._t[e] = +new Date;
+        var s = 'https://analytics.tiktok.com/i18n/pixel/events.js';
+        ttq._i = ttq._i || {}; ttq._i[e] = []; ttq._i[e]._u = s;
+        ttq._t = ttq._t || {}; ttq._t[e] = +new Date();
         ttq._o = ttq._o || {}; ttq._o[e] = n || {};
-        n = document.createElement("script"); n.type = "text/javascript"; n.async = !0;
-        n.src = r + "?sdkid=" + e + "&lib=" + t;
-        e = document.getElementsByTagName("script")[0]; e.parentNode.insertBefore(n, e)
+        var a = d.createElement('script');
+        a.type = 'text/javascript'; a.async = !0; a.src = s + '?sdkid=' + e + '&lib=' + t;
+        var f = d.getElementsByTagName('script')[0];
+        f.parentNode.insertBefore(a, f);
       };
       ttq.load(TT_PIXEL_ID);
       ttq.page();
@@ -64,7 +89,12 @@
   }
 
   function loadAll() {
-    loadGA(); loadMetaPixel(); loadTikTokPixel();
+    // GA runs site-wide (anonymised). Advertising pixels load ONLY on the
+    // marketing pages and ONLY fire PageView — no conversion, lead or
+    // form-submission event is ever reported, because on this site every such
+    // event would be a health-related signal about an identifiable person.
+    loadGA();
+    if (isMarketingPage()) { loadMetaPixel(); loadTikTokPixel(); }
     try { window.dispatchEvent(new Event('cf-trackers-ready')); } catch (e) {}
   }
 
@@ -103,14 +133,14 @@
     if (isEn) {
       wrap.style.direction = 'ltr';
       wrap.innerHTML =
-        '<p class="cf-consent-txt">We use cookies for analytics and ads. See our <a href="/privacy.html">privacy policy</a>.</p>' +
+        '<p class="cf-consent-txt">We use anonymised analytics cookies, and on this homepage also advertising cookies (Meta, TikTok). Your questionnaire and any medical details are never shared with advertising platforms. See our <a href="/en/privacy.html">privacy policy</a>.</p>' +
         '<div class="cf-consent-btns">' +
         '<button type="button" class="cf-consent-btn cf-consent-no">Decline</button>' +
         '<button type="button" class="cf-consent-btn cf-consent-yes">Accept</button>' +
         '</div>';
     } else {
       wrap.innerHTML =
-        '<p class="cf-consent-txt">האתר משתמש בעוגיות אנליטיקה ופרסום. פרטים ב<a href="/privacy.html">מדיניות הפרטיות</a>.</p>' +
+        '<p class="cf-consent-txt">האתר משתמש בעוגיות אנליטיקה אנונימיות, ובדף הבית גם בעוגיות פרסום (Meta, TikTok). פרטי השאלון ומידע רפואי לעולם אינם משותפים עם פלטפורמות פרסום. פרטים ב<a href="/privacy.html">מדיניות הפרטיות</a>.</p>' +
         '<div class="cf-consent-btns">' +
         '<button type="button" class="cf-consent-btn cf-consent-no">דחייה</button>' +
         '<button type="button" class="cf-consent-btn cf-consent-yes">אישור</button>' +

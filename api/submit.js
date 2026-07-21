@@ -1,11 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
-import { createHash } from 'crypto';
 import nodemailer from 'nodemailer';
 
 const REQUIRED = ['plan', 'full_name', 'email', 'phone', 'condition_text'];
 const MAX_LEN = 5000;
-const TIKTOK_PIXEL_CODE = 'D9CSE9JC77UDPAPRO6FG';
-const META_PIXEL_ID = '1323004023320424';
 
 const ALLOWED_ORIGINS = new Set([
   'https://www.canaflight.com',
@@ -27,46 +24,6 @@ function clean(v) {
   if (typeof v !== 'string') return null;
   const s = v.trim();
   return s ? s.slice(0, MAX_LEN) : null;
-}
-
-function sha256(v) {
-  return createHash('sha256').update(v.trim().toLowerCase()).digest('hex');
-}
-
-// Server-side half of the TikTok Events API — dormant until
-// TIKTOK_ACCESS_TOKEN is set. Uses the same event_id the browser pixel
-// fires on thanks.html so TikTok deduplicates instead of double-counting.
-async function sendTikTokEvent({ eventId, email, phone, req, pageUrl }) {
-  const token = process.env.TIKTOK_ACCESS_TOKEN;
-  if (!token || typeof eventId !== 'string' || !eventId) return;
-
-  const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || req.socket?.remoteAddress;
-  const ua = req.headers['user-agent'];
-  const user = {};
-  if (ip) user.ip = ip;
-  if (ua) user.user_agent = ua;
-  if (email) user.email = sha256(email);
-  if (phone) user.phone = sha256(phone.replace(/[^\d+]/g, ''));
-
-  const body = {
-    event_source: 'web',
-    event_source_id: TIKTOK_PIXEL_CODE,
-    data: [{
-      event: 'SubmitForm',
-      event_time: Math.floor(Date.now() / 1000),
-      event_id: eventId,
-      user,
-      page: { url: pageUrl },
-    }],
-  };
-
-  try {
-    await fetch('https://business-api.tiktok.com/open_api/v1.3/event/track/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Access-Token': token },
-      body: JSON.stringify(body),
-    });
-  } catch { /* never block the submission on this */ }
 }
 
 // Customer-facing confirmation email — dormant until GMAIL_APP_PASSWORD
@@ -109,53 +66,6 @@ async function sendCustomerConfirmation({ email, fullName, plan, lang }) {
       to: email,
       subject,
       text,
-    });
-  } catch { /* never block the submission on this */ }
-}
-
-function parseCookie(header, name) {
-  if (!header) return null;
-  const match = header.match(new RegExp('(?:^|;\\s*)' + name + '=([^;]+)'));
-  return match ? decodeURIComponent(match[1]) : null;
-}
-
-// Server-side half of Meta's Conversions API — dormant until
-// META_ACCESS_TOKEN is set. Shares the same event_id as the browser
-// pixel fire on thanks.html so Meta deduplicates instead of double-counting.
-async function sendMetaEvent({ eventId, email, phone, req, pageUrl }) {
-  const token = process.env.META_ACCESS_TOKEN;
-  if (!token || typeof eventId !== 'string' || !eventId) return;
-
-  const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || req.socket?.remoteAddress;
-  const ua = req.headers['user-agent'];
-  const cookieHeader = req.headers['cookie'];
-  const fbp = parseCookie(cookieHeader, '_fbp');
-  const fbc = parseCookie(cookieHeader, '_fbc');
-
-  const user_data = {};
-  if (ip) user_data.client_ip_address = ip;
-  if (ua) user_data.client_user_agent = ua;
-  if (email) user_data.em = [sha256(email)];
-  if (phone) user_data.ph = [sha256(phone.replace(/[^\d+]/g, ''))];
-  if (fbp) user_data.fbp = fbp;
-  if (fbc) user_data.fbc = fbc;
-
-  const body = {
-    data: [{
-      event_name: 'Lead',
-      event_time: Math.floor(Date.now() / 1000),
-      event_id: eventId,
-      event_source_url: pageUrl,
-      action_source: 'website',
-      user_data,
-    }],
-  };
-
-  try {
-    await fetch(`https://graph.facebook.com/v21.0/${META_PIXEL_ID}/events?access_token=${encodeURIComponent(token)}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
     });
   } catch { /* never block the submission on this */ }
 }
@@ -210,28 +120,14 @@ export default async function handler(req, res) {
   const { data, error } = await supabase.from('submissions').insert(record).select('id').single();
   if (error) return res.status(500).json({ error: 'db error' });
 
-  await Promise.all([
-    sendCustomerConfirmation({
-      email: record.email,
-      fullName: record.full_name,
-      plan: record.plan,
-      lang: clean(body.lang) === 'en' ? 'en' : 'he',
-    }),
-    sendTikTokEvent({
-      eventId: clean(body.eventId),
-      email: record.email,
-      phone: record.phone,
-      req,
-      pageUrl: 'https://www.canaflight.com/intake.html',
-    }),
-    sendMetaEvent({
-      eventId: clean(body.eventId),
-      email: record.email,
-      phone: record.phone,
-      req,
-      pageUrl: 'https://www.canaflight.com/intake.html',
-    }),
-  ]);
+  // Send the customer their confirmation email (best-effort; never blocks).
+  // No conversion or health-related event is sent to any advertising platform.
+  await sendCustomerConfirmation({
+    email: record.email,
+    fullName: record.full_name,
+    plan: record.plan,
+    lang: clean(body.lang) === 'en' ? 'en' : 'he',
+  });
 
   // Operational ping with zero personal data (submission id only).
   try {

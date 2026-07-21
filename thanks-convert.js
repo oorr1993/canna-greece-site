@@ -1,18 +1,5 @@
-(function () {
-  var eid = new URLSearchParams(location.search).get('eid') || undefined;
-  var fired = false;
-
-  function fire() {
-    if (fired) return;
-    fired = true;
-    try {
-      if (window.ttq) window.ttq.track('SubmitForm', {}, eid ? { event_id: eid } : undefined);
-    } catch (e) {}
-    try {
-      if (window.fbq) window.fbq('track', 'Lead', {}, eid ? { eventID: eid } : undefined);
-    } catch (e) {}
-  }
-
-  if (window.ttq || window.fbq) fire();
-  else window.addEventListener('cf-trackers-ready', fire, { once: true });
-})();
+// Intentionally a no-op.
+// This medical service does not report form submissions or any other
+// health-related conversion signal to advertising or analytics platforms.
+// (Previously fired Meta "Lead" and TikTok "SubmitForm" events — removed.)
+(function () {})();
