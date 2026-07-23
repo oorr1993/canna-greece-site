@@ -324,7 +324,7 @@ header {
   direction: ltr;
 }
 .marquee .track { display: inline-block; animation: slide 30s linear infinite; }
-.marquee span { font-family: 'Rubik Bubbles', 'Rubik', sans-serif; font-size: 20px; letter-spacing: 1px; margin: 0 18px; }
+.marquee span { font-family: 'Rubik Bubbles', 'Rubik', sans-serif; font-size: 20px; letter-spacing: 1px; margin: 0 18px; direction: rtl; unicode-bidi: isolate; }
 @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 /* ===== animations ===== */
 @media (prefers-reduced-motion: no-preference) {
@@ -779,7 +779,7 @@ footer { background: var(--navy); color: var(--white); padding: 54px 0 34px; bor
       </div>
     </div>
     <div class="jar-wrap" style="position: relative;">
-      <img class="jar" src="/brand/logo-patch.webp" alt="" aria-hidden="true" width="640" height="640" loading="eager" fetchpriority="high">
+      <img class="jar" src="/brand/logo-patch.webp" alt="" aria-hidden="true" width="640" height="640" loading="lazy" fetchpriority="low">
       <div class="rx-card">
         <b>מרשם דיגיטלי · יוון</b>
         <span>נבדק ע"י רופא מורשה ביוון</span>

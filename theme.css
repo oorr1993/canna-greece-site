@@ -75,6 +75,13 @@ html.dark .elig-note { color: #E9EFE1; }
 html.dark .hero .lead, html.dark .hero p, html.dark .h1sub,
 html.dark .hero b, html.dark .sub, html.dark .mini { color: #E9EFE1; }
 
+/* Hero trust row pins color:var(--navy); on the dark page that is dark-on-dark
+   (~1.17:1, invisible). The rx-card mockup keeps a white surface in dark mode,
+   so its text inherited the light body color onto white. Fix both. The green
+   rx-stamp keeps its dark-on-green text, which is already readable. */
+html.dark .mini-trust { color: #E9EFE1; }
+html.dark .rx-card { background: #222E23; color: #E9EFE1; }
+
 /* Section headings/intros pin color: var(--navy) explicitly (index.html's
    own stylesheet, not shared with en/ or guide.html) — that token stays
    dark in html.dark because footer/legend/badges rely on it as a

@@ -118,8 +118,15 @@
       '.cf-consent-yes{background:#8FBF5D;color:#1B331E;}' +
       '.cf-consent-no{background:#FFF;color:#1B331E;}' +
       '.cf-consent-btn:focus-visible{outline:3px dashed #5E8C3B;outline-offset:2px;}' +
-      '@media (prefers-reduced-motion:no-preference){.cf-consent{animation:cfup .35s ease both;}' +
-      '@keyframes cfup{from{transform:translateY(20px);opacity:0}to{transform:none;opacity:1}}}';
+      // Fade only (no translateY): a translate-in start-frame can freeze and
+      // push the docked bar below the viewport, hiding the buttons.
+      '@media (prefers-reduced-motion:no-preference){.cf-consent{animation:cfup .3s ease both;}' +
+      '@keyframes cfup{from{opacity:0}to{opacity:1}}}' +
+      // On phones the floating card sat on top of the hero CTA. Dock it as a
+      // full-width bottom bar and reserve its height on <body> (see banner())
+      // so it never covers interactive content.
+      '@media (max-width:640px){.cf-consent{inset-inline:0;bottom:0;max-width:none;' +
+      'border-radius:14px 14px 0 0;border-width:2px 0 0;box-shadow:0 -3px 0 #000;}}';
     document.head.appendChild(st);
   }
 
@@ -133,14 +140,14 @@
     if (isEn) {
       wrap.style.direction = 'ltr';
       wrap.innerHTML =
-        '<p class="cf-consent-txt">We use anonymised analytics cookies, and on this homepage also advertising cookies (Meta, TikTok). Your questionnaire and any medical details are never shared with advertising platforms. See our <a href="/en/privacy.html">privacy policy</a>.</p>' +
+        '<p class="cf-consent-txt">Anonymised analytics, plus advertising cookies (Meta, TikTok) on the homepage — only with your consent. Medical details are never shared with advertisers. <a href="/en/privacy.html">Privacy policy</a>.</p>' +
         '<div class="cf-consent-btns">' +
         '<button type="button" class="cf-consent-btn cf-consent-no">Decline</button>' +
         '<button type="button" class="cf-consent-btn cf-consent-yes">Accept</button>' +
         '</div>';
     } else {
       wrap.innerHTML =
-        '<p class="cf-consent-txt">האתר משתמש בעוגיות אנליטיקה אנונימיות, ובדף הבית גם בעוגיות פרסום (Meta, TikTok). פרטי השאלון ומידע רפואי לעולם אינם משותפים עם פלטפורמות פרסום. פרטים ב<a href="/privacy.html">מדיניות הפרטיות</a>.</p>' +
+        '<p class="cf-consent-txt">עוגיות אנליטיקה אנונימיות, ובדף הבית גם עוגיות פרסום (Meta, TikTok) — רק בהסכמתכם. מידע רפואי לעולם אינו משותף עם מפרסמים. <a href="/privacy.html">מדיניות הפרטיות</a>.</p>' +
         '<div class="cf-consent-btns">' +
         '<button type="button" class="cf-consent-btn cf-consent-no">דחייה</button>' +
         '<button type="button" class="cf-consent-btn cf-consent-yes">אישור</button>' +
@@ -148,11 +155,24 @@
     }
     document.body.appendChild(wrap);
 
+    // On phones the bar is docked to the bottom edge; reserve its height so it
+    // cannot overlap the hero CTA. No effect on desktop (floating card).
+    function reserveSpace() {
+      try {
+        if (window.matchMedia && window.matchMedia('(max-width:640px)').matches) {
+          document.body.style.paddingBottom = wrap.offsetHeight + 'px';
+        }
+      } catch (e) {}
+    }
+    function releaseSpace() { try { document.body.style.paddingBottom = ''; } catch (e) {} }
+    reserveSpace();
+    window.addEventListener('resize', reserveSpace);
+
     wrap.querySelector('.cf-consent-yes').addEventListener('click', function () {
-      save('granted'); loadAll(); wrap.remove();
+      releaseSpace(); save('granted'); loadAll(); wrap.remove();
     });
     wrap.querySelector('.cf-consent-no').addEventListener('click', function () {
-      save('denied'); wrap.remove();
+      releaseSpace(); save('denied'); wrap.remove();
     });
   }
 
