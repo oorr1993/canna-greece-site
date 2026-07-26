@@ -25,9 +25,10 @@
 <meta property="og:description" content="3-minute questionnaire → licensed Greek doctor review → if approved, digital prescription valid at any pharmacy in Greece. Full refund if not approved.">
 <meta property="og:url" content="https://www.canaflight.com/en/">
 <meta property="og:site_name" content="CanaFlight">
-<meta property="og:image" content="https://www.canaflight.com/og-image.png">
+<meta property="og:image" content="https://www.canaflight.com/og-image-en.png">
+<meta property="og:image:alt" content="CanaFlight — concierge service for a medical cannabis prescription in Greece">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://www.canaflight.com/og-image.png">
+<meta name="twitter:image" content="https://www.canaflight.com/og-image-en.png">
 <meta name="twitter:title" content="Medical Cannabis in Greece — Concierge Service for Tourists">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,13 +55,63 @@
       ]
     },
     {
+      "@type": "WebSite",
+      "@id": "https://www.canaflight.com/en/#website",
+      "url": "https://www.canaflight.com/en/",
+      "name": "CanaFlight",
+      "inLanguage": "en",
+      "publisher": { "@id": "https://www.canaflight.com/#org" }
+    },
+    {
       "@type": "WebPage",
       "@id": "https://www.canaflight.com/en/#webpage",
       "url": "https://www.canaflight.com/en/",
       "name": "Medical Cannabis Prescription in Greece — Concierge Service Online | CanaFlight",
+      "description": "A Hebrew- and English-language concierge service that coordinates an appointment with a licensed Greek doctor for a medical cannabis prescription, redeemable at licensed pharmacies in Greece.",
       "inLanguage": "en",
+      "isPartOf": { "@id": "https://www.canaflight.com/en/#website" },
+      "about": { "@id": "https://www.canaflight.com/#service" },
+      "publisher": { "@id": "https://www.canaflight.com/#org" },
+      "primaryImageOfPage": { "@type": "ImageObject", "url": "https://www.canaflight.com/og-image-en.png", "width": 1200, "height": 630 },
       "datePublished": "2026-07-19",
-      "dateModified": "2026-07-19"
+      "dateModified": "2026-07-26"
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.canaflight.com/#service",
+      "name": "Medical cannabis prescription coordination in Greece",
+      "serviceType": "Medical prescription coordination service",
+      "description": "CanaFlight coordinates the referral to a licensed Greek doctor. It is not a pharmacy, does not sell, supply or ship cannabis, and does not issue prescriptions — the medical decision and the prescription itself are made by the licensed doctor in Greece alone.",
+      "provider": { "@id": "https://www.canaflight.com/#org" },
+      "areaServed": { "@type": "Country", "name": "Greece" },
+      "audience": { "@type": "Audience", "audienceType": "Israeli tourists in Greece" },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Service tracks",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "Basic track",
+            "price": "169",
+            "priceCurrency": "ILS",
+            "description": "Doctor's review within one to two weeks, if approved. Service fee only."
+          },
+          {
+            "@type": "Offer",
+            "name": "Fast track",
+            "price": "249",
+            "priceCurrency": "ILS",
+            "description": "Doctor's review within up to 24 hours, if approved. Service fee only."
+          },
+          {
+            "@type": "Offer",
+            "name": "VIP track",
+            "price": "349",
+            "priceCurrency": "ILS",
+            "description": "Doctor's review up to one hour during working hours, if approved. Service fee only; the pharmacy price is set by the pharmacy and is not included."
+          }
+        ]
+      }
     },
     {
       "@type": "FAQPage",
