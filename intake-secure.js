@@ -25,9 +25,13 @@
   // /api/health confirms the pipeline is configured, submission is blocked
   // and the user is directed to contact us directly.
   var secureReady = false;
-  fetch('/api/health').then(function (r) { return r.json(); }).then(function (h) {
-    secureReady = Boolean(h && h.configured);
-  }).catch(function () { secureReady = false; });
+  function checkHealth() {
+    return fetch('/api/health').then(function (r) { return r.json(); }).then(function (h) {
+      secureReady = Boolean(h && h.configured);
+      return secureReady;
+    }).catch(function () { return false; });
+  }
+  checkHealth();
 
   function val(name) {
     var el = form.querySelector('[name="' + name + '"]');
@@ -59,13 +63,21 @@
 
     var isEn = isEnLang();
 
-    if (!secureReady) {
-      setStatus(isEn
-        ? 'Online submissions are temporarily unavailable. Please email us at 1cana.flight@gmail.com and we will take it from there — your details are not sent anywhere until then.'
-        : 'שליחת הטופס אונליין אינה זמינה כרגע. אנא כתבו לנו ל-1cana.flight@gmail.com ונמשיך משם — הפרטים שלכם אינם נשלחים לשום מקום עד אז.', true);
-      return;
-    }
+    // The page-load health check may have failed transiently (a network
+    // blip, not an actual outage). Re-check fresh before blocking a real
+    // submission on a stale negative.
+    (secureReady ? Promise.resolve(true) : checkHealth()).then(function (ready) {
+      if (!ready) {
+        setStatus(isEn
+          ? 'Online submissions are temporarily unavailable. Please email us at 1cana.flight@gmail.com and we will take it from there — your details are not sent anywhere until then.'
+          : 'שליחת הטופס אונליין אינה זמינה כרגע. אנא כתבו לנו ל-1cana.flight@gmail.com ונמשיך משם — הפרטים שלכם אינם נשלחים לשום מקום עד אז.', true);
+        return;
+      }
+      submitForm(isEn);
+    });
+  });
 
+  function submitForm(isEn) {
     var submitBtn = form.querySelector('.submit-btn, [type="submit"]');
     if (submitBtn) submitBtn.disabled = true;
     setStatus(isEn ? 'Sending your request securely…' : 'שולחים את הפנייה בצורה מאובטחת…');
@@ -145,5 +157,5 @@
         ? 'Something went wrong. Please try again, and if it persists — email us at 1cana.flight@gmail.com'
         : 'משהו השתבש בשליחה. נסו שוב, ואם זה חוזר — כתבו לנו למייל 1cana.flight@gmail.com', true);
     });
-  });
+  }
 })();
