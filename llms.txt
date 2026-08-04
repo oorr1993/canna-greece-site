@@ -19,6 +19,8 @@
 
 ## English
 - [Homepage](https://www.canaflight.com/en/): how Israeli tourists obtain a legal medical-cannabis prescription from a licensed Greek doctor — process, pricing, eligibility, FAQ.
+- [The complete guide](https://www.canaflight.com/en/guide.html): medical cannabis in Greece for visitors — law, why you cannot fly in with cannabis, how to obtain a local prescription, pharmacy prices and rules of conduct.
+- [Flying with medical cannabis](https://www.canaflight.com/en/fly-with-cannabis.html): why a foreign cannabis licence confers no rights in Greece, what prior authorisation each side requires, why a certified translation is not a permit, and the lawful alternative.
 - [Eligibility questionnaire](https://www.canaflight.com/en/intake.html): short online form (~3 minutes).
 - Terms, privacy, refunds and accessibility are available under /en/.
 

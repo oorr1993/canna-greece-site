@@ -300,6 +300,22 @@ h2 { font-size: clamp(26px, 4.4vw, 38px); font-weight: 900; line-height: 1.2; te
 .faq details { background: var(--white); border: 2px solid var(--ink); border-radius: 14px; box-shadow: 4px 4px 0 var(--ink); padding: 16px 20px; }
 .faq summary { font-weight: 900; font-size: 16.5px; cursor: pointer; }
 .faq details p { margin-top: 10px; font-size: 15px; }
+.flight { max-width: 820px; margin: 0 auto; }
+.flight .card { background: #FFF7DE; }
+.flight h2 { font-size: 24px; font-weight: 900; margin-bottom: 12px; }
+.flight p { font-size: 16px; margin-bottom: 10px; }
+.flight p:last-of-type { margin-bottom: 0; font-weight: 700; }
+.elig { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 18px; }
+.elig .e {
+  background: var(--white); border: 2px solid var(--ink); border-radius: 999px;
+  box-shadow: 3px 3px 0 var(--ink); padding: 8px 18px; font-weight: 700; font-size: 15px;
+}
+.elig-note { text-align: center; font-size: 15.5px; max-width: 660px; margin: 0 auto; }
+.city-chips { display: flex; flex-wrap: wrap; gap: 9px; justify-content: center; margin-top: 6px; }
+.city-chips span {
+  background: var(--white); border: 2px solid var(--ink); border-radius: 999px;
+  box-shadow: 2px 2px 0 var(--ink); padding: 6px 15px; font-weight: 700; font-size: 14.5px;
+}
 .final { text-align: center; }
 .final .card { max-width: 640px; margin: 0 auto; padding: 40px 30px; }
 footer { background: var(--navy); color: var(--white); padding: 44px 0 30px; border-top: 3px solid var(--ink); }
@@ -334,6 +350,7 @@ footer { background: var(--navy); color: var(--white); padding: 44px 0 30px; bor
       <a href="#how">How it works</a>
       <a href="#pricing">Pricing</a>
       <a href="#legal">Is it legal?</a>
+      <a href="/en/guide.html">Full guide</a>
       <a href="#faq">FAQ</a>
     </nav>
     <a class="lang-pill" href="/" lang="he" hreflang="he">עברית</a>
@@ -437,6 +454,50 @@ footer { background: var(--navy); color: var(--white); padding: 44px 0 30px; bor
   </div>
 </section>
 
+<section id="eligibility">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">Am I even eligible?</span>
+      <h2>No "serious illness"? You may still qualify</h2>
+    </div>
+    <div class="elig">
+      <span class="e">Chronic back pain</span>
+      <span class="e">Insomnia</span>
+      <span class="e">Anxiety</span>
+      <span class="e">Migraines</span>
+      <span class="e">Post-injury pain</span>
+      <span class="e">Digestive issues</span>
+    </div>
+    <p class="elig-note">Greek criteria are considerably broader than those of many other countries, and conditions like these are assessed on their merits. The examples above are illustrative, not a promise of approval — <b>eligibility is decided by the licensed Greek doctor alone</b>, based on the information you provide in the questionnaire. If the doctor does not approve, you receive a full refund.</p>
+  </div>
+</section>
+
+<section class="alt" id="cities">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">Where it works</span>
+      <h2>The prescription is valid across Greece — not only in Athens</h2>
+      <p>It is digital, and valid at any licensed pharmacy in the country. One prescription covers a whole island-hopping route, for up to 30 days from issue.</p>
+    </div>
+    <div class="city-chips">
+      <span>Athens</span><span>Thessaloniki</span><span>Crete</span><span>Rhodes</span><span>Kos</span>
+      <span>Santorini</span><span>Mykonos</span><span>Corfu</span><span>Zakynthos</span><span>Halkidiki</span>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="flight" style="padding-top: 0;">
+  <div class="wrap">
+    <div class="flight">
+      <div class="card">
+        <h2>⚠️ Thinking of flying in with your own cannabis? Don't.</h2>
+        <p>Even if you hold a valid medical cannabis licence at home — it is <b>not valid in Greece</b>. Bringing cannabis into Greece without prior authorisation from the <a href="https://www.eof.gr/en/farmaka-farmakeftiki-kanavi/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 3px;">Greek National Organization for Medicines (EOF)</a> is prohibited, and the trouble can start at customs.</p>
+        <p>The simple, lawful route: a referral to a licensed Greek doctor. We coordinate the whole process — digitally, from your phone. Want the details? <a href="/en/guide.html" style="color: var(--indigo); font-weight: 900; text-decoration: underline; text-underline-offset: 3px;">Read the complete guide to medical cannabis in Greece</a>, or on the flying question specifically — <a href="/en/fly-with-cannabis.html" style="color: var(--indigo); font-weight: 900; text-decoration: underline; text-underline-offset: 3px;">what's allowed, what isn't, and why a certified translation is not a permit</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="legal">
   <div class="wrap">
     <div class="sec-head">
@@ -519,6 +580,8 @@ footer { background: var(--navy); color: var(--white); padding: 44px 0 30px; bor
       <div class="col">
         <b>Navigate</b>
         <a href="/en/intake.html">Eligibility questionnaire</a>
+        <a href="/en/guide.html">The complete guide</a>
+        <a href="/en/fly-with-cannabis.html">Flying with medical cannabis</a>
         <a href="#how">How it works</a>
         <a href="#pricing">Pricing</a>
         <a href="#faq">FAQ</a>
