@@ -6,6 +6,11 @@
       "permanent": true
     },
     {
+      "source": "/en/index.html",
+      "destination": "/en/",
+      "permanent": true
+    },
+    {
       "source": "/(.*)",
       "has": [{ "type": "host", "value": "canna-greece-site.vercel.app" }],
       "destination": "https://www.canaflight.com/$1",
@@ -28,7 +33,7 @@
       ]
     },
     {
-      "source": "/(og-image.png|apple-touch-icon.png|favicon.svg)",
+      "source": "/(og-image.png|og-image-en.png|apple-touch-icon.png|favicon.svg)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=604800, stale-while-revalidate=86400" }
       ]
