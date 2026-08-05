@@ -11,6 +11,7 @@ const ok = (name, cond, extra = '') => {
 // Capture what would be logged to the DB, and what text was built.
 const logged = [];
 const fakeSupabase = {
+  rpc: async () => ({}),
   from() { return { insert(row) { logged.push(row); return Promise.resolve({}); } }; },
 };
 
@@ -52,27 +53,56 @@ const msg = sent[0].body.text;
 ok('telegram called',    sent.length === 1 && sent[0].url.includes('api.telegram.org'));
 ok('telegram succeeded', r2.find(r => r.channel === 'telegram').ok === true);
 ok('contains plan',      msg.includes('VIP'));
-ok('contains arrival',   msg.includes('2026-09-14'));
+ok('arrival shown as dd/mm/yy', msg.includes('14/09/26'), msg);
 ok('id truncated to 8',  msg.includes('11111111') && !msg.includes('2222-3333'));
+
+// BIDI: Latin runs must be isolated or Telegram reorders them into nonsense
+// (the old digest split the id "2b25aa72" across the line). Hebrew must NOT
+// be isolated — forcing an LTR isolate around RTL text causes the same bug.
+const LRI = '⁦', PDI = '⁩';
+ok('date is isolated',   msg.includes(LRI + '14/09/26' + PDI));
+ok('id is isolated',     msg.includes(LRI + '11111111' + PDI));
+ok('VIP is isolated',    msg.includes(LRI + 'VIP' + PDI));
+ok('isolates are balanced',
+   (msg.match(/⁦/g) || []).length === (msg.match(/⁩/g) || []).length);
 
 // The real safety property: no leaked personal field can appear.
 const forbidden = ['ישראל ישראלי', 'test@example.com', '0501234567', 'X1234567', 'כאבי גב'];
 ok('no PII in message',  forbidden.every(f => !msg.includes(f)));
 ok('message is short',   msg.length < 400, `len=${msg.length}`);
 
-console.log('\n4. notifyUnhandled ordering');
+console.log('\n4. notifyUnhandled orders by flight date, not by plan');
 sent.length = 0;
 const now = Date.now();
+const iso = (days) => new Date(now + days * 86400000).toISOString().slice(0, 10);
 await notifyUnhandled(fakeSupabase, [
-  { id: 'aaaaaaaa-1', plan: 'בסיסי (169 ₪)', arrival_date: '2026-10-01', created_at: new Date(now - 9e6).toISOString() },
-  { id: 'bbbbbbbb-2', plan: 'VIP (349 ₪)',   arrival_date: '2026-09-14', created_at: new Date(now - 5e6).toISOString() },
-  { id: 'cccccccc-3', plan: 'מהיר (249 ₪)',  arrival_date: '2026-09-20', created_at: new Date(now - 7e6).toISOString() },
+  // Deliberately inverted against plan rank: the VIP flies last. Sorting by
+  // plan would put it on top, which is the bug this replaces — the customer's
+  // deadline decides who to answer next, not what they paid.
+  { id: 'aaaaaaaa-1', plan: 'VIP (349 ₪)',   arrival_date: iso(40), created_at: new Date(now).toISOString() },
+  { id: 'bbbbbbbb-2', plan: 'בסיסי (169 ₪)', arrival_date: iso(-5), created_at: new Date(now).toISOString() },
+  { id: 'cccccccc-3', plan: 'מהיר (249 ₪)',  arrival_date: iso(2),  created_at: new Date(now).toISOString() },
 ]);
 const digest = sent[0].body.text;
-const iVip = digest.indexOf('bbbbbbbb'), iFast = digest.indexOf('cccccccc'), iBasic = digest.indexOf('aaaaaaaa');
-ok('VIP listed first',   iVip < iFast && iFast < iBasic, `vip=${iVip} fast=${iFast} basic=${iBasic}`);
+const iOverdue = digest.indexOf('bbbbbbbb'), iSoon = digest.indexOf('cccccccc'), iLater = digest.indexOf('aaaaaaaa');
+ok('soonest flight first', iOverdue < iSoon && iSoon < iLater,
+   `overdue=${iOverdue} soon=${iSoon} later=${iLater}`);
 ok('count in header',    digest.includes('3 פניות'));
+ok('groups by urgency',  digest.includes('🔴') && digest.includes('🟠') && digest.includes('🟢'), digest);
+ok('hebrew plan NOT isolated', digest.includes('· בסיסי ·'), digest);
 ok('empty list no-ops',  (await notifyUnhandled(fakeSupabase, [])).length === 0);
+
+console.log('\n4c. CRM link replaces the "edit Supabase by hand" instruction');
+sent.length = 0;
+process.env.CRM_URL = 'https://example.test/crm';
+await notifyNewLead(fakeSupabase, { id: 'zz', plan: 'VIP', arrivalDate: iso(3) });
+const linked = sent[0].body.text;
+ok('links to CRM',       linked.includes('https://example.test/crm'));
+ok('no handled=true hint', !linked.includes('handled = true'), linked);
+delete process.env.CRM_URL;
+sent.length = 0;
+await notifyNewLead(fakeSupabase, { id: 'zz', plan: 'VIP', arrivalDate: iso(3) });
+ok('degrades without CRM_URL', !sent[0].body.text.includes('undefined'), sent[0].body.text);
 
 console.log('\n4b. notifyLightLead keeps the email address out of the alert');
 sent.length = 0;
