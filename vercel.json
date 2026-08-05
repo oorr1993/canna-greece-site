@@ -1,4 +1,7 @@
 {
+  "crons": [
+    { "path": "/api/cron-unhandled", "schedule": "0 7 * * *" }
+  ],
   "redirects": [
     {
       "source": "/index.html",

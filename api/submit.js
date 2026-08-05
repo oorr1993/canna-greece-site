@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import nodemailer from 'nodemailer';
+import { notifyNewLead } from '../lib/notify.js';
 
 const REQUIRED = ['plan', 'full_name', 'email', 'phone', 'condition_text'];
 const MAX_LEN = 5000;
@@ -129,17 +130,20 @@ export default async function handler(req, res) {
     lang: clean(body.lang) === 'en' ? 'en' : 'he',
   });
 
-  // Operational ping with zero personal data (submission id only).
+  // Operational alert: Telegram push + email backup, carrying no personal
+  // data (see the privacy note at the top of lib/notify.js). This replaces
+  // the old formsubmit.co relay, which was an unauthenticated third party
+  // with no delivery signal — a dead relay was indistinguishable from a
+  // quiet week. Delivery outcomes are now recorded in notification_log, and
+  // any lead left unhandled is chased by the hourly job in
+  // api/cron-unhandled.js, so one missed push cannot lose a lead.
   try {
-    await fetch('https://formsubmit.co/ajax/1cana.flight@gmail.com', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({
-        _subject: 'פנייה חדשה — קנאפלייט (מערכת מאובטחת)',
-        message: `התקבלה פנייה חדשה. מספר פנייה: ${data.id}. הפרטים המלאים בפאנל Supabase (טבלת submissions).`,
-      }),
+    await notifyNewLead(supabase, {
+      id: data.id,
+      plan: record.plan,
+      arrivalDate: record.arrival_date,
     });
-  } catch {}
+  } catch { /* the lead is already saved; never fail the request over an alert */ }
 
   return res.status(200).json({ ok: true, id: data.id });
 }
