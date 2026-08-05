@@ -19,6 +19,33 @@
     return (document.documentElement.lang || '').slice(0, 2) === 'en';
   }
 
+  // Anonymous funnel counters. No cookie, no session id, nothing that could
+  // tie two events to one person — see api/track.js. This exists because
+  // Google Analytics sits behind the consent banner, so the drop-off rate it
+  // reports is measured only over people who agreed to be measured.
+  // keepalive lets the request survive the navigation away on success.
+  function track(event) {
+    try {
+      fetch('/api/track', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ event: event, lang: isEnLang() ? 'en' : 'he' }),
+        keepalive: true,
+      }).catch(function () {});
+    } catch (e) {}
+  }
+
+  track('intake_viewed');
+
+  var startedTracked = false;
+  function trackStart() {
+    if (startedTracked) return;
+    startedTracked = true;
+    track('intake_started');
+  }
+  form.addEventListener('input', trackStart, { once: true });
+  form.addEventListener('change', trackStart, { once: true });
+
   // The secure pipeline (encrypted database, private file storage) is the
   // ONLY path that ever transmits this form. Sensitive medical and identity
   // data must never fall back to being emailed to a third party. Until
@@ -138,7 +165,12 @@
       });
     }).then(function (r) {
       if (!r.ok) throw new Error('submit failed');
-      window.location.href = '/thanks.html';
+      track('intake_completed');
+      // Tells intake-draft.js the saved draft is spent. Fired here rather than
+      // on unload, which cannot tell a completed submission from someone
+      // simply closing the tab.
+      try { window.dispatchEvent(new Event('cf-intake-submitted')); } catch (e) {}
+      window.location.href = isEnLang() ? '/en/thanks.html' : '/thanks.html';
     }).catch(function () {
       if (submitBtn) submitBtn.disabled = false;
       setStatus(isEn

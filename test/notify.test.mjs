@@ -1,6 +1,6 @@
 // Behavioural test for lib/notify.js — no credentials, no network calls.
 // Run:  npm test
-import { planUrgency, notifyNewLead, notifyUnhandled } from '../lib/notify.js';
+import { planUrgency, notifyNewLead, notifyUnhandled, notifyLightLead } from '../lib/notify.js';
 
 let pass = 0, fail = 0;
 const ok = (name, cond, extra = '') => {
@@ -73,6 +73,19 @@ const iVip = digest.indexOf('bbbbbbbb'), iFast = digest.indexOf('cccccccc'), iBa
 ok('VIP listed first',   iVip < iFast && iFast < iBasic, `vip=${iVip} fast=${iFast} basic=${iBasic}`);
 ok('count in header',    digest.includes('3 פניות'));
 ok('empty list no-ops',  (await notifyUnhandled(fakeSupabase, [])).length === 0);
+
+console.log('\n4b. notifyLightLead keeps the email address out of the alert');
+sent.length = 0;
+await notifyLightLead(fakeSupabase, {
+  email: 'someone@example.com',
+  travel_month: 'ספטמבר',
+  lang: 'he',
+  source_page: '/guide.html',
+});
+const soft = sent[0].body.text;
+ok('page included',      soft.includes('/guide.html'));
+ok('travel month included', soft.includes('ספטמבר'));
+ok('EMAIL NOT SENT',     !soft.includes('someone@example.com') && !soft.includes('example.com'), soft);
 
 console.log('\n5. telegram application-level error is caught');
 globalThis.fetch = async () => ({ ok: true, status: 200, json: async () => ({ ok: false, description: 'chat not found' }) });
