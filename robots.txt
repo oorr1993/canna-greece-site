@@ -1,8 +1,9 @@
+# /thanks.html, /en/thanks.html and /404.html are intentionally NOT disallowed
+# here: each carries <meta name="robots" content="noindex">, and a Disallow
+# would stop crawlers reading that tag — leaving the bare URL eligible for
+# indexing if anything ever links to it. Crawl is what makes noindex work.
 User-agent: *
 Allow: /
-Disallow: /thanks.html
-Disallow: /en/thanks.html
-Disallow: /404.html
 
 User-agent: GPTBot
 Allow: /
