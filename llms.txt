@@ -17,6 +17,11 @@
 - [קנאביס רפואי באתונה](https://www.canaflight.com/athens.html): מדריך מלא לתייר ישראלי באתונה — איך מקבלים מרשם, בתי מרקחת מורשים, מחירים ומה להביא.
 - [קנאביס רפואי בכרתים](https://www.canaflight.com/crete.html): מדריך מלא לתייר ישראלי בכרתים — איך מקבלים מרשם, בתי מרקחת מורשים בהרקליון ובשאניה, מחירים ומה להביא.
 - [קנאביס רפואי ברודוס](https://www.canaflight.com/rhodes.html): מדריך מלא לתייר ישראלי ברודוס — מרשם, בתי מרקחת, מחירים ומה להביא.
+- [קנאביס רפואי בסלוניקי](https://www.canaflight.com/thessaloniki.html): מדריך לתייר הישראלי בסלוניקי — עיר שפועלת כל השנה, רשת בתי מרקחת רחבה, מרשם ומחירים.
+- [קנאביס רפואי בקורפו](https://www.canaflight.com/corfu.html): מדריך לתייר הישראלי בקורפו — נמל התעופה, בתי מרקחת בעיר קורפו, מרשם ומחירים.
+- [קנאביס רפואי בקוס](https://www.canaflight.com/kos.html): מדריך לתייר הישראלי בקוס — אי קטן, זמינות מוגבלת, מה לבדוק מראש.
+- [קנאביס רפואי בסנטוריני](https://www.canaflight.com/santorini.html): מדריך לתייר הישראלי בסנטוריני — למה עדיף לממש את המרשם באתונה לפני ההגעה לאי.
+- [קנאביס רפואי במיקונוס](https://www.canaflight.com/mykonos.html): מדריך לתייר הישראלי במיקונוס — יעד עונתי, זמינות מוגבלת, מה לבדוק מראש.
 - [שאלון התאמה](https://www.canaflight.com/intake.html): טופס מקוון בעברית לבדיקת התאמה למרשם — כ-3 דקות.
 - [תנאי שימוש](https://www.canaflight.com/terms.html), [מדיניות פרטיות](https://www.canaflight.com/privacy.html), [ביטולים והחזרים](https://www.canaflight.com/refund.html), [הצהרת נגישות](https://www.canaflight.com/accessibility.html).
 
@@ -27,6 +32,11 @@
 - [Medical cannabis in Athens](https://www.canaflight.com/en/athens.html): complete guide for tourists visiting Athens — how to get a prescription, licensed pharmacies, prices, and what to bring.
 - [Medical cannabis in Crete](https://www.canaflight.com/en/crete.html): complete guide for tourists visiting Crete — how to get a prescription, licensed pharmacies in Heraklion and Chania, prices, and what to bring.
 - [Medical cannabis in Rhodes](https://www.canaflight.com/en/rhodes.html): complete guide for tourists visiting Rhodes — prescription, pharmacies, prices, and what to bring.
+- [Medical cannabis in Thessaloniki](https://www.canaflight.com/en/thessaloniki.html): guide for visitors to Thessaloniki — a year-round city with a dense pharmacy network, prescriptions and prices.
+- [Medical cannabis in Corfu](https://www.canaflight.com/en/corfu.html): guide for visitors to Corfu — the airport, pharmacies in Corfu Town, prescriptions and prices.
+- [Medical cannabis in Kos](https://www.canaflight.com/en/kos.html): guide for visitors to Kos — a small island with limited availability, and what to check in advance.
+- [Medical cannabis in Santorini](https://www.canaflight.com/en/santorini.html): guide for visitors to Santorini — why filling the prescription in Athens first is the safer plan.
+- [Medical cannabis in Mykonos](https://www.canaflight.com/en/mykonos.html): guide for visitors to Mykonos — a seasonal destination with limited availability.
 - [Eligibility questionnaire](https://www.canaflight.com/en/intake.html): short online form (~3 minutes).
 - Terms, privacy, refunds and accessibility are available under /en/.
 
