@@ -16,6 +16,7 @@
 - [לטוס ליוון עם קנאביס רפואי](https://www.canaflight.com/fly-with-cannabis.html): מדוע רישיון קנאביס ישראלי אינו מקנה זכות ביוון, אילו אישורים מוקדמים נדרשים בשני הצדדים, מדוע תרגום נוטריוני אינו היתר, ומהי החלופה החוקית.
 - [קנאביס רפואי באתונה](https://www.canaflight.com/athens.html): מדריך מלא לתייר ישראלי באתונה — איך מקבלים מרשם, בתי מרקחת מורשים, מחירים ומה להביא.
 - [קנאביס רפואי בכרתים](https://www.canaflight.com/crete.html): מדריך מלא לתייר ישראלי בכרתים — איך מקבלים מרשם, בתי מרקחת מורשים בהרקליון ובשאניה, מחירים ומה להביא.
+- [קנאביס רפואי ברודוס](https://www.canaflight.com/rhodes.html): מדריך מלא לתייר ישראלי ברודוס — מרשם, בתי מרקחת, מחירים ומה להביא.
 - [שאלון התאמה](https://www.canaflight.com/intake.html): טופס מקוון בעברית לבדיקת התאמה למרשם — כ-3 דקות.
 - [תנאי שימוש](https://www.canaflight.com/terms.html), [מדיניות פרטיות](https://www.canaflight.com/privacy.html), [ביטולים והחזרים](https://www.canaflight.com/refund.html), [הצהרת נגישות](https://www.canaflight.com/accessibility.html).
 
@@ -25,6 +26,7 @@
 - [Flying with medical cannabis](https://www.canaflight.com/en/fly-with-cannabis.html): why a foreign cannabis licence confers no rights in Greece, what prior authorisation each side requires, why a certified translation is not a permit, and the lawful alternative.
 - [Medical cannabis in Athens](https://www.canaflight.com/en/athens.html): complete guide for tourists visiting Athens — how to get a prescription, licensed pharmacies, prices, and what to bring.
 - [Medical cannabis in Crete](https://www.canaflight.com/en/crete.html): complete guide for tourists visiting Crete — how to get a prescription, licensed pharmacies in Heraklion and Chania, prices, and what to bring.
+- [Medical cannabis in Rhodes](https://www.canaflight.com/en/rhodes.html): complete guide for tourists visiting Rhodes — prescription, pharmacies, prices, and what to bring.
 - [Eligibility questionnaire](https://www.canaflight.com/en/intake.html): short online form (~3 minutes).
 - Terms, privacy, refunds and accessibility are available under /en/.
 
