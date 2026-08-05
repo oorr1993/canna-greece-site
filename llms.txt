@@ -14,6 +14,7 @@
 - [דף הבית](https://www.canaflight.com/): איך מקבלים מרשם קנאביס רפואי ביוון — תהליך, מחירים, זכאות ושאלות נפוצות.
 - [המדריך המלא](https://www.canaflight.com/guide.html): קנאביס רפואי ביוון לתיירים ישראלים — חוק, איסור טיסה עם קנאביס, דרכי קבלת מרשם, מחירים וכללי התנהגות.
 - [לטוס ליוון עם קנאביס רפואי](https://www.canaflight.com/fly-with-cannabis.html): מדוע רישיון קנאביס ישראלי אינו מקנה זכות ביוון, אילו אישורים מוקדמים נדרשים בשני הצדדים, מדוע תרגום נוטריוני אינו היתר, ומהי החלופה החוקית.
+- [קנאביס רפואי באתונה](https://www.canaflight.com/athens.html): מדריך מלא לתייר ישראלי באתונה — איך מקבלים מרשם, בתי מרקחת מורשים, מחירים ומה להביא.
 - [שאלון התאמה](https://www.canaflight.com/intake.html): טופס מקוון בעברית לבדיקת התאמה למרשם — כ-3 דקות.
 - [תנאי שימוש](https://www.canaflight.com/terms.html), [מדיניות פרטיות](https://www.canaflight.com/privacy.html), [ביטולים והחזרים](https://www.canaflight.com/refund.html), [הצהרת נגישות](https://www.canaflight.com/accessibility.html).
 
@@ -21,6 +22,7 @@
 - [Homepage](https://www.canaflight.com/en/): how Israeli tourists obtain a legal medical-cannabis prescription from a licensed Greek doctor — process, pricing, eligibility, FAQ.
 - [The complete guide](https://www.canaflight.com/en/guide.html): medical cannabis in Greece for visitors — law, why you cannot fly in with cannabis, how to obtain a local prescription, pharmacy prices and rules of conduct.
 - [Flying with medical cannabis](https://www.canaflight.com/en/fly-with-cannabis.html): why a foreign cannabis licence confers no rights in Greece, what prior authorisation each side requires, why a certified translation is not a permit, and the lawful alternative.
+- [Medical cannabis in Athens](https://www.canaflight.com/en/athens.html): complete guide for tourists visiting Athens — how to get a prescription, licensed pharmacies, prices, and what to bring.
 - [Eligibility questionnaire](https://www.canaflight.com/en/intake.html): short online form (~3 minutes).
 - Terms, privacy, refunds and accessibility are available under /en/.
 
