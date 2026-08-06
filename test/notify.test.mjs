@@ -71,6 +71,27 @@ const forbidden = ['ישראל ישראלי', 'test@example.com', '0501234567', 
 ok('no PII in message',  forbidden.every(f => !msg.includes(f)));
 ok('message is short',   msg.length < 400, `len=${msg.length}`);
 
+console.log('\n3b. submission time is reported in Israel time, not UTC');
+sent.length = 0;
+// 20:28 UTC on a summer date is 23:28 in Israel (UTC+3).
+await notifyNewLead(fakeSupabase, {
+  id: 'tt', plan: 'VIP', arrivalDate: '2026-09-14', createdAt: '2026-08-05T20:28:00Z',
+});
+const summer = sent[0].body.text;
+ok('summer = UTC+3',    summer.includes('05/08/26 23:28'), summer);
+
+sent.length = 0;
+// The same clock time in January is 22:28 — a fixed offset would get one of
+// these two wrong, which is why the formatter has to be timezone-aware.
+await notifyNewLead(fakeSupabase, {
+  id: 'tt', plan: 'VIP', arrivalDate: '2026-02-14', createdAt: '2026-01-15T20:28:00Z',
+});
+const winter = sent[0].body.text;
+ok('winter = UTC+2',    winter.includes('15/01/26 22:28'), winter);
+ok('labelled נכנס',     winter.includes('📥 נכנס'));
+ok('dates use one separator',
+   !winter.includes('.26') && winter.includes('/26'), winter);
+
 console.log('\n4. notifyUnhandled orders by flight date, not by plan');
 sent.length = 0;
 const now = Date.now();
@@ -79,7 +100,7 @@ await notifyUnhandled(fakeSupabase, [
   // Deliberately inverted against plan rank: the VIP flies last. Sorting by
   // plan would put it on top, which is the bug this replaces — the customer's
   // deadline decides who to answer next, not what they paid.
-  { id: 'aaaaaaaa-1', plan: 'VIP (349 ₪)',   arrival_date: iso(40), created_at: new Date(now).toISOString() },
+  { id: 'aaaaaaaa-1', plan: 'VIP (349 ₪)',   arrival_date: iso(40), created_at: new Date(now - 2*86400000).toISOString() },
   { id: 'bbbbbbbb-2', plan: 'בסיסי (169 ₪)', arrival_date: iso(-5), created_at: new Date(now).toISOString() },
   { id: 'cccccccc-3', plan: 'מהיר (249 ₪)',  arrival_date: iso(2),  created_at: new Date(now).toISOString() },
 ]);
@@ -90,6 +111,9 @@ ok('soonest flight first', iOverdue < iSoon && iSoon < iLater,
 ok('count in header',    digest.includes('3 פניות'));
 ok('groups by urgency',  digest.includes('🔴') && digest.includes('🟠') && digest.includes('🟢'), digest);
 ok('hebrew plan NOT isolated', digest.includes('· בסיסי ·'), digest);
+ok('each row shows when it came in',
+   (digest.match(/📥 נכנס/g) || []).length === 3, digest);
+ok('shows elapsed time',  /לפני \d+ (ימים|שעות|דקות)|ממש עכשיו/.test(digest), digest);
 ok('empty list no-ops',  (await notifyUnhandled(fakeSupabase, [])).length === 0);
 
 console.log('\n4c. CRM link replaces the "edit Supabase by hand" instruction');

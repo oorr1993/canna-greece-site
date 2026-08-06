@@ -118,7 +118,13 @@ export default async function handler(req, res) {
   }
 
   const supabase = createClient(url, key, { auth: { persistSession: false } });
-  const { data, error } = await supabase.from('submissions').insert(record).select('id').single();
+  // created_at comes back so the alert can report when the request actually
+  // landed, using the database clock rather than whenever the alert was built.
+  const { data, error } = await supabase
+    .from('submissions')
+    .insert(record)
+    .select('id, created_at')
+    .single();
   if (error) return res.status(500).json({ error: 'db error' });
 
   // Send the customer their confirmation email (best-effort; never blocks).
@@ -140,6 +146,7 @@ export default async function handler(req, res) {
   try {
     await notifyNewLead(supabase, {
       id: data.id,
+      createdAt: data.created_at,
       plan: record.plan,
       arrivalDate: record.arrival_date,
     });
