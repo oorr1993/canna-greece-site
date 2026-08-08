@@ -61,7 +61,11 @@
       '.lc-btn:disabled{opacity:.6;cursor:default;}' +
       '.lc-btn:focus-visible{outline:3px dashed #5E8C3B;outline-offset:2px;}' +
       '.lc-status{margin:12px 0 0;font-weight:700;font-size:15px;}' +
-      '.lc-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}' +
+      // Offset upwards, never sideways: in an RTL document a negative `left`
+      // is real scrollable overflow, and this element is positioned against
+      // the initial containing block, so it escapes the overflow-x clip on
+      // html/body and stretches the layout viewport to ~10000px on mobile.
+      '.lc-hp{position:absolute;top:-9999px;left:0;width:1px;height:1px;overflow:hidden;}' +
       'html.dark .lc{background:#222E23;color:#E9EFE1;}' +
       'html.dark .lc input{background:#1B241C;color:#E9EFE1;}' +
       '@media (prefers-reduced-motion:reduce){.lc-btn{transition:none;}}';
