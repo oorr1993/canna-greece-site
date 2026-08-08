@@ -85,54 +85,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.canaflight.com/terms.html</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://www.canaflight.com/privacy.html</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://www.canaflight.com/refund.html</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://www.canaflight.com/accessibility.html</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://www.canaflight.com/en/terms.html</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://www.canaflight.com/en/privacy.html</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://www.canaflight.com/en/refund.html</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://www.canaflight.com/en/accessibility.html</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
     <loc>https://www.canaflight.com/thessaloniki.html</loc>
     <lastmod>2026-08-05</lastmod>
     <changefreq>monthly</changefreq>
