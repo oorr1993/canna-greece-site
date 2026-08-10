@@ -17,7 +17,18 @@
 <link rel="alternate" hreflang="he" href="https://www.canaflight.com/accessibility.html">
 <link rel="alternate" hreflang="en" href="https://www.canaflight.com/en/accessibility.html">
 <link rel="alternate" hreflang="x-default" href="https://www.canaflight.com/accessibility.html">
-$og_block
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Accessibility Statement | CanaFlight">
+<meta property="og:description" content="CanaFlight's accessibility statement: accommodations per Israeli standard IS 5568, known limitations, and contact details for enquiries.">
+<meta property="og:url" content="https://www.canaflight.com/en/accessibility.html">
+<meta property="og:site_name" content="CanaFlight">
+<meta property="og:image" content="https://www.canaflight.com/og-image-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.canaflight.com/og-image-en.png">
+<meta name="twitter:title" content="Accessibility Statement | CanaFlight">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,6 +49,7 @@ body {
 .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
 header { background: var(--indigo); border-bottom: 3px solid var(--ink); }
 .nav { display: flex; align-items: center; justify-content: space-between; height: 92px; max-width: 1140px; margin: 0 auto; padding: 0 22px; }
+@media (max-width: 420px) { .nav { flex-wrap: wrap; height: auto; padding: 12px 16px; gap: 10px; } }
 .logo { display: flex; align-items: center; gap: 10px; color: var(--white); text-align: start; line-height: 1; text-decoration: none; }
 .logo img { width: 76px; height: 76px; flex-shrink: 0; }
 .logo .b { font-family: 'Rubik Bubbles', 'Rubik', sans-serif; font-size: 28px; }
@@ -149,6 +161,13 @@ footer a { color: var(--green); font-weight: 700; text-decoration: none; }
   ]
 }
 </script>
+<style>
+/* Heading drop shadow: tighter on phones so it reads as letter weight
+   rather than a detached second layer (Bubbles' round forms smear otherwise). */
+@media (max-width: 700px) {
+  h1, .hero h1, .cta-box .h, .final h2, .mnav a { text-shadow: 2px 2px 0 var(--ink); }
+}
+</style>
 </head>
 <body>
 
