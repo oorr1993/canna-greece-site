@@ -67,7 +67,7 @@ h1 {
   font-family: 'Rubik Bubbles', 'Rubik', sans-serif; font-weight: 400;
   font-size: clamp(34px, 6vw, 52px); color: var(--indigo); text-align: center;
   -webkit-text-stroke: 1.5px var(--ink); paint-order: stroke fill;
-  text-shadow: 4px 4px 0 var(--ink); margin-bottom: 12px;
+  text-shadow: 3px 3px 0 var(--ink); margin-bottom: 12px;
 }
 .sub { text-align: center; font-size: 17px; margin-bottom: 8px; }
 .mini { text-align: center; font-size: 14px; color: var(--navy); opacity: 0.75; margin-bottom: 34px; }
@@ -194,6 +194,13 @@ input[type=file] { font-size: 14px; width: 100%; }
   ]
 }
 </script>
+<style>
+/* Heading drop shadow: tighter on phones so it reads as letter weight
+   rather than a detached second layer (Bubbles' round forms smear otherwise). */
+@media (max-width: 700px) {
+  h1, .hero h1, .cta-box .h, .final h2, .mnav a { text-shadow: 2px 2px 0 var(--ink); }
+}
+</style>
 </head>
 <body>
 

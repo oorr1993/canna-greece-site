@@ -238,7 +238,7 @@ h1 {
   font-family: 'Rubik Bubbles', 'Rubik', sans-serif; font-weight: 400;
   font-size: clamp(40px, 7vw, 74px); color: var(--indigo); line-height: 1.08;
   -webkit-text-stroke: 1.5px var(--ink); paint-order: stroke fill;
-  text-shadow: 5px 5px 0 var(--ink); margin-bottom: 16px; text-wrap: balance;
+  text-shadow: 4px 4px 0 var(--ink); margin-bottom: 16px; text-wrap: balance;
 }
 .hero .tag-line {
   display: inline-block; background: var(--green); border: 2px solid var(--ink); border-radius: 999px;
@@ -349,6 +349,13 @@ footer { background: var(--navy); color: var(--white); padding: 44px 0 30px; bor
 }
 .wa-float:hover { transform: translate(-2px,-2px); }
 .wa-float svg { width: 30px; height: 30px; fill: var(--navy); }
+</style>
+<style>
+/* Heading drop shadow: tighter on phones so it reads as letter weight
+   rather than a detached second layer (Bubbles' round forms smear otherwise). */
+@media (max-width: 700px) {
+  h1, .hero h1, .cta-box .h, .final h2, .mnav a { text-shadow: 2px 2px 0 var(--ink); }
+}
 </style>
 </head>
 <body>

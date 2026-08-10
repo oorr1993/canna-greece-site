@@ -32,7 +32,7 @@ h1 {
   font-family: 'Rubik Bubbles', 'Rubik', sans-serif; font-weight: 400;
   font-size: clamp(90px, 20vw, 180px); color: #2F5233;
   -webkit-text-stroke: 3px #000; paint-order: stroke fill;
-  text-shadow: 8px 8px 0 #000; line-height: 1;
+  text-shadow: 6px 6px 0 #000; line-height: 1;
 }
 p { font-size: 20px; font-weight: 500; margin: 18px 0 30px; }
 a {
@@ -41,6 +41,11 @@ a {
   padding: 14px 34px; font-weight: 700; font-size: 17px;
 }
 a:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #000; }
+</style>
+<style>
+@media (max-width: 700px) {
+  h1 { text-shadow: 3px 3px 0 #000; }
+}
 </style>
 </head>
 <body>
