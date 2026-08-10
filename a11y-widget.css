@@ -79,3 +79,10 @@ html.a11y-reduce-motion *, html.a11y-reduce-motion *::before, html.a11y-reduce-m
 @media print {
   html[class*="a11y-"] { filter: none !important; zoom: 1 !important; }
 }
+
+/* Hold the accessibility button and panel still while the mobile URL bar hides
+   and shows; without this they ride the viewport change and appear to jump. */
+@supports (height: 100svh) {
+  .a11y-fab   { bottom: calc(24px + (100dvh - 100svh)); }
+  .a11y-panel { bottom: calc(90px + (100dvh - 100svh)); }
+}

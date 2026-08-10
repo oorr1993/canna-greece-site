@@ -348,6 +348,12 @@ footer { background: var(--navy); color: var(--white); padding: 44px 0 30px; bor
   transition: transform 0.12s;
 }
 .wa-float:hover { transform: translate(-2px,-2px); }
+/* Hold the floating buttons still while the mobile URL bar hides and shows.
+   (100dvh - 100svh) is 0 with the bar visible and grows to the bar's height
+   once it retracts, cancelling out the viewport shift that moves them. */
+@supports (height: 100svh) {
+  .wa-float { bottom: calc(24px + (100dvh - 100svh)); }
+}
 .wa-float svg { width: 30px; height: 30px; fill: var(--navy); }
 </style>
 <style>
