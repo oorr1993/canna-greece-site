@@ -244,21 +244,20 @@ header {
 .nav .social-icons { margin-inline-start: 6px; }
 @media (max-width: 820px) { .nav .social-icons { display: none; } }
 
+/* Fixed height (rather than vertical padding) so this matches
+   .snav-btn/.theme-toggle's size exactly at every breakpoint. */
 .lang-pill {
   border: 2px solid var(--ink); border-radius: 999px; background: var(--white); color: var(--indigo);
-  box-shadow: 3px 3px 0 var(--ink); padding: 8px 16px; font-weight: 900; font-size: 14px;
-  display: inline-flex; align-items: center; flex-shrink: 0;
+  box-shadow: 3px 3px 0 var(--ink); padding: 0 16px; height: 44px; font-weight: 900; font-size: 14px;
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
-/* Language switcher + theme toggle live together at the far end of the
-   header row (physical far-left in RTL, since it's the last flex child
-   under justify-content:space-between) — always visible, never tucked
-   into a menu, and never at the cost of the full-size logo. */
+@media (max-width: 420px) {
+  .lang-pill { height: 40px; padding: 0 11px; font-size: 12px; }
+}
+/* Language switcher + theme toggle, always visible, never tucked into
+   a menu. Below ~480px they and the logo wrap onto their own row from
+   the menu button — see that breakpoint for the full layout. */
 .header-settings { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-/* The full-size logo (88px mark + full wordmark) plus a hamburger and
-   two more tap targets genuinely cannot all fit at once below ~480px —
-   keep the logo mark full-size (the brand element) and shrink its
-   wordmark instead of the settings controls, which need to stay legible
-   and tappable. */
 @media (max-width: 480px) {
   .wrap.nav { padding-inline: 12px; }
   .nav { gap: 4px; flex-wrap: wrap; justify-content: flex-start; }
@@ -272,8 +271,8 @@ header {
      The header CTA is redundant with the hero's own CTA one row below,
      so it's hidden here rather than given a row of its own. */
   .header-settings { display: contents; }
-  .theme-toggle { order: 2; width: 40px; height: 40px; font-size: 19px; box-shadow: 2px 2px 0 var(--ink); }
-  .lang-pill { order: 3; padding: 5px 10px; font-size: 12px; box-shadow: 2px 2px 0 var(--ink); }
+  .theme-toggle { order: 2; }
+  .lang-pill { order: 3; }
   .snav-btn { order: 4; margin-inline-start: auto; }
   .nav > .btn { display: none; }
 }

@@ -224,23 +224,29 @@ header { position: sticky; top: 0; z-index: 90; background: var(--indigo); borde
 }
 .btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
 .btn.solid { background: var(--green); color: var(--navy); }
+/* Fixed height (rather than vertical padding) so this matches
+   .snav-btn/.theme-toggle's size exactly at every breakpoint. */
 .lang-pill {
   border: 2px solid var(--ink); border-radius: 999px; background: var(--white); color: var(--indigo);
-  box-shadow: 3px 3px 0 var(--ink); padding: 6px 14px; font-weight: 900; font-size: 14px;
+  box-shadow: 3px 3px 0 var(--ink); padding: 0 16px; height: 44px; font-weight: 900; font-size: 14px;
+  display: inline-flex; align-items: center; justify-content: center;
 }
-/* No hamburger drawer on this page — the header CTA is redundant with
-   the hero's own CTA one row below, so drop it on narrow screens to
-   leave room for the language pill and theme toggle. */
+@media (max-width: 420px) {
+  .lang-pill { height: 40px; padding: 0 8px; font-size: 12px; }
+}
+/* The header CTA is redundant with the hero's own CTA one row below,
+   so it's dropped on narrow screens to leave room for the menu,
+   language and theme controls. */
 @media (max-width: 640px) { .nav > .btn { display: none; } }
 /* Menu, language and theme controls sit together at the row's far end
    (opposite the logo) on narrow phones, matching the Hebrew homepage. */
 @media (max-width: 480px) {
-  .nav { flex-wrap: wrap; justify-content: flex-start; gap: 3px; }
-  .logo { order: 1; gap: 6px; }
-  .logo img { width: 36px; height: 36px; }
-  .logo .b { font-size: 17px; }
-  .theme-toggle { order: 2; width: 36px; height: 36px; font-size: 16px; }
-  .lang-pill { order: 3; padding: 3px 6px; font-size: 10px; }
+  .nav { flex-wrap: wrap; justify-content: flex-start; gap: 2px; }
+  .logo { order: 1; gap: 5px; }
+  .logo img { width: 32px; height: 32px; }
+  .logo .b { font-size: 16px; }
+  .theme-toggle { order: 2; }
+  .lang-pill { order: 3; }
   .snav-btn { order: 4; margin-inline-start: auto; }
 }
 @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }

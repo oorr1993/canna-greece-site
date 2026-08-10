@@ -18,14 +18,16 @@
 
 /* hamburger — visible at every width; the compact .snav-links row on
    wide screens only surfaces 5 quick links, so this stays the one way
-   to reach the full menu (all guides, every destination, socials). */
+   to reach the full menu (all guides, every destination, socials).
+   Sized to match .theme-toggle (theme.css) so the header's control
+   buttons read as one consistent set rather than mismatched sizes. */
 .snav-btn {
   display: grid; background: var(--white, #fff);
   border: 2px solid var(--ink, #000); border-radius: 10px;
   box-shadow: 3px 3px 0 var(--ink, #000); flex-shrink: 0;
   place-items: center; cursor: pointer;
   color: var(--indigo, #2F5233); line-height: 1;
-  width: 52px; height: 48px; font-size: 26px;
+  width: 44px; height: 44px; font-size: 22px;
 }
 .snav-btn:focus-visible { outline: 3px dashed var(--green, #8FBF5D); outline-offset: 3px; }
 
@@ -99,7 +101,7 @@
   .snav-links { display: none; }
 }
 @media (max-width: 420px) {
-  .snav-btn { width: 46px; height: 44px; font-size: 22px; }
+  .snav-btn { width: 40px; height: 40px; font-size: 19px; }
   .snav-group a { font-size: 16.5px; }
   .snav-social a { width: 40px; height: 40px; }
   .snav-social svg { width: 19px; height: 19px; }
