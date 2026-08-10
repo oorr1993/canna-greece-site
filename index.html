@@ -265,14 +265,17 @@ header {
   .logo { gap: 6px; order: 1; }
   .logo img { width: 46px; height: 46px; }
   .logo .b { font-size: 19px; }
-  /* Menu + theme/language settings sit together at the row's far end
-     (opposite the logo); the CTA drops to its own full-width row below
-     since logo + both control clusters no longer leave room for it. */
-  .snav-btn { order: 2; margin-inline-start: auto; }
-  .header-settings { order: 3; gap: 4px; }
-  .header-settings .lang-pill { padding: 5px 10px; font-size: 12px; box-shadow: 2px 2px 0 var(--ink); }
-  .header-settings .theme-toggle { width: 40px; height: 40px; font-size: 19px; box-shadow: 2px 2px 0 var(--ink); }
-  .nav > .btn { order: 5; flex-basis: 100%; }
+  /* The menu button stays the page's absolute far-left control; the
+     theme toggle sits next to the logo instead, with the language pill
+     between them (header-settings drops out via display:contents so
+     its two children can be ordered independently of the menu button).
+     The header CTA is redundant with the hero's own CTA one row below,
+     so it's hidden here rather than given a row of its own. */
+  .header-settings { display: contents; }
+  .theme-toggle { order: 2; width: 40px; height: 40px; font-size: 19px; box-shadow: 2px 2px 0 var(--ink); }
+  .lang-pill { order: 3; padding: 5px 10px; font-size: 12px; box-shadow: 2px 2px 0 var(--ink); }
+  .snav-btn { order: 4; margin-inline-start: auto; }
+  .nav > .btn { display: none; }
 }
 .foot .col .social-icons { margin-top: 2px; }
 .mnav .social-icons { justify-content: center; gap: 22px; margin-top: 22px; }
