@@ -232,6 +232,17 @@ header { position: sticky; top: 0; z-index: 90; background: var(--indigo); borde
    the hero's own CTA one row below, so drop it on narrow screens to
    leave room for the language pill and theme toggle. */
 @media (max-width: 640px) { .nav > .btn { display: none; } }
+/* Menu, language and theme controls sit together at the row's far end
+   (opposite the logo) on narrow phones, matching the Hebrew homepage. */
+@media (max-width: 480px) {
+  .nav { flex-wrap: wrap; justify-content: flex-start; gap: 3px; }
+  .logo { order: 1; gap: 6px; }
+  .logo img { width: 36px; height: 36px; }
+  .logo .b { font-size: 17px; }
+  .snav-btn { order: 2; margin-inline-start: auto; }
+  .lang-pill { order: 3; padding: 3px 6px; font-size: 10px; }
+  .theme-toggle { order: 4; width: 36px; height: 36px; font-size: 16px; }
+}
 @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
 .hero { padding: 70px 0 55px; text-align: center; }
 h1 {

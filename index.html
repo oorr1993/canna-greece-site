@@ -261,12 +261,18 @@ header {
    and tappable. */
 @media (max-width: 480px) {
   .wrap.nav { padding-inline: 12px; }
-  .nav { gap: 6px; }
-  .logo { gap: 6px; }
+  .nav { gap: 4px; flex-wrap: wrap; justify-content: flex-start; }
+  .logo { gap: 6px; order: 1; }
+  .logo img { width: 46px; height: 46px; }
   .logo .b { font-size: 19px; }
-  .header-settings { gap: 6px; }
+  /* Menu + theme/language settings sit together at the row's far end
+     (opposite the logo); the CTA drops to its own full-width row below
+     since logo + both control clusters no longer leave room for it. */
+  .snav-btn { order: 2; margin-inline-start: auto; }
+  .header-settings { order: 3; gap: 4px; }
   .header-settings .lang-pill { padding: 5px 10px; font-size: 12px; box-shadow: 2px 2px 0 var(--ink); }
   .header-settings .theme-toggle { width: 40px; height: 40px; font-size: 19px; box-shadow: 2px 2px 0 var(--ink); }
+  .nav > .btn { order: 5; flex-basis: 100%; }
 }
 .foot .col .social-icons { margin-top: 2px; }
 .mnav .social-icons { justify-content: center; gap: 22px; margin-top: 22px; }
@@ -375,49 +381,6 @@ header {
 #pbar {
   position: fixed; top: 0; right: 0; height: 5px; width: 0;
   background: var(--green); z-index: 120; pointer-events: none;
-}
-.menu-btn {
-  display: none; background: var(--white); border: 2px solid var(--ink); border-radius: 10px;
-  box-shadow: 3px 3px 0 var(--ink); flex-shrink: 0;
-  place-items: center; cursor: pointer; color: var(--indigo); line-height: 1;
-}
-.menu-btn:focus-visible { outline: 3px dashed var(--green); outline-offset: 3px; }
-@media (max-width: 820px) {
-  .menu-btn { display: grid; width: 52px; height: 48px; font-size: 26px; }
-  .nav .btn { display: none; }
-}
-@media (max-width: 480px) {
-  .menu-btn { width: 46px; height: 44px; font-size: 22px; }
-}
-.mnav {
-  position: fixed; inset: 0; z-index: 110;
-  background: var(--indigo);
-  display: flex; flex-direction: column; align-items: center; gap: 26px;
-  /* justify-content:center alone leaves top-side overflow unreachable
-     when content is taller than the viewport (overflow:auto only ever
-     creates scrollable space in the end direction) — "safe" falls back
-     to start-alignment in exactly that case, so every item stays
-     scrollable to. Chrome/Firefox/Safari all support safe center now;
-     plain "center" is the fallback for anything ancient. */
-  justify-content: center;
-  justify-content: safe center;
-  transform: translateY(-102%); transition: transform .35s cubic-bezier(.34,1.2,.64,1);
-  overflow-y: auto; padding: 90px 20px 40px;
-}
-.mnav.open { transform: translateY(0); }
-.mnav a {
-  font-family: 'Rubik Bubbles', 'Rubik', sans-serif; font-size: 34px; color: var(--white);
-  -webkit-text-stroke: 1px var(--ink); paint-order: stroke fill; text-shadow: 3px 3px 0 var(--ink);
-}
-.mnav .btn {
-  font-family: 'Rubik', sans-serif; font-size: 18px; -webkit-text-stroke: 0; text-shadow: none;
-  color: var(--indigo);
-}
-.mnav .close-btn {
-  position: absolute; top: 18px; inset-inline-start: 22px;
-  background: var(--white); border: 2px solid var(--ink); border-radius: 50%;
-  box-shadow: 3px 3px 0 var(--ink); width: 46px; height: 46px;
-  font-size: 22px; color: var(--indigo); cursor: pointer;
 }
 .totop {
   position: fixed; bottom: 98px; inset-inline-end: 24px; z-index: 99;
