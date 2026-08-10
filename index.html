@@ -271,9 +271,12 @@ header {
      The header CTA is redundant with the hero's own CTA one row below,
      so it's hidden here rather than given a row of its own. */
   .header-settings { display: contents; }
-  .theme-toggle { order: 2; }
+  /* The auto margin sits on the first control, so all three travel to
+     the far edge as one evenly-spaced cluster and the slack lands
+     between them and the logo — not between the pills and the menu. */
+  .theme-toggle { order: 2; margin-inline-start: auto; }
   .lang-pill { order: 3; }
-  .snav-btn { order: 4; margin-inline-start: auto; }
+  .snav-btn { order: 4; }
   .nav > .btn { display: none; }
 }
 .foot .col .social-icons { margin-top: 2px; }

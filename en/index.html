@@ -241,13 +241,15 @@ header { position: sticky; top: 0; z-index: 90; background: var(--indigo); borde
 /* Menu, language and theme controls sit together at the row's far end
    (opposite the logo) on narrow phones, matching the Hebrew homepage. */
 @media (max-width: 480px) {
-  .nav { flex-wrap: wrap; justify-content: flex-start; gap: 2px; }
+  .nav { flex-wrap: wrap; justify-content: flex-start; gap: 4px; }
   .logo { order: 1; gap: 5px; }
   .logo img { width: 32px; height: 32px; }
   .logo .b { font-size: 16px; }
-  .theme-toggle { order: 2; }
+  /* Auto margin on the first control so all three cluster at the far
+     edge together, evenly spaced — see the Hebrew homepage for the note. */
+  .theme-toggle { order: 2; margin-inline-start: auto; }
   .lang-pill { order: 3; }
-  .snav-btn { order: 4; margin-inline-start: auto; }
+  .snav-btn { order: 4; }
 }
 @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
 .hero { padding: 70px 0 55px; text-align: center; }
