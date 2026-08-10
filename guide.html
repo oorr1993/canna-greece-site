@@ -128,7 +128,20 @@ body {
 .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
 header { background: var(--indigo); border-bottom: 3px solid var(--ink); }
 .nav { display: flex; align-items: center; justify-content: space-between; height: 92px; max-width: 1140px; margin: 0 auto; padding: 0 22px; }
-@media (max-width: 420px) { .nav { flex-wrap: wrap; height: auto; padding: 12px 16px; gap: 10px; } }
+@media (max-width: 420px) {
+  .nav {
+    flex-wrap: wrap; height: auto; padding: 12px 16px; gap: 10px;
+    justify-content: flex-start;
+  }
+  .logo { order: 1; }
+  .nav .logo { gap: 6px; }
+  .nav .logo img { width: 56px; height: 56px; }
+  .nav .logo .b { font-size: 20px; }
+  .snav-btn { order: 2; margin-inline-start: auto; }
+  .theme-toggle { order: 3; margin-inline-start: auto; }
+  .snav-btn + .theme-toggle { margin-inline-start: 0; }
+  .nav > .btn { order: 5; flex-basis: 100%; }
+}
 .logo { display: flex; align-items: center; gap: 10px; color: var(--white); text-align: start; line-height: 1; text-decoration: none; }
 .logo img { width: 76px; height: 76px; flex-shrink: 0; }
 .logo .b { font-family: 'Rubik Bubbles', 'Rubik', sans-serif; font-size: 28px; }
