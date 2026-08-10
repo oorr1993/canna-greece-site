@@ -205,8 +205,8 @@ footer a { color: var(--green); font-weight: 700; text-decoration: none; }
 .wa-float svg { width: 30px; height: 30px; fill: var(--navy); }
 @media (prefers-reduced-motion: reduce) { .wa-float { transition: none; } }
 @supports (height: 100svh) {
-  /* see note above: cancels the mobile URL-bar viewport shift */
-  .wa-float { bottom: calc(24px + (100dvh - 100svh)); }
+  /* pinned to the stable small-viewport height; see a11y-widget.css for why */
+  .wa-float { bottom: auto; top: calc(100svh - 84px); }
 }
 </style>
 </head>

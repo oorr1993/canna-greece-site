@@ -83,6 +83,10 @@ html.a11y-reduce-motion *, html.a11y-reduce-motion *::before, html.a11y-reduce-m
 /* Hold the accessibility button and panel still while the mobile URL bar hides
    and shows; without this they ride the viewport change and appear to jump. */
 @supports (height: 100svh) {
-  .a11y-fab   { bottom: calc(24px + (100dvh - 100svh)); }
-  .a11y-panel { bottom: calc(90px + (100dvh - 100svh)); }
+  /* Pin to the stable small-viewport height instead of compensating a live
+     delta: dvh is not guaranteed to update in sync with the toolbar
+     animation, and that lag is what shows up as a visible jump. svh never
+     changes, so anchoring via top removes the dependency entirely. */
+  .a11y-fab   { bottom: auto; top: calc(100svh - 80px); }
+  .a11y-panel { bottom: calc(90px + (100dvh - 100svh)); max-height: min(560px, calc(100svh - 130px)); }
 }

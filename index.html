@@ -684,8 +684,8 @@ footer { background: var(--navy); color: var(--white); padding: 54px 0 34px; bor
    (100dvh - 100svh) is 0 with the bar visible and grows to the bar's height
    once it retracts, cancelling out the viewport shift that moves them. */
 @supports (height: 100svh) {
-  .wa-float { bottom: calc(24px + (100dvh - 100svh)); }
-  .totop    { bottom: calc(98px + (100dvh - 100svh)); }
+  .wa-float { bottom: auto; top: calc(100svh - 84px); }
+  .totop    { bottom: auto; top: calc(100svh - 146px); }
 }
 .wa-float svg { width: 30px; height: 30px; fill: var(--navy); }
 .skip-link {
