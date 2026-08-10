@@ -178,6 +178,7 @@ footer a { color: var(--green); font-weight: 700; text-decoration: none; }
   h1, .hero h1, .cta-box .h, .final h2, .mnav a { text-shadow: 2px 2px 0 var(--ink); }
 }
 </style>
+<link rel="stylesheet" href="/site-nav.css">
 </head>
 <body>
 
@@ -189,7 +190,15 @@ footer a { color: var(--green); font-weight: 700; text-decoration: none; }
       <img src="/brand/logo-header-v2.webp" alt="" aria-hidden="true" width="76" height="76">
       <span class="b">CanaFlight</span>
     </a>
+    <nav class="snav-links" aria-label="Main navigation">
+      <a href="/en/#how">How it works</a>
+      <a href="/en/#pricing">Pricing</a>
+      <a href="/en/guide.html">The complete guide</a>
+      <a href="/en/cannabis-in-greece.html">Cannabis in Greece</a>
+      <a href="/en/#faq">FAQ</a>
+    </nav>
     <a class="btn" href="/en/intake.html">Start the questionnaire</a>
+    <button class="snav-btn" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">☰</button>
   </div>
 </header>
 
@@ -259,5 +268,39 @@ footer a { color: var(--green); font-weight: 700; text-decoration: none; }
 </footer>
 
 <script src="/a11y-widget.js" defer></script>
+
+<nav class="snav" id="site-menu" aria-label="Site menu">
+  <button class="snav-close" aria-label="Close menu">✕</button>
+  <div class="snav-inner">
+    <div class="snav-group">
+      <div class="snav-label">SERVICE</div>
+      <a href="/en/#how">How it works</a>
+      <a href="/en/#pricing">Pricing</a>
+      <a href="/en/#faq">FAQ</a>
+    </div>
+    <div class="snav-group">
+      <div class="snav-label">GUIDES</div>
+      <a href="/en/guide.html">The complete guide</a>
+      <a href="/en/cannabis-in-greece.html">Cannabis in Greece</a>
+      <a href="/en/cbd-in-greece.html">CBD in Greece</a>
+      <a href="/en/fly-with-cannabis.html">Flying with cannabis</a>
+    </div>
+    <div class="snav-group">
+      <div class="snav-label">DESTINATIONS</div>
+      <div class="snav-cities">
+          <a href="/en/athens.html">Athens</a>
+          <a href="/en/thessaloniki.html">Thessaloniki</a>
+          <a href="/en/crete.html">Crete</a>
+          <a href="/en/rhodes.html">Rhodes</a>
+          <a href="/en/corfu.html">Corfu</a>
+          <a href="/en/kos.html">Kos</a>
+          <a href="/en/santorini.html">Santorini</a>
+          <a href="/en/mykonos.html">Mykonos</a>
+      </div>
+    </div>
+    <a class="snav-cta" href="/en/intake.html">Start the questionnaire</a>
+  </div>
+</nav>
+<script src="/site-nav.js" defer></script>
 </body>
 </html>

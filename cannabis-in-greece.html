@@ -259,6 +259,7 @@ footer a { color: var(--green); font-weight: 700; text-decoration: none; }
    twitch by a frame; see a11y-widget.css for the full note. */
 .wa-float { will-change: transform; }
 </style>
+<link rel="stylesheet" href="/site-nav.css">
 </head>
 <body>
 
@@ -270,7 +271,15 @@ footer a { color: var(--green); font-weight: 700; text-decoration: none; }
       <img src="/brand/logo-header-v2.webp" alt="" aria-hidden="true" width="76" height="76">
       <span class="b">CanaFlight</span>
     </a>
+    <nav class="snav-links" aria-label="ניווט ראשי">
+      <a href="/#how">איך זה עובד</a>
+      <a href="/#pricing">מחירים</a>
+      <a href="/guide.html">המדריך המלא</a>
+      <a href="/cannabis-in-greece.html">קנאביס ביוון</a>
+      <a href="/#faq">שאלות נפוצות</a>
+    </nav>
     <a class="btn green" href="/intake.html">מתחילים בשאלון</a>
+    <button class="snav-btn" aria-label="פתיחת תפריט" aria-expanded="false" aria-controls="site-menu">☰</button>
   </div>
 </header>
 
@@ -515,5 +524,39 @@ footer a { color: var(--green); font-weight: 700; text-decoration: none; }
 <a class="wa-float" href="https://wa.me/972555799944?text=%D7%94%D7%99%D7%99%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%94%D7%A9%D7%99%D7%A8%D7%95%D7%AA%20%F0%9F%8C%BF" target="_blank" rel="noopener noreferrer" aria-label="פתיחת צ'אט וואטסאפ">
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.11.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.28-.2-.57-.35zM12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88a9.83 9.83 0 0 1 7 2.9 9.83 9.83 0 0 1 2.89 7c0 5.45-4.44 9.88-9.9 9.88zm8.42-18.3A11.8 11.8 0 0 0 12.05 0C5.5 0 .16 5.33.16 11.89c0 2.1.55 4.14 1.59 5.94L.06 24l6.33-1.66a11.9 11.9 0 0 0 5.66 1.44h.01c6.55 0 11.89-5.33 11.89-11.89 0-3.18-1.24-6.16-3.48-8.4z"/></svg>
 </a>
+
+<nav class="snav" id="site-menu" aria-label="תפריט האתר">
+  <button class="snav-close" aria-label="סגירת תפריט">✕</button>
+  <div class="snav-inner">
+    <div class="snav-group">
+      <div class="snav-label">השירות</div>
+      <a href="/#how">איך זה עובד</a>
+      <a href="/#pricing">מחירים</a>
+      <a href="/#faq">שאלות נפוצות</a>
+    </div>
+    <div class="snav-group">
+      <div class="snav-label">מדריכים</div>
+      <a href="/guide.html">המדריך המלא</a>
+      <a href="/cannabis-in-greece.html">קנאביס ביוון</a>
+      <a href="/cbd-in-greece.html">CBD ביוון</a>
+      <a href="/fly-with-cannabis.html">לטוס עם קנאביס רפואי</a>
+    </div>
+    <div class="snav-group">
+      <div class="snav-label">יעדים</div>
+      <div class="snav-cities">
+          <a href="/athens.html">אתונה</a>
+          <a href="/thessaloniki.html">סלוניקי</a>
+          <a href="/crete.html">כרתים</a>
+          <a href="/rhodes.html">רודוס</a>
+          <a href="/corfu.html">קורפו</a>
+          <a href="/kos.html">קוס</a>
+          <a href="/santorini.html">סנטוריני</a>
+          <a href="/mykonos.html">מיקונוס</a>
+      </div>
+    </div>
+    <a class="snav-cta" href="/intake.html">מתחילים בשאלון</a>
+  </div>
+</nav>
+<script src="/site-nav.js" defer></script>
 </body>
 </html>
