@@ -103,8 +103,11 @@
 @media (max-width: 420px) {
   .snav-btn { width: 40px; height: 40px; font-size: 19px; }
   .snav-group a { font-size: 16.5px; }
-  .snav-social a { width: 40px; height: 40px; }
-  .snav-social svg { width: 19px; height: 19px; }
+  /* Sized with real margin to spare so all 5 stay on one row even on
+     the narrowest phones and at larger accessibility text/zoom sizes. */
+  .snav-social { gap: 8px; }
+  .snav-social a { width: 34px; height: 34px; }
+  .snav-social svg { width: 16px; height: 16px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .snav { transition: none; }
