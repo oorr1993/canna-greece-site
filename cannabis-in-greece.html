@@ -255,10 +255,9 @@ footer a { color: var(--green); font-weight: 700; text-decoration: none; }
 .wa-float:hover { transform: translate(-2px,-2px); }
 .wa-float svg { width: 30px; height: 30px; fill: var(--navy); }
 @media (prefers-reduced-motion: reduce) { .wa-float { transition: none; } }
-@supports (height: 100svh) {
-  /* pinned to the stable small-viewport height; see a11y-widget.css for why */
-  .wa-float { bottom: auto; top: calc(100svh - 84px); }
-}
+/* Own compositor layer so the button does not repaint with the page and
+   twitch by a frame; see a11y-widget.css for the full note. */
+.wa-float { will-change: transform; }
 </style>
 </head>
 <body>
