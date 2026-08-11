@@ -128,7 +128,19 @@ body {
 .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
 header { background: var(--indigo); border-bottom: 3px solid var(--ink); }
 .nav { display: flex; align-items: center; justify-content: space-between; height: 92px; max-width: 1140px; margin: 0 auto; padding: 0 22px; }
-@media (max-width: 420px) { .nav { flex-wrap: wrap; height: auto; padding: 12px 16px; gap: 10px; } }
+@media (max-width: 420px) {
+  .nav {
+    flex-wrap: wrap; height: auto; padding: 12px 16px; gap: 10px;
+    justify-content: flex-start;
+  }
+  .logo { order: 1; }
+  .nav .logo { gap: 6px; }
+  .nav .logo img { width: 56px; height: 56px; }
+  .nav .logo .b { font-size: 20px; }
+  .theme-toggle { order: 2; margin-inline-start: auto; }
+  .snav-btn { order: 3; }
+  .nav > .btn { order: 5; flex-basis: 100%; }
+}
 .logo { display: flex; align-items: center; gap: 10px; color: var(--white); text-align: start; line-height: 1; text-decoration: none; }
 .logo img { width: 76px; height: 76px; flex-shrink: 0; }
 .logo .b { font-family: 'Rubik Bubbles', 'Rubik', sans-serif; font-size: 28px; }
@@ -207,7 +219,23 @@ footer a { color: var(--green); font-weight: 700; text-decoration: none; }
 @media (max-width: 700px) {
   h1, .hero h1, .cta-box .h, .final h2, .mnav a { text-shadow: 2px 2px 0 var(--ink); }
 }
+
+.wa-float {
+  position: fixed; bottom: 24px; inset-inline-end: 24px; z-index: 99;
+  width: 60px; height: 60px; border-radius: 50%;
+  background: var(--green); border: 2px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  display: grid; place-items: center;
+  transition: transform 0.12s;
+}
+.wa-float:hover { transform: translate(-2px,-2px); }
+.wa-float svg { width: 30px; height: 30px; fill: var(--navy); }
+@media (prefers-reduced-motion: reduce) { .wa-float { transition: none; } }
+/* Own compositor layer so the button does not repaint with the page and
+   twitch by a frame; see a11y-widget.css for the full note. */
+.wa-float { will-change: transform; }
 </style>
+<link rel="stylesheet" href="/site-nav.css">
 </head>
 <body>
 
@@ -219,7 +247,15 @@ footer a { color: var(--green); font-weight: 700; text-decoration: none; }
       <img src="/brand/logo-header-v2.webp" alt="" aria-hidden="true" width="76" height="76">
       <span class="b">CanaFlight</span>
     </a>
+    <nav class="snav-links" aria-label="ניווט ראשי">
+      <a href="/#how">איך זה עובד</a>
+      <a href="/#pricing">מחירים</a>
+      <a href="/guide.html">המדריך המלא</a>
+      <a href="/cannabis-in-greece.html">קנאביס ביוון</a>
+      <a href="/#faq">שאלות נפוצות</a>
+    </nav>
     <a class="btn green" href="/intake.html">מתחילים בשאלון</a>
+    <button class="snav-btn" aria-label="פתיחת תפריט" aria-expanded="false" aria-controls="site-menu">☰</button>
   </div>
 </header>
 
@@ -351,5 +387,50 @@ footer a { color: var(--green); font-weight: 700; text-decoration: none; }
 
 <script src="/a11y-widget.js" defer></script>
 <script src="/lead-capture.js" defer></script>
+
+<a class="wa-float" href="https://wa.me/972555799944?text=%D7%94%D7%99%D7%99%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%94%D7%A9%D7%99%D7%A8%D7%95%D7%AA%20%F0%9F%8C%BF" target="_blank" rel="noopener noreferrer" aria-label="פתיחת צ'אט וואטסאפ">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.11.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.28-.2-.57-.35zM12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88a9.83 9.83 0 0 1 7 2.9 9.83 9.83 0 0 1 2.89 7c0 5.45-4.44 9.88-9.9 9.88zm8.42-18.3A11.8 11.8 0 0 0 12.05 0C5.5 0 .16 5.33.16 11.89c0 2.1.55 4.14 1.59 5.94L.06 24l6.33-1.66a11.9 11.9 0 0 0 5.66 1.44h.01c6.55 0 11.89-5.33 11.89-11.89 0-3.18-1.24-6.16-3.48-8.4z"/></svg>
+</a>
+
+<nav class="snav" id="site-menu" aria-label="תפריט האתר">
+  <button class="snav-close" aria-label="סגירת תפריט">✕</button>
+  <div class="snav-inner">
+    <div class="snav-social">
+      <a href="https://www.instagram.com/canaflight/" target="_blank" rel="noopener noreferrer" aria-label="קנאפלייט באינסטגרם"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.24 2.22.4.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.35 1.05.4 2.22.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.24 1.8-.4 2.22-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.05.35-2.22.4-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.24-2.22-.4-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.35-1.05-.4-2.22C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.24-1.8.4-2.22.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.05-.35 2.22-.4C8.42 2.17 8.8 2.16 12 2.16zm0-2.16C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.13 1.39C1.35 2.68.94 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.39 2.13.67.67 1.34 1.08 2.13 1.39.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.13-1.39.67-.67 1.08-1.34 1.39-2.13.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.31-.79-.72-1.46-1.39-2.13C21.32 1.35 20.65.94 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zm0 10.16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-10.4a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg></a>
+      <a href="https://www.tiktok.com/@cana.flight" target="_blank" rel="noopener noreferrer" aria-label="קנאפלייט בטיקטוק"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 5.82c-.86-.94-1.34-2.17-1.34-3.5h-3.1v14.4c0 1.56-1.27 2.83-2.83 2.83a2.83 2.83 0 0 1 0-5.66c.29 0 .57.04.83.13V10.9a5.94 5.94 0 0 0-.83-.06c-3.28 0-5.94 2.66-5.94 5.94S6.05 22.72 9.33 22.72s5.94-2.66 5.94-5.94V9.28a8.35 8.35 0 0 0 4.87 1.56V7.75a5.9 5.9 0 0 1-3.24-.98 5.34 5.34 0 0 1-.3-.24z"/></svg></a>
+      <a href="https://www.facebook.com/profile.php?id=61591743040785&locale=he_IL" target="_blank" rel="noopener noreferrer" aria-label="קנאפלייט בפייסבוק"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg></a>
+      <a href="https://wa.me/972555799944?text=%D7%94%D7%99%D7%99%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%94%D7%A9%D7%99%D7%A8%D7%95%D7%AA%20%F0%9F%8C%BF" target="_blank" rel="noopener noreferrer" aria-label="פתיחת צ'אט וואטסאפ"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.11.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.28-.2-.57-.35zM12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88a9.83 9.83 0 0 1 7 2.9 9.83 9.83 0 0 1 2.89 7c0 5.45-4.44 9.88-9.9 9.88zm8.42-18.3A11.8 11.8 0 0 0 12.05 0C5.5 0 .16 5.33.16 11.89c0 2.1.55 4.14 1.59 5.94L.06 24l6.33-1.66a11.9 11.9 0 0 0 5.66 1.44h.01c6.55 0 11.89-5.33 11.89-11.89 0-3.18-1.24-6.16-3.48-8.4z"/></svg></a>
+      <a href="mailto:1cana.flight@gmail.com" aria-label="שליחת מייל לקנאפלייט"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+    </div>
+    <div class="snav-group">
+      <div class="snav-label">השירות</div>
+      <a href="/#how">איך זה עובד</a>
+      <a href="/#pricing">מחירים</a>
+      <a href="/#faq">שאלות נפוצות</a>
+    </div>
+    <div class="snav-group">
+      <div class="snav-label">מדריכים</div>
+      <a href="/guide.html">המדריך המלא</a>
+      <a href="/cannabis-in-greece.html">קנאביס ביוון</a>
+      <a href="/cbd-in-greece.html">CBD ביוון</a>
+      <a href="/fly-with-cannabis.html">לטוס עם קנאביס רפואי</a>
+    </div>
+    <div class="snav-group">
+      <div class="snav-label">יעדים</div>
+      <div class="snav-cities">
+          <a href="/athens.html">אתונה</a>
+          <a href="/thessaloniki.html">סלוניקי</a>
+          <a href="/crete.html">כרתים</a>
+          <a href="/rhodes.html">רודוס</a>
+          <a href="/corfu.html">קורפו</a>
+          <a href="/kos.html">קוס</a>
+          <a href="/santorini.html">סנטוריני</a>
+          <a href="/mykonos.html">מיקונוס</a>
+      </div>
+    </div>
+    <a class="snav-cta" href="/intake.html">מתחילים בשאלון</a>
+  </div>
+</nav>
+<script src="/site-nav.js" defer></script>
 </body>
 </html>

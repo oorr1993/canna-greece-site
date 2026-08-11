@@ -79,3 +79,16 @@ html.a11y-reduce-motion *, html.a11y-reduce-motion *::before, html.a11y-reduce-m
 @media print {
   html[class*="a11y-"] { filter: none !important; zoom: 1 !important; }
 }
+
+/* The page repaints its background every scroll frame (the parallax in
+   index.html), and a fixed element with no layer of its own is re-rastered
+   along with it, so it can land a frame late and visibly twitch. Promoting
+   these to their own compositor layer keeps them off that repaint path.
+   will-change is honest here: transform really is what changes, on hover. */
+.a11y-fab, .a11y-panel { will-change: transform; }
+
+@supports (height: 100svh) {
+  /* svh excludes the mobile browser chrome, so the panel can no longer run
+     under the toolbar the way a 100vh cap allowed. */
+  .a11y-panel { max-height: min(560px, calc(100svh - 130px)); }
+}
