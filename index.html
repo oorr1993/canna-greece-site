@@ -477,7 +477,12 @@ section { padding: 78px 0; }
 }
 
 /* pain vs solution */
+/* The Israel column was removed, so the grid now holds a single card. Left as
+   a two-column grid it would stretch that card across the full width and read
+   as a stray panel; :only-child keeps it at a readable measure and centred,
+   while the two-column rule stays for any future second card. */
 .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; }
+.vs .card:only-child { grid-column: 1 / -1; max-width: 620px; margin-inline: auto; }
 @media (max-width: 760px) { .vs { grid-template-columns: 1fr; } }
 .vs .card h3 { font-size: 21px; font-weight: 900; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
 .flag {
@@ -728,7 +733,7 @@ footer { background: var(--navy); color: var(--white); padding: 54px 0 34px; bor
   <div class="wrap">
     <div>
       <h1>מרשם קנאביס רפואי ביוון</h1>
-      <p class="h1sub">שירות ליווי דיגיטלי. בלי ועדות. בלי בירוקרטיה.</p>
+      <p class="h1sub">שירות ליווי דיגיטלי, מהטלפון, בעברית.</p>
       <p class="lead">קנאביס רפואי ביוון הוא חוקי — וזמין גם לתיירים ישראלים. אנחנו מלווים אתכם בתהליך: ממלאים שאלון של <b style="white-space:nowrap">3 דקות בעברית</b>, רופא יווני מורשה בודק מרחוק, ואם הוא מאשר — מרשם דיגיטלי תקף <b style="white-space:nowrap">בכל בית מרקחת ביוון</b>. בלי רישיון קנאביס ישראלי, בלי לזוז מהמלון.</p>
       <div class="ctas">
         <a class="btn indigo" href="/intake.html">בדקו התאמה עכשיו</a>
@@ -799,31 +804,21 @@ footer { background: var(--navy); color: var(--white); padding: 54px 0 34px; bor
 <section class="alt" id="pain">
   <div class="wrap">
     <div class="sec-head">
-      <span class="tag">בואו נדבר תכלס</span>
-      <h2>למה ביוון זה שעה, ובישראל זה חודשיים?</h2>
+      <span class="tag">מה כולל השירות</span>
+      <h2>איך נראה התהליך מהצד שלכם</h2>
+      <p>המסלול היווני הוא מה שהחוק המקומי מייעד למי שנמצא בשטח יוון. אנחנו מתאמים אותו — הבדיקה וההחלטה נשארות אצל הרופא.</p>
     </div>
     <div class="vs">
-      <div class="card il">
-        <h3><span class="flag il-f">ישראל</span> התהליך בישראל</h3>
-        <ul>
-          <li>3–8 שבועות של המתנה, טפסים ורופאים — רק כדי להתחיל</li>
-          <li>ועדות שמרגישות כמו משפט: תוכיחו שאתם "מספיק סובלים"</li>
-          <li>אלפי שקלים על רופאים פרטיים, אגרות וחידושים</li>
-          <li>כאבי גב או נדודי שינה? כמעט אף פעם לא מספיק לרישיון</li>
-          <li>הרישיון פג? מתחילים את כל הסאגה מהתחלה</li>
-        </ul>
-        <p class="foot">לחכות חודשיים זו לא רפואה. זו בירוקרטיה. 🫠</p>
-      </div>
       <div class="card gr">
         <h3><span class="flag gr-f">יוון</span> התהליך ביוון (איתנו)</h3>
         <ul>
           <li>שאלון מקוון בעברית — 3 דקות מהטלפון</li>
-          <li>רופא יווני מורשה בודק מרחוק, בלי ועדות ובלי תורים</li>
+          <li>רופא בעל רישיון יווני בוחן את הפנייה מרחוק</li>
           <li>תשלום חד-פעמי מ-169 ₪ — והחזר מלא אם אין אישור</li>
-          <li>קריטריונים רחבים: גם כאבי גב, שינה וחרדה נבחנים</li>
-          <li>תשובת הרופא כבר תוך כשעה במסלול VIP (בשעות הפעילות) — ואם אושר, מרשם תקף בכל בית מרקחת ביוון</li>
+          <li>כל פנייה נבחנת לגופה, על סמך הערכה רפואית אישית</li>
+          <li>תשובת הרופא כבר תוך כשעה במסלול VIP (בשעות הפעילות) — ואם אושר, מרשם תקף בכל בית מרקחת מורשה ביוון</li>
         </ul>
-        <p class="foot">ממלאים בבוקר — התשובה עד הצהריים. 🏖️</p>
+        <p class="foot">הכול מהטלפון, בעברית. 🌿</p>
       </div>
     </div>
   </div>
