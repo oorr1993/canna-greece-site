@@ -75,16 +75,17 @@
       "@id": "https://www.canaflight.com/#service",
       "name": "תיאום מרשם קנאביס רפואי ביוון אונליין",
       "serviceType": "Medical prescription coordination service",
+      "description": "קנאפלייט מתאמת פנייה לרופא מורשה ביוון. השירות בשלב פיילוט — רשת הרופאים בבנייה, וזמני המענה המצוינים הם יעד מתוכנן ואינם מובטחים.",
       "provider": { "@id": "https://www.canaflight.com/#org" },
       "areaServed": { "@type": "Country", "name": "Greece" },
       "audience": { "@type": "Audience", "audienceType": "תיירים ישראלים ביוון" },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "מסלולי שירות",
+        "name": "מסלולי שירות (פיילוט)",
         "itemListElement": [
-          { "@type": "Offer", "name": "מסלול בסיסי", "price": "169", "priceCurrency": "ILS", "description": "בדיקת רופא תוך שבוע–שבועיים, תמיכה באימייל" },
-          { "@type": "Offer", "name": "מסלול מהיר", "price": "249", "priceCurrency": "ILS", "description": "בדיקת רופא תוך 24 שעות, תמיכת וואטסאפ בעברית" },
-          { "@type": "Offer", "name": "מסלול VIP", "price": "349", "priceCurrency": "ILS", "description": "בדיקת רופא תוך כשעה בשעות הפעילות, עדיפות עליונה, ליווי אישי בצ'אט וסיוע באיתור בית מרקחת" }
+          { "@type": "Offer", "name": "מסלול בסיסי", "price": "169", "priceCurrency": "ILS", "availability": "https://schema.org/PreOrder", "description": "יעד: בדיקת רופא תוך שבוע–שבועיים, תמיכה באימייל. שלב פיילוט — לא סופי." },
+          { "@type": "Offer", "name": "מסלול מהיר", "price": "249", "priceCurrency": "ILS", "availability": "https://schema.org/PreOrder", "description": "יעד: בדיקת רופא תוך 24 שעות, תמיכת וואטסאפ בעברית. שלב פיילוט — לא סופי." },
+          { "@type": "Offer", "name": "מסלול VIP", "price": "349", "priceCurrency": "ILS", "availability": "https://schema.org/PreOrder", "description": "יעד: בדיקת רופא תוך כשעה בשעות הפעילות, עדיפות עליונה, ליווי אישי בצ'אט וסיוע באיתור בית מרקחת. שלב פיילוט — לא סופי." }
         ]
       }
     },
