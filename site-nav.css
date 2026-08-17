@@ -124,3 +124,25 @@
 @media (prefers-reduced-motion: reduce) {
   .snav { transition: none; }
 }
+
+/* ===== pilot-stage notice =====
+   Site-wide, above the header on every page. The site describes a
+   service that is not yet operating: there is no contracted doctor
+   network yet and no payment is collected anywhere in the funnel.
+   Everything else on these pages is written in the present tense, so
+   this banner is what keeps the whole site truthful — it is deliberately
+   the first thing rendered, not a footnote. Remove it only when the
+   service actually goes live. */
+.pilot-notice {
+  background: #FFF3D0; color: #3A2E0B;
+  border-bottom: 3px solid var(--ink, #000);
+  font-family: 'Rubik', sans-serif;
+  font-size: 14px; line-height: 1.55; font-weight: 500;
+  padding: 11px 18px; text-align: center;
+}
+.pilot-notice b { font-weight: 900; }
+.pilot-notice p { max-width: 760px; margin: 0 auto; }
+@media (max-width: 480px) {
+  .pilot-notice { font-size: 12.5px; padding: 9px 14px; line-height: 1.5; }
+}
+html.dark .pilot-notice { background: #3A320F; color: #F6EFD5; }

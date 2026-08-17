@@ -75,16 +75,17 @@
       "@id": "https://www.canaflight.com/#service",
       "name": "תיאום מרשם קנאביס רפואי ביוון אונליין",
       "serviceType": "Medical prescription coordination service",
+      "description": "קנאפלייט מתאמת פנייה לרופא מורשה ביוון. השירות בשלב פיילוט — רשת הרופאים בבנייה, וזמני המענה המצוינים הם יעד מתוכנן ואינם מובטחים.",
       "provider": { "@id": "https://www.canaflight.com/#org" },
       "areaServed": { "@type": "Country", "name": "Greece" },
       "audience": { "@type": "Audience", "audienceType": "תיירים ישראלים ביוון" },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "מסלולי שירות",
+        "name": "מסלולי שירות (פיילוט)",
         "itemListElement": [
-          { "@type": "Offer", "name": "מסלול בסיסי", "price": "169", "priceCurrency": "ILS", "description": "בדיקת רופא תוך שבוע–שבועיים, תמיכה באימייל" },
-          { "@type": "Offer", "name": "מסלול מהיר", "price": "249", "priceCurrency": "ILS", "description": "בדיקת רופא תוך 24 שעות, תמיכת וואטסאפ בעברית" },
-          { "@type": "Offer", "name": "מסלול VIP", "price": "349", "priceCurrency": "ILS", "description": "בדיקת רופא תוך כשעה בשעות הפעילות, עדיפות עליונה, ליווי אישי בצ'אט וסיוע באיתור בית מרקחת" }
+          { "@type": "Offer", "name": "מסלול בסיסי", "price": "169", "priceCurrency": "ILS", "availability": "https://schema.org/PreOrder", "description": "יעד: בדיקת רופא תוך שבוע–שבועיים, תמיכה באימייל. שלב פיילוט — לא סופי." },
+          { "@type": "Offer", "name": "מסלול מהיר", "price": "249", "priceCurrency": "ILS", "availability": "https://schema.org/PreOrder", "description": "יעד: בדיקת רופא תוך 24 שעות, תמיכת וואטסאפ בעברית. שלב פיילוט — לא סופי." },
+          { "@type": "Offer", "name": "מסלול VIP", "price": "349", "priceCurrency": "ILS", "availability": "https://schema.org/PreOrder", "description": "יעד: בדיקת רופא תוך כשעה בשעות הפעילות, עדיפות עליונה, ליווי אישי בצ'אט וסיוע באיתור בית מרקחת. שלב פיילוט — לא סופי." }
         ]
       }
     },
@@ -678,6 +679,9 @@ footer { background: var(--navy); color: var(--white); padding: 54px 0 34px; bor
 <a class="skip-link" href="#main-content">דלג לתוכן הראשי</a>
 
 <div id="pbar" aria-hidden="true"></div>
+<div class="pilot-notice" role="status">
+  <p><b>🚧 שלב פיילוט — השירות טרם פעיל.</b> אנחנו בונים את רשת הרופאים המורשים ביוון ובודקים ביקוש. מה שמתואר באתר הוא השירות המתוכנן; מועד ההשקה, המחירים וזמני המענה אינם סופיים, ולא נגבה מכם תשלום בשלב זה.</p>
+</div>
 <header>
   <div class="wrap nav">
     <a class="logo" href="/" aria-label="CanaFlight — דף הבית">
