@@ -4,9 +4,10 @@
   "type": "module",
   "dependencies": {
     "@supabase/supabase-js": "^2.45.0",
+    "@vercel/functions": "^3.9.8",
     "nodemailer": "^6.9.14"
   },
   "scripts": {
-    "test": "node test/notify.test.mjs"
+    "test": "node test/notify.test.mjs && node test/takedown.test.mjs"
   }
 }

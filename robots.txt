@@ -1,7 +1,13 @@
-# /thanks.html, /en/thanks.html and /404.html are intentionally NOT disallowed
-# here: each carries <meta name="robots" content="noindex">, and a Disallow
-# would stop crawlers reading that tag — leaving the bare URL eligible for
-# indexing if anything ever links to it. Crawl is what makes noindex work.
+# The site is temporarily offline — see docs/site-takedown.md.
+#
+# Crawling stays open ON PURPOSE. Every page now answers with
+# `X-Robots-Tag: noindex`, and a Disallow here would stop crawlers from ever
+# reading that header, leaving the URLs stuck in the index instead of dropping
+# out of it. Crawl is what makes noindex work.
+#
+# The same reasoning applies once the site is back: /thanks.html,
+# /en/thanks.html and /404.html each carry <meta name="robots" content="noindex">
+# and are deliberately not disallowed here either.
 User-agent: *
 Allow: /
 
