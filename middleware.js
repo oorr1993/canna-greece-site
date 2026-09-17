@@ -15,7 +15,11 @@
 import { next } from '@vercel/functions';
 
 export const config = {
-  matcher: '/:path*',
+  // The site root is listed separately on purpose. A lone '/:path*' compiles to
+  // a matcher that skips '/' itself, which quietly left the homepage — the one
+  // URL that matters most here — serving the real site. Verified against a
+  // preview deployment; do not collapse these back into one pattern.
+  matcher: ['/', '/(.*)'],
 };
 
 // Paths that must keep working even while the site is down.
