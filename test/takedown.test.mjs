@@ -23,11 +23,11 @@ ok('query string does not slip past', blocked('/guide.html?utm_source=fb'));
 ok('/apitest.html is not mistaken for /api/', blocked('/apitest.html'));
 
 console.log('\n2. the matcher reaches every URL');
-// Unit-testing the handler cannot catch a matcher that never invokes it, and a
-// matcher that skipped '/' shipped once already. Guard the root explicitly.
+// These tests call the handler directly, so they cannot see a matcher that
+// never invokes it. Pin the catch-all instead: the exceptions belong in the
+// allow-list, and narrowing the matcher would route around every test below.
 const matchers = [].concat(config.matcher);
-ok('matcher covers the site root', matchers.includes('/'), JSON.stringify(matchers));
-ok('matcher covers deep paths',    matchers.some((m) => /\*|\(/.test(m)), JSON.stringify(matchers));
+ok('matcher is a catch-all', matchers.length === 1 && matchers[0] === '/(.*)', JSON.stringify(matchers));
 
 console.log('\n3. the block carries the signals Google needs');
 const res = call('/guide.html');
