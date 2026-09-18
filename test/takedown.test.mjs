@@ -39,12 +39,26 @@ ok('never cached',             res.headers.get('cache-control') === 'no-store, m
 
 console.log('\n4. lead intake and crawler access stay alive');
 for (const p of ['/api/submit', '/api/lead', '/api/track', '/api/upload-url', '/api/health',
-                 '/api/cron-unhandled', '/robots.txt', '/sitemap.xml', '/favicon.svg',
-                 '/apple-touch-icon.png', '/_vercel/insights/script.js']) {
+                 '/api/cron-unhandled', '/robots.txt', '/sitemap.xml',
+                 '/_vercel/insights/script.js']) {
   ok(`${p} reachable`, !blocked(p));
 }
+// The logo is branding, not infrastructure: serving it would leave the leaf
+// mark visible in a browser tab even with no name or contact on the page.
+ok('/favicon.svg is blocked (it is the logo)',          blocked('/favicon.svg'));
+ok('/apple-touch-icon.png is blocked (it is the logo)', blocked('/apple-touch-icon.png'));
 
-console.log('\n5. search-engine verification survives the takedown');
+console.log('\n5. the offline page reveals nothing about the business');
+const body = await call('/guide.html').text();
+const leaks = ['קנאפלייט', 'CanaFlight', 'canaflight', 'cana.flight', '@gmail.com', 'mailto:'];
+for (const needle of leaks) {
+  ok(`page does not contain "${needle}"`, !body.includes(needle), body);
+}
+ok('og:title is set (controls link previews)',       /property="og:title"/.test(body));
+ok('og:description is set (controls link previews)', /property="og:description"/.test(body));
+ok('no og:image (nothing for a preview to show)',    !/property="og:image"/.test(body));
+
+console.log('\n6. search-engine verification survives the takedown');
 ok('Search Console file reachable', !blocked('/googlefa1f8772fea8ce15.html'));
 ok('Bing file reachable',           !blocked('/7483bb19af422462f6fbade6c131f90f.txt'));
 // Verifying the property from a different Google account issues a file under a
@@ -55,7 +69,7 @@ ok('well-known challenges reachable',         !blocked('/.well-known/acme-challe
 ok('/google-guide.html still blocked',        blocked('/google-guide.html'));
 ok('/en/google123.html still blocked',        blocked('/en/google123.html'));
 
-console.log('\n6. the SITE_OFFLINE switch');
+console.log('\n7. the SITE_OFFLINE switch');
 ok('takedown is on by default', blocked('/'));
 process.env.SITE_OFFLINE = '0';
 ok('SITE_OFFLINE=0 restores the site', !blocked('/') && !blocked('/en/guide.html'));
