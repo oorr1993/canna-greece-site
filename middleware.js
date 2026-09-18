@@ -38,9 +38,14 @@ const PASS_THROUGH_PATHS = new Set([
   // Bing verification — losing it loses access to Bing's removal tool while
   // the site is down.
   '/7483bb19af422462f6fbade6c131f90f.txt',
-  '/favicon.svg',
-  '/apple-touch-icon.png',
 ]);
+
+// favicon.svg and apple-touch-icon.png are deliberately NOT on the
+// pass-through list: both are the company logo (a leaf mark), and serving them
+// while the offline page carries no brand name or contact info would still
+// leave the logo visible in a browser tab or a home-screen bookmark. A request
+// for either now gets the same offline notice — wrong content-type for an
+// icon, so browsers just show no icon, which is the point.
 
 // Any Search Console HTML verification file, not just the one currently in the
 // repo. Verifying a *new* Google account issues a file under a fresh token, and
@@ -53,13 +58,27 @@ const GOOGLE_VERIFICATION = /^\/google[0-9a-z]+\.html$/;
 // a blocked challenge breaks renewals rather than anything a visitor sees.
 const WELL_KNOWN_PREFIX = '/.well-known/';
 
+// Deliberately brand-free: no company name, no description of what the site
+// does, no contact address. A visitor — or a link-preview bot in WhatsApp,
+// Facebook, Telegram, iMessage — should come away with nothing to connect
+// this URL to the business. The og:/twitter: tags are set explicitly rather
+// than omitted: an unfurler with no og:title falls back to guessing from
+// <title> or page text, and an empty content="" is often treated by
+// unfurlers as "not set" and triggers the same fallback — so this pins a
+// neutral value that wins over any fallback instead of leaving a gap for one.
 const OFFLINE_PAGE = `<!doctype html>
 <html lang="he" dir="rtl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-<title>האתר אינו זמין כרגע</title>
+<title>לא זמין</title>
+<meta name="description" content="לא זמין">
+<meta property="og:title" content="לא זמין">
+<meta property="og:description" content="לא זמין">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="לא זמין">
+<meta name="twitter:description" content="לא זמין">
 <style>
   :root { color-scheme: light dark; }
   body {
@@ -74,29 +93,15 @@ const OFFLINE_PAGE = `<!doctype html>
     color: #1c1b18;
     font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
     line-height: 1.6;
+    text-align: center;
   }
-  main { max-width: 32rem; text-align: center; }
-  h1 { font-size: 1.5rem; margin: 0 0 0.75rem; }
-  p { margin: 0 0 0.75rem; color: #4a4741; }
-  .en { direction: ltr; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #dedad2; font-size: 0.9rem; }
-  a { color: inherit; }
   @media (prefers-color-scheme: dark) {
     body { background: #161513; color: #f2f0eb; }
-    p { color: #b3aea4; }
-    .en { border-top-color: #33312c; }
   }
 </style>
 </head>
 <body>
-<main>
-  <h1>האתר אינו זמין כרגע</h1>
-  <p>קנאפלייט אינה פעילה בשלב זה. אין אפשרות להגיש פנייה חדשה.</p>
-  <p>לפניות: <a href="mailto:1cana.flight@gmail.com">1cana.flight@gmail.com</a></p>
-  <div class="en">
-    <p><strong>This site is currently unavailable.</strong></p>
-    <p>CanaFlight is not operating at this time. New requests cannot be submitted.</p>
-  </div>
-</main>
+<p>הדף אינו זמין.</p>
 </body>
 </html>
 `;
