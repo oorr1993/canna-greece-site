@@ -47,6 +47,13 @@ for (const p of ['/api/submit', '/api/lead', '/api/track', '/api/upload-url', '/
 console.log('\n5. search-engine verification survives the takedown');
 ok('Search Console file reachable', !blocked('/googlefa1f8772fea8ce15.html'));
 ok('Bing file reachable',           !blocked('/7483bb19af422462f6fbade6c131f90f.txt'));
+// Verifying the property from a different Google account issues a file under a
+// new token, so the allow-list cannot be pinned to the one token in the repo.
+ok('a NEW Search Console token is reachable', !blocked('/google1a2b3c4d5e6f7890.html'));
+ok('well-known challenges reachable',         !blocked('/.well-known/acme-challenge/xyz'));
+// Still narrow: the pattern must not become a hole for ordinary pages.
+ok('/google-guide.html still blocked',        blocked('/google-guide.html'));
+ok('/en/google123.html still blocked',        blocked('/en/google123.html'));
 
 console.log('\n6. the SITE_OFFLINE switch');
 ok('takedown is on by default', blocked('/'));

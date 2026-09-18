@@ -35,13 +35,23 @@ const PASS_THROUGH_PATHS = new Set([
   // Kept on purpose: it keeps Google recrawling the listed URLs, which is what
   // makes the noindex land in days rather than months.
   '/sitemap.xml',
-  // Search Console / Bing verification — losing these loses access to the
-  // removal tools we need while the site is down.
-  '/googlefa1f8772fea8ce15.html',
+  // Bing verification — losing it loses access to Bing's removal tool while
+  // the site is down.
   '/7483bb19af422462f6fbade6c131f90f.txt',
   '/favicon.svg',
   '/apple-touch-icon.png',
 ]);
+
+// Any Search Console HTML verification file, not just the one currently in the
+// repo. Verifying a *new* Google account issues a file under a fresh token, and
+// blocking it would fail the verification with no hint as to why — which is
+// exactly when we need Search Console most, since its removal tool is what
+// hides the site within hours rather than weeks.
+const GOOGLE_VERIFICATION = /^\/google[0-9a-z]+\.html$/;
+
+// Domain-control and certificate challenges. Nothing here is site content, and
+// a blocked challenge breaks renewals rather than anything a visitor sees.
+const WELL_KNOWN_PREFIX = '/.well-known/';
 
 const OFFLINE_PAGE = `<!doctype html>
 <html lang="he" dir="rtl">
@@ -101,7 +111,9 @@ export default function middleware(request) {
   const { pathname } = new URL(request.url);
   const isPassThrough =
     PASS_THROUGH_PATHS.has(pathname) ||
-    PASS_THROUGH_PREFIXES.some((prefix) => pathname.startsWith(prefix));
+    PASS_THROUGH_PREFIXES.some((prefix) => pathname.startsWith(prefix)) ||
+    pathname.startsWith(WELL_KNOWN_PREFIX) ||
+    GOOGLE_VERIFICATION.test(pathname);
 
   if (isPassThrough) {
     return next();
