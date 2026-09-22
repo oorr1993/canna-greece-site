@@ -2,15 +2,15 @@ import { createClient } from '@supabase/supabase-js';
 import { randomUUID } from 'crypto';
 
 const BUCKET = 'intake-files';
-const KINDS = { passport: 'passport', selfie: 'selfie', rx: 'rx' };
-const EXT_BY_TYPE = {
+const KINDS = Object.assign(Object.create(null), { passport: 'passport', selfie: 'selfie', rx: 'rx' });
+const EXT_BY_TYPE = Object.assign(Object.create(null), {
   'image/jpeg': 'jpg',
   'image/png': 'png',
   'image/webp': 'webp',
   'image/heic': 'heic',
   'image/heif': 'heif',
   'application/pdf': 'pdf',
-};
+});
 const MAX_FILES_PER_REQUEST = 3;
 
 const ALLOWED_ORIGINS = new Set([
